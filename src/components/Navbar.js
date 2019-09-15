@@ -10,8 +10,8 @@ import {
 import Sidebar from '../components/Sidebar'
 import MenuIcon from '@material-ui/icons/Menu';
 
-const minWidth = 500;
 
+const minWidth = 524;
 const useStyles = makeStyles(theme => ({
     title: {...theme.typography.h6},
     button: {
@@ -34,6 +34,11 @@ export default function Navbar() {
     const styles = useStyles();
     const [open, setOpen] = useState(false)
     const [drawerWidth, setDrawerWidth] = useState(0);
+    const [width, setWidth] = useState(window.innerWidth);
+    window.onresize = evt => {
+        const innerWidth = window.innerWidth;
+        if ((innerWidth < minWidth) || (innerWidth > minWidth && width < minWidth)) setWidth(innerWidth)
+    }
     const tabs = [
         {name: 'Home'},
         {name: 'Account'},
@@ -50,7 +55,7 @@ export default function Navbar() {
         <AppBar
         position='fixed' >
             <Toolbar>
-                { window.innerWidth < minWidth && 
+                { width < minWidth && 
                     <div className={styles.drawerHeader}>
                         <Sidebar open={open} drawerWidth={drawerWidth} tabs={tabs}/>
                         <MenuIcon onClick={handleToggle} />
@@ -59,7 +64,7 @@ export default function Navbar() {
                 <Typography variant="h1" className={styles.title}>
                     DWOC
                 </Typography>
-                { window.innerWidth > minWidth && 
+                { width > minWidth && 
                 <div className={styles.button}>
                     {tabs.map((tab, index) => (
                         <Button color="inherit" className={styles.button} onClick={handleClick} key={index}>
@@ -71,7 +76,7 @@ export default function Navbar() {
                     </Button>
                 </div>
                 }
-                {window.innerWidth < minWidth && 
+                {width < minWidth && 
                 <Button color="inherit" className={styles.button} onClick={handleClick}>
                     Login using <i className={`devicon-github-plain ` + styles.githubBtn}></i>
                 </Button>
