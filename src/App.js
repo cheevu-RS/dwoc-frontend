@@ -1,28 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Card2 from './components/Card2'
+import Card2 from './components/projectcard.js';
+import Navbar from './components/Navbar'
+import CustomizedDialogs from './components/projectcard'
 
 function App() {
-  return (
-    <div className="App">
+	return (
+		<div className="App">
       <header className="App-header">
-      <Card2 />
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+			  <Navbar />
+        <CustomizedDialogs />
+        <Card2 />
       </header>
-    </div>
-  );
+		</div>
+	);
 }
 
 export default App;
