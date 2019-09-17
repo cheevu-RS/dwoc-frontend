@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.css';
-import Card2 from './components/Projectcard.js';
+import ProjectCard,CustomizedDialogs from './components/ProjectCard';
 import Navbar from './components/Navbar'
-import CustomizedDialogs from './components/Projectcard'
-import Timeline from './components/Timeline'
+import TimeLine from './components/TimeLine'
 
 function App() {
 	return (
@@ -11,8 +10,8 @@ function App() {
       <header className="App-header">
 			  <Navbar />
         <CustomizedDialogs />
-        <Card2 />
-				<Timeline/>
+        <ProjectCard />
+				<TimeLine/>
       </header>
 		</div>
 	);
