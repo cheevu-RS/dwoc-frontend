@@ -4,13 +4,17 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.4.2",
+    "@material-ui/icons": "^4.4.1",
     "babel-loader": "^8.0.6",
     "babel-preset-react": "^6.24.1",
+    "bootstrap": "^4.3.1",
     "flow-bin": "^0.107.0",
     "react": "^16.9.0",
+    "react-bootstrap": "^1.0.0-beta.12",
     "react-dom": "^16.9.0",
     "react-relay": "^5.0.0",
-    "react-scripts": "3.1.1"
+    "react-scripts": "3.1.1",
+    "react-vertical-timeline-component": "^2.5.0"
   },
   "scripts": {
     "start": "react-scripts start",

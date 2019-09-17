@@ -21,7 +21,7 @@ export default function DraggableDialog(props) {
 
   return (
     <div>
-      <Button onClick={handleClickOpen}>
+      <Button onClick={handleClickOpen} variant="outlined">
         <b>{props.btnText}</b>
       </Button>
       <Dialog
@@ -39,7 +39,6 @@ export default function DraggableDialog(props) {
           <a href="https://www.github.com">Checkout the project on github</a>
         </DialogContent>
         <DialogActions>
-          
           {props.taken === "1" ? (<Button onClick={handleClose}>Cancel</Button>) : (<div><Button onClick={handleClose}>Cancel</Button><Button onClick={handleClose}>Apply</Button></div>)}
         </DialogActions>
       </Dialog>

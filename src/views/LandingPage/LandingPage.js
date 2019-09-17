@@ -1,10 +1,15 @@
 import React from 'react';
-import ProjMinCard from '../../components/ProjMinCard/ProjMinCard';
+import Navbar from '../../components/Navbar/Navbar';
+import Timeline from '../../components/Timeline/Timeline';
+import ProjCards from '../../components/ProjCards/ProjCards';
 
 function LandingPage() {
+
   return (
     <div>
-        <ProjMinCard applicants="2" tools={["C++", "Python"]} taken="0"/>
+        <Navbar />
+        <Timeline />
+        <ProjCards />
     </div>
   );
 }

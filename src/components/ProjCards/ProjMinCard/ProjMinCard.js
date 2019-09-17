@@ -7,11 +7,12 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import Modal from '../Modal/Modal';
+import ProjMaxCard from '../ProjMaxCard/ProjMaxCard';
 
 const useStyles = makeStyles({
   card: {
-    minWidth: 375,
+    minWidth: '15%',
+    marginTop: '30px',
   },
   title: {
     fontSize: 17,
@@ -39,7 +40,7 @@ export default function ProjMinCard(props) {
   let titleWithTick = (
     <Typography variant="h4" component="h2">
       Project Title
-      <img className={classes.rightAlign} alt="tick-logo" src={require('../../assets/icons/check_circle_black_18x18.png')} />
+      <img className={classes.rightAlign} alt="tick-logo" src={require('../../../assets/icons/check_circle_black_18x18.png')} />
     </Typography>
   );
 
@@ -50,11 +51,9 @@ export default function ProjMinCard(props) {
   );
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} style={{maxWidth: ""}}>
       <CardContent>
-
         {props.taken === "0" ? title : titleWithTick}
-
         <br />
         <Typography>
           In this project you will need to do so and so....
@@ -66,8 +65,7 @@ export default function ProjMinCard(props) {
         <Typography>Applicants: {props.applicants}</Typography>
       </CardContent>
       <CardActions>
-        <Modal btnText="Read more" taken={props.taken}/>
-        
+        <ProjMaxCard btnText="Read more" taken={props.taken}/>
       </CardActions>
     </Card>
   );
