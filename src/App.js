@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import Card2 from './components/projectcard.js';
+import Card2 from './components/Projectcard.js';
 import Navbar from './components/Navbar'
-import CustomizedDialogs from './components/projectcard'
+import CustomizedDialogs from './components/Projectcard'
 
 function App() {
 	return (
