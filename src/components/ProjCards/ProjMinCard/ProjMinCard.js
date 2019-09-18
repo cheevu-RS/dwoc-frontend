@@ -11,8 +11,10 @@ import ProjMaxCard from '../ProjMaxCard/ProjMaxCard';
 
 const useStyles = makeStyles({
   card: {
-    minWidth: '15%',
     marginTop: '30px',
+    backgroundColor: "#EDF5E1",
+    color: "#05386B",
+    maxWidth: "400px",
   },
   title: {
     fontSize: 17,
@@ -51,7 +53,7 @@ export default function ProjMinCard(props) {
   );
 
   return (
-    <Card className={classes.card} style={{maxWidth: ""}}>
+    <Card className={classes.card}>
       <CardContent>
         {props.taken === "0" ? title : titleWithTick}
         <br />

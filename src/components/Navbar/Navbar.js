@@ -56,7 +56,7 @@ export default function Navbar() {
         alert('Redirecting to login...')
     }
 
-    let deltaLogo = (<div><a href="https://delta.nitt.edu/"><img alt="delta-logo" width="40" src={require('../../assets/images/deltaLogoBlack.png')} /></a></div>);
+    let deltaLogo = (<div><a href="https://delta.nitt.edu/"><img alt="delta-logo" width="40" src={require('../../assets/images/deltaLogoBlack.png')} /></a>  DWOC</div>);
 
     return (
         <div>
@@ -71,8 +71,6 @@ export default function Navbar() {
                 }
                 <div>{deltaLogo}</div>
                 
-                <Typography variant="h5">DWOC</Typography>
-
                 {width > minWidth &&
                     <div className={styles.button}>
                         {tabs.map((tab, index) => (
