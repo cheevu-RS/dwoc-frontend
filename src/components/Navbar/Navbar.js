@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import {
     AppBar,
     Toolbar,
-    Typography,
     Button,
     makeStyles,
     ListItemText
