@@ -1,8 +1,7 @@
 import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import Timeline from '../../components/Timeline/Timeline';
-import ProjCards from '../../components/ProjCards/ProjCards';
-
+import OrgCards from '../../components/OrgCards/OrgCards';
 
 function LandingPage() {
 
@@ -10,7 +9,7 @@ function LandingPage() {
     <div>
         <Navbar />
         <Timeline />
-        <ProjCards />
+        <OrgCards />
     </div>
   );
 }
