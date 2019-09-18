@@ -8,6 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import ProjMaxCard from '../ProjMaxCard/ProjMaxCard';
+import Flip from 'react-reveal/Flip';
 
 const useStyles = makeStyles({
   card: {
@@ -53,22 +54,24 @@ export default function ProjMinCard(props) {
   );
 
   return (
-    <Card className={classes.card}>
-      <CardContent>
-        {props.taken === "0" ? title : titleWithTick}
-        <br />
-        <Typography>
-          In this project you will need to do so and so....
+    <Flip left>
+      <Card className={classes.card}>
+        <CardContent>
+          {props.taken === "0" ? title : titleWithTick}
+          <br />
+          <Typography>
+            In this project you will need to do so and so....
         </Typography>
 
-        <Typography>
-          Tools Used: <b>{toolsUsed}</b>
-        </Typography>
-        <Typography>Applicants: {props.applicants}</Typography>
-      </CardContent>
-      <CardActions>
-        <ProjMaxCard btnText="Read more" taken={props.taken}/>
-      </CardActions>
-    </Card>
+          <Typography>
+            Tools Used: <b>{toolsUsed}</b>
+          </Typography>
+          <Typography>Applicants: {props.applicants}</Typography>
+        </CardContent>
+        <CardActions>
+          <ProjMaxCard btnText="Read more" taken={props.taken} />
+        </CardActions>
+      </Card>
+    </Flip>
   );
 }

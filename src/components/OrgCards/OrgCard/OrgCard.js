@@ -1,25 +1,27 @@
 import React from "react";
-// import "./App.css";
 import { Card } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import Flip from 'react-reveal/Flip';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
+  container: {
+    display: 'flex',  
+  },
   card: {
-    maxWidth: 400,
-    marginLeft: "15px",
-    marginTop: "30px",
     backgroundColor: "#EDF5E1",
     color: "#05386B",
+    marginTop: '30px',
+    maxWidth: "400px",
   },
   title: {
-    textAlign: "center",
+    textAlign: "left",
   },
   description: {
-    marginTop: 5,
+    marginTop: 8,
     fontSize: 20,
   },
   projects: {
@@ -29,37 +31,38 @@ const useStyles = makeStyles({
   },
   viewProjectsBtn: {
     color: "#05386B",
+  },
+  cardActions: {
+    paddingTop: "0px",
   }
-});
+}));
 
-function OrgCard(props) {
+export default function OrgCard(props) {
   const classes = useStyles();
-  // console.log(`${props.orgID} <= orgID`);
 
   return (
-    <Card className={classes.card}>
-      <CardContent>
-        <Typography className={classes.title} variant="h4">
-          Org Title
-        </Typography>
-        <div style={{ height: "20px" }}></div>
-        <Typography className={classes.description} component="p">
-          Description and goals of the org
-        </Typography>
-        <p className={classes.projects}>
-          This Org has {props.noOfProjects} projects
-        </p>
-        {/* <Link to={`/${props.orgID}`}> */}
+    <div>
+        <Flip left>
+          <Card className={classes.card}>
+            <CardContent style={{paddingBottom: "0px"}}>
+              <Typography className={classes.title} variant="h4">
+                Org Title
+              </Typography>
+              <Typography className={classes.description} component="p">
+                Description and goals of the org
+              </Typography>
+              <p className={classes.projects}>
+                This Org has {props.noOfProjects} projects
+              </p>
+            </CardContent>
 
-        {/* </Link> */}
-      </CardContent>
-        
-      <CardActions>
-          <Button size="small" className={classes.viewProjectsBtn}>View projects</Button>
-      </CardActions>
-    </Card>
-
+            <CardActions className={classes.cardActions}>
+              {/* <Link to={`/${props.orgID}`}> */}
+                <Button size="small" className={classes.viewProjectsBtn}>View projects</Button>
+              {/* </Link> */}
+            </CardActions>
+          </Card>
+        </Flip>
+    </div>
   );
 }
-
-export default OrgCard;

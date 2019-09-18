@@ -14,7 +14,6 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
           contentArrowStyle={{ borderRight: '7px solid  rgb(233, 30, 99)' }}
           date="April 2013"
           iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
-
         >
           <h3 className="vertical-timeline-element-title">Creative Director</h3>
           <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
@@ -28,7 +27,6 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
           contentArrowStyle={{ borderRight: '7px solid  #379683' }}
           date="April 2013"
           iconStyle={{ background: '#379683', color: '#EDF5E1' }}
-
         >
           <h3 className="vertical-timeline-element-title">Content Marketing for Web, Mobile and Social Media</h3>
           <h4 className="vertical-timeline-element-subtitle">Online Course</h4>
@@ -55,7 +53,6 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
           contentArrowStyle={{ borderRight: '7px solid  rgb(233, 30, 99)' }}
           date="April 2013"
           iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
-
         >
           <h3 className="vertical-timeline-element-title">Creative Director</h3>
           <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
