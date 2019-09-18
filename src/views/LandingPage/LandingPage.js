@@ -3,6 +3,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import Timeline from '../../components/Timeline/Timeline';
 import ProjCards from '../../components/ProjCards/ProjCards';
 
+
 function LandingPage() {
 
   return (
