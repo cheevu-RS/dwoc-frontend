@@ -154,7 +154,7 @@ input ProposalWhereUniqueInput {
 type Query {
   info: String!
   users(where: UserWhereUniqueInput): [User]!
-  ProjectsQuery(where: ProjectWhereUniqueInput): [Project]!
+  projects(where: ProjectWhereUniqueInput): [Project]!
   organizations(where: OrganizationWhereUniqueInput): [Organization]!
   mentors(where: MentorWhereUniqueInput): [Mentor]!
   proposals(where: ProposalWhereUniqueInput): [Proposal]!

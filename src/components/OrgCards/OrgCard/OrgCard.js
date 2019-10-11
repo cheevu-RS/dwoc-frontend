@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Flip from 'react-reveal/Flip';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -39,10 +40,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function OrgCard(props) {
   const classes = useStyles();
-  console.log(`${JSON.stringify(props)} <= props in OrgCard`);
-  console.log(`${props.orgDesc} <= props.orgDesc`);
+  console.log(props);
+
+  const orgPath = "/org/"+props.id+"/"+props.orgName;
+
   return (
-    <div>
+    <div style={{paddingLeft: "1.5%"}}>
       <Flip left>
         <Card className={classes.card}>
           <CardContent style={{ paddingBottom: '0px' }}>
@@ -50,20 +53,18 @@ export default function OrgCard(props) {
               {props.orgName}
             </Typography>
             <Typography className={classes.description} component="p">
-              {props.orgDesc} ==description
+              {props.orgDesc} Description
             </Typography>
             <p className={classes.projects}>
               {/* This Org has {props.noOfProjects} projects */}
               This Org has # projects
+              <br />
+              Org ID: {props.id}
             </p>
           </CardContent>
 
           <CardActions className={classes.cardActions}>
-            {/* <Link to={`/${props.orgID}`}> */}
-            <Button size="small" className={classes.viewProjectsBtn}>
-              View projects
-            </Button>
-            {/* </Link> */}
+              <Button><Link to={orgPath}> VIEW PROJECTS </Link></Button>
           </CardActions>
         </Card>
       </Flip>

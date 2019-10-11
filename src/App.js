@@ -4,14 +4,21 @@ import React from 'react';
 import './App.css';
 import LandingPage from './views/LandingPage/LandingPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Projects from './Projects';
+import Navbar from './components/Navbar/Navbar'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import ProjCards from './components/ProjCards/ProjCards';
 
 function App() {
   return (
     <div className="App">
-      <Projects style={{ color: 'pink' }} />
       <div className="App-header">
-        <LandingPage />
+        <Navbar />
+        <Router>
+          <Switch>
+            <Route exact path="/" component={LandingPage}></Route>
+            <Route exact path="/org/:id/:orgName" component={ProjCards}></Route>
+          </Switch>
+        </Router>
       </div>
     </div>
   );
