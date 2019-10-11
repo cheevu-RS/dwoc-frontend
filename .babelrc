@@ -1,3 +1,4 @@
 {
-    "presets": ["flow"]
+  "plugins": ["relay"],
+  "presets": ["flow"]
 }
