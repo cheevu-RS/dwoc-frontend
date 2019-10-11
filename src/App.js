@@ -10,9 +10,9 @@ function App() {
   return (
     <div className="App">
       <Projects style={{ color: 'pink' }} />
-      {/* <div className="App-header">
+      <div className="App-header">
         <LandingPage />
-      </div> */}
+      </div>
     </div>
   );
 }
