@@ -3,10 +3,11 @@ import ProjCard from './ProjMinCard/ProjMinCard';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { makeStyles } from "@material-ui/core/styles"
-
+import RingLoader from 'react-spinners/RingLoader';
 import { QueryRenderer } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
 import environment from '../../Environment';
+import { css } from '@emotion/core';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -15,12 +16,20 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const override = css`
+display: block;
+margin: 0 auto;
+border-color: red;
+`;
+
 export default function Projects(props) {
 
   const classes = useStyles();
   const orgName = props.match.params.orgName;
   const defaultTools = ["C++", "Python"];
-  // console.log(orgID);
+  
+  const orgID = props.match.params.id;
+  console.log(orgID);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -31,14 +40,20 @@ export default function Projects(props) {
       <QueryRenderer
         environment={environment}
         query={graphql`
-        query ProjCardsQuery {
-            projects {
+        query ProjCardsQuery ($orgid: ProjectWhereUniqueInput){
+          projects(where: $orgid){
               id
+              projName
               projSlug
+              projDesc
+              githubUrl
+              organization {
+                id
+              }
             }
         }
       `}
-        variables={{}}
+        variables={{ orgid: {organization: { id: orgID }} }}
         render={({ error, props }) => {
           console.log(props);
           if (error) {
@@ -46,7 +61,7 @@ export default function Projects(props) {
             return <div>Error!</div>;
           }
           if (!props) {
-            return <div>Loading...</div>;
+            return <div><h2 style={{ textAlign: "center" }}>Projects under {orgName}</h2><div style={{paddingTop: "20%"}}><RingLoader css={override} color= {'#5CDB95'}/></div></div>; 
           }
           console.log(`${JSON.stringify(props)} <= props in ProjCards  `);
 
@@ -68,7 +83,7 @@ export default function Projects(props) {
           return (
             <div>
               <h2 style={{ textAlign: "center" }}>Projects under {orgName}</h2>
-              {structuredProjects.map(proj => (<Row key={num++}>{proj.map(o => (o.id ? <Col key={num++}><ProjCard tools={defaultTools} /></Col> : <Col key={num++}></Col>))} </Row>))}
+              {structuredProjects.map(proj => (<Row key={num++}>{proj.map(o => (o.id ? <Col key={num++}><ProjCard tools={defaultTools} {...o}/></Col> : <Col key={num++}></Col>))} </Row>))}
             </div>
           );
         }}

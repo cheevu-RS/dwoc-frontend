@@ -57,7 +57,7 @@ export default function OrgCard(props) {
             </Typography>
             <p className={classes.projects}>
               {/* This Org has {props.noOfProjects} projects */}
-              This Org has # projects
+              This Org has {props.noOfProjs} projects
               <br />
               Org ID: {props.id}
             </p>
