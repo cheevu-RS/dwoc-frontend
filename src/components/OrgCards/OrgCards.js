@@ -2,6 +2,8 @@ import React from 'react';
 import OrgCard from '../../components/OrgCards/OrgCard/OrgCard';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import RingLoader from 'react-spinners/RingLoader';
+import { css } from '@emotion/core';
 // import { makeStyles } from '@material-ui/core/styles';
 
 import { QueryRenderer } from 'react-relay';
@@ -14,8 +16,18 @@ import environment from '../../Environment';
 //   }  
 // }));
 
+const override = css`
+display: block;
+margin: 0 auto;
+border-color: red;
+`;
+
+
+
 export default function OrgCards() {
   // const classes = useStyles(); 
+
+  
 
   return (
     <QueryRenderer
@@ -37,7 +49,7 @@ export default function OrgCards() {
           return <div>Error!</div>;
         }
         if (!props) {
-          return <div>Loading...</div>;
+          return <div><RingLoader css={override} color= {'#5CDB95'}/></div>;
         }
         let n = props.organizations.length;
         const allOrgs = props.organizations;
@@ -60,9 +72,13 @@ export default function OrgCards() {
 
         console.log(`${JSON.stringify(props)} <= props in OrgCards  `);
         return (
-          <div style={{paddingLeft: "2%"}}>
-            {structuredOrg.map(org => (<Row key={num++}>{org.map(o => (o.id?<Col key={o.id}><OrgCard {...o}/></Col>:<Col key={num++}></Col>))} </Row>))}
-          </div>
+            <div>
+              {/* <div style={{paddingTop: "2%"}}><RingLoader css={override} color= {'#5CDB95'}/></div> */}
+              <div style={{paddingLeft: "1%", paddingRight: "1%"}}>
+                  {structuredOrg.map(org => (<Row key={num++}>{org.map(o => (o.id?<Col key={o.id}><OrgCard {...o}/></Col>:<Col key={num++}></Col>))} </Row>))}
+              </div>
+            </div>
+            
         );
       }}
     />

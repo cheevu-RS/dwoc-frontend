@@ -33,6 +33,7 @@ const useStyles = makeStyles({
 export default function ProjMinCard(props) {
   const classes = useStyles();
   let toolsUsed = "";
+  console.log(props);
   for (let i = 0; i < props.tools.length; i++) {
     toolsUsed += props.tools[i];
     if (i < props.tools.length - 1) {
@@ -42,13 +43,13 @@ export default function ProjMinCard(props) {
 
   let titleWithTick = (
     <Typography variant="h4" component="h2">
-      Project Title
+      {props.projName}
       <img className={classes.rightAlign} alt="tick-logo" src={require('../../../assets/icons/check_circle_black_18x18.png')} />
     </Typography>
   );
 
   let title = (
-    <Typography variant="h4" component="h2">
+    <Typography variant="h1" component="h1">
       Project Title
     </Typography>
   );
@@ -59,8 +60,8 @@ export default function ProjMinCard(props) {
         <CardContent>
           {props.taken === "0" ? title : titleWithTick}
           <br />
-          <Typography>
-            In this project you will need to do so and so....
+          <Typography variant="h6">
+            Description: {props.projDesc}
         </Typography>
 
           <Typography>
@@ -69,7 +70,7 @@ export default function ProjMinCard(props) {
           <Typography>Applicants: {props.applicants}</Typography>
         </CardContent>
         <CardActions>
-          <ProjMaxCard btnText="Read more" taken={props.taken} />
+          <ProjMaxCard btnText="Read more" taken={props.taken} {...props}/>
         </CardActions>
       </Card>
     </Flip>

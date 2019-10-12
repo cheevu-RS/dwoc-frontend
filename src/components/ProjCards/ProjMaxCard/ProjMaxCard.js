@@ -30,13 +30,13 @@ export default function DraggableDialog(props) {
         aria-labelledby="dialog-title"
       >
         <DialogTitle id="dialog-title">
-          Project Title
+          {props.projName}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Longer description of project over here
+            Description: {props.projDesc}
           </DialogContentText>
-          <a href="https://www.github.com">Checkout the project on github</a>
+          <a href={"https://"+props.githubUrl}>Checkout the project on github </a>
         </DialogContent>
         <DialogActions>
           {props.taken === "1" ? (<Button onClick={handleClose}>Cancel</Button>) : (<div><Button onClick={handleClose}>Cancel</Button><Button onClick={handleClose}>Apply</Button></div>)}
