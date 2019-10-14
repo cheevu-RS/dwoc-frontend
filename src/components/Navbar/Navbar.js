@@ -10,7 +10,7 @@ import Sidebar from '../Sidebar/Sidebar'
 import MenuIcon from '@material-ui/icons/Menu';
 
 
-const minWidth = 524;
+const minWidth = 550;
 const useStyles = makeStyles(theme => ({
     title: { ...theme.typography.h6 },
     button: {
