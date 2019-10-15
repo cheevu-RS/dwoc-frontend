@@ -1,26 +1,35 @@
 import React from 'react';
 import OrgCard from '../../components/OrgCards/OrgCard/OrgCard';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+
+//Spinner
 import RingLoader from 'react-spinners/RingLoader';
 import { css } from '@emotion/core';
 
+// Stype imports
+import WebFont from 'webfontloader';
+import { header2, header3 } from './../../DwocStyles';
+
+// Material UI
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-// import { makeStyles } from '@material-ui/core/styles';
 
+// Relay
 import { QueryRenderer } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
 import environment from '../../Environment';
 
-const useStyles = makeStyles(theme => ({
-  // container: {
-  //   minWidth: '93%'
-  // }
+WebFont.load({
+  google: {
+    families: [header2.fontFamily, header3.fontFamily]
+  }
+});
 
+const useStyles = makeStyles(theme => ({
   gridContainer: {
     padding: '4px'
-  }
+  },
+  header2: header2,
+  header3: header3
 }));
 
 const override = css`
@@ -59,11 +68,15 @@ export default function OrgCards() {
           );
         }
         return (
-          <Grid container className={classes.gridContainer} spacing={1}>
-            {props.organizations.map(org => (
-              <OrgCard {...org} key={org.id} />
-            ))}
-          </Grid>
+          <>
+            <h2 className={classes.header2}>Organisations</h2>
+            {/* <h3 className={classes.header3}>Font Loader Testing</h3> */}
+            <Grid container className={classes.gridContainer} spacing={1}>
+              {props.organizations.map(org => (
+                <OrgCard {...org} key={org.id} />
+              ))}
+            </Grid>
+          </>
         );
       }}
     />

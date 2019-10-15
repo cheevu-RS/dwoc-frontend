@@ -1,12 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import { Grid, Card } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import Flip from 'react-reveal/Flip';
-import { Link } from 'react-router-dom';
+
+// Relay
+import { QueryRenderer } from 'react-relay';
+import graphql from 'babel-plugin-relay/macro';
+import environment from '../../../Environment';
+
+//import Flip from 'react-reveal/Flip';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -38,12 +45,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function OrgCard(props) {
   const classes = useStyles();
-  console.log(props);
+  console.log(`${JSON.stringify(props)} <= props OrgCars props`);
 
   const orgPath = '/org/' + props.id + '/' + props.orgName;
 
   return (
-    <Grid item xs={6} md={4} xl={3}>
+    <Grid item xs={12} sm={6} md={4} xl={3}>
       {/* <div style={{paddingLeft: "1.5%"}}> */}
       {/* <Flip left> */}
       <Card className={classes.card}>
@@ -56,7 +63,7 @@ export default function OrgCard(props) {
           </Typography>
           <p className={classes.projects}>
             {/* This Org has {props.noOfProjects} projects */}
-            This Org has {props.noOfProjs} projects
+            This Org has # projects
             <br />
             Org ID: {props.id}
           </p>

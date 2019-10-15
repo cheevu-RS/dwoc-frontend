@@ -4,8 +4,8 @@ import React from 'react';
 import './App.css';
 import LandingPage from './views/LandingPage/LandingPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './components/Navbar/Navbar'
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import Navbar from './components/Navbar/Navbar';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ProjCards from './components/ProjCards/ProjCards';
 
 function App() {
