@@ -1,10 +1,28 @@
-type Query {
-  info: String!
-  users(where: UserWhereUniqueInput): [User]!
-  projects(where: ProjectWhereUniqueInput): [Project]!
-  organizations(where: OrganizationWhereUniqueInput): [Organization]!
-  mentors(where: MentorWhereUniqueInput): [Mentor]!
-  proposals(where: ProposalWhereUniqueInput): [Proposal]!
+type Mentor {
+  id: ID!
+  user: User!
+  project: Project!
+}
+
+input MentorCreateInput {
+  id: ID
+  user: UserCreateOneInput!
+  project: ProjectCreateOneInput!
+}
+
+input MentorUpdateInput {
+  user: UserUpdateOneRequiredInput
+  project: ProjectUpdateOneRequiredInput
+}
+
+input MentorWhereInput {
+  id: ID
+  user: UserWhereInput
+  project: ProjectWhereInput
+}
+
+input MentorWhereUniqueInput {
+  id: ID
 }
 
 type Mutation {
@@ -32,17 +50,45 @@ type Mutation {
   deleteMentor(where: MentorWhereUniqueInput!): Mentor
 }
 
-input UserWhereUniqueInput {
-  id: ID
-  email: String
-  mobileNumber: String
-  githubHandle: String
+type Organization {
+  id: ID!
+  orgName: String!
+  orgSlug: String!
+  orgDesc: String
+  githubUrl: String
 }
 
-input ProjectWhereUniqueInput {
+input OrganizationCreateInput {
   id: ID
-  projSlug: String
-  organization: OrganizationWhereUniqueInput
+  orgName: String!
+  orgSlug: String!
+  orgDesc: String
+  githubUrl: String
+}
+
+input OrganizationCreateOneInput {
+  create: OrganizationCreateInput
+  connect: OrganizationWhereUniqueInput
+}
+
+input OrganizationUpdateInput {
+  orgName: String
+  orgSlug: String
+  orgDesc: String
+  githubUrl: String
+}
+
+input OrganizationUpdateOneRequiredInput {
+  update: OrganizationUpdateInput
+  connect: OrganizationWhereUniqueInput
+}
+
+input OrganizationWhereInput {
+  id: ID
+  orgName: String
+  orgSlug: String
+  orgDesc: String
+  githubUrl: String
 }
 
 input OrganizationWhereUniqueInput {
@@ -51,24 +97,13 @@ input OrganizationWhereUniqueInput {
   githubUrl: String
 }
 
-input MentorWhereUniqueInput {
-  id: ID
-}
-
-input ProposalWhereUniqueInput {
-  id: ID
-}
-
-input UserUpdateInput {
-  firstName: String
-  lastName: String
-  role: roles
-  email: String
-  mobileNumber: String
-  githubHandle: String
-  password: String
-  isVerified: Boolean
-  session: String
+type Project {
+  id: ID!
+  organization: Organization!
+  projName: String!
+  projSlug: String!
+  projDesc: String
+  githubUrl: String
 }
 
 input ProjectCreateInput {
@@ -80,9 +115,9 @@ input ProjectCreateInput {
   organization: OrganizationCreateOneInput!
 }
 
-input OrganizationCreateOneInput {
-  create: OrganizationCreateInput
-  connect: OrganizationWhereUniqueInput
+input ProjectCreateOneInput {
+  create: ProjectCreateInput
+  connect: ProjectWhereUniqueInput
 }
 
 input ProjectUpdateInput {
@@ -93,9 +128,31 @@ input ProjectUpdateInput {
   organization: OrganizationUpdateOneRequiredInput
 }
 
-input OrganizationUpdateOneRequiredInput {
-  update: OrganizationUpdateInput
-  connect: OrganizationWhereUniqueInput
+input ProjectUpdateOneRequiredInput {
+  connect: ProjectWhereUniqueInput
+  update: ProjectUpdateInput
+}
+
+input ProjectWhereInput {
+  id: ID
+  organization: OrganizationWhereInput
+  projName: String
+  projSlug: String
+  projDesc: String
+  githubUrl: String
+}
+
+input ProjectWhereUniqueInput {
+  id: ID
+  projSlug: String
+}
+
+type Proposal {
+  id: ID!
+  user: User!
+  project: Project!
+  isAccepted: Boolean!
+  propUrl: String!
 }
 
 input ProposalCreateInput {
@@ -106,15 +163,6 @@ input ProposalCreateInput {
   project: ProjectCreateOneInput!
 }
 
-input UserCreateOneInput {
-  connect: UserWhereUniqueInput
-}
-
-input ProjectCreateOneInput {
-  create: ProjectCreateInput
-  connect: ProjectWhereUniqueInput
-}
-
 input ProposalUpdateInput {
   isAccepted: Boolean
   propUrl: String
@@ -122,40 +170,33 @@ input ProposalUpdateInput {
   project: ProjectUpdateOneRequiredInput
 }
 
-input OrganizationCreateInput {
+input ProposalWhereInput {
   id: ID
-  orgName: String!
-  orgSlug: String!
-  orgDesc: String
-  githubUrl: String
+  user: UserWhereInput
+  project: ProjectWhereInput
+  isAccepted: Boolean
+  propUrl: String
 }
 
-input OrganizationUpdateInput {
-  orgName: String
-  orgSlug: String
-  orgDesc: String
-  githubUrl: String
-}
-
-input MentorUpdateInput {
-  user: UserUpdateOneRequiredInput
-  project: ProjectUpdateOneRequiredInput
-}
-
-input UserUpdateOneRequiredInput {
-  connect: UserWhereUniqueInput
-  update: UserUpdateInput
-}
-
-input ProjectUpdateOneRequiredInput {
-  connect: ProjectWhereUniqueInput
-  update: ProjectUpdateInput
-}
-
-input MentorCreateInput {
+input ProposalWhereUniqueInput {
   id: ID
-  user: UserCreateOneInput!
-  project: ProjectCreateOneInput!
+}
+
+type Query {
+  info: String!
+  userProfile: User!
+  users(where: UserWhereInput): [User]!
+  projects(where: ProjectWhereInput): [Project]!
+  organizations(where: OrganizationWhereInput): [Organization]!
+  mentors(where: MentorWhereInput): [Mentor]!
+  userProposals: [Proposal]!
+  proposals(where: ProposalWhereInput): [Proposal]!
+}
+
+enum roles {
+  Dev
+  Mentor
+  Admin
 }
 
 type User {
@@ -171,39 +212,44 @@ type User {
   session: String
 }
 
-enum roles {
-  Dev
-  Mentor
-  Admin
+input UserCreateOneInput {
+  connect: UserWhereUniqueInput
 }
 
-type Project {
-  id: ID!
-  organization: Organization!
-  projName: String!
-  projSlug: String!
-  projDesc: String
-  githubUrl: String
+input UserUpdateInput {
+  firstName: String
+  lastName: String
+  role: roles
+  email: String
+  mobileNumber: String
+  githubHandle: String
+  password: String
+  isVerified: Boolean
+  session: String
 }
 
-type Organization {
-  id: ID!
-  orgName: String!
-  orgSlug: String!
-  orgDesc: String
-  githubUrl: String
+input UserUpdateOneRequiredInput {
+  connect: UserWhereUniqueInput
+  update: UserUpdateInput
 }
 
-type Mentor {
-  id: ID!
-  user: User!
-  project: Project!
+input UserWhereInput {
+  id: ID
+  firstName: String
+  lastName: String
+  role: roles
+  email: String
+  mobileNumber: String
+  githubHandle: String
+  password: String
+  isVerified: Boolean
+  session: String
 }
 
-type Proposal {
-  id: ID!
-  user: User!
-  project: Project!
-  isAccepted: Boolean!
-  propUrl: String!
+input UserWhereUniqueInput {
+  id: ID
+  email: String
+  mobileNumber: String
+  githubHandle: String
 }
+
