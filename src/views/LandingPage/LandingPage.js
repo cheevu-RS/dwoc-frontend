@@ -24,7 +24,7 @@ export default function LandingPage() {
       <div>
          <div>
             <SnowStorm />
-            <img className={styles.landingImg} src={require('../../assets/images/dwoc_logo_white.png')} width="50%"/>
+            <img alt="dwocLogo" className={styles.landingImg} src={require('../../assets/images/dwoc_logo_white.png')} width="50%"/>
          </div>
 
          <Timeline />
