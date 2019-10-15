@@ -16,6 +16,7 @@ const useStyles = makeStyles(theme => ({
   button: {
     marginLeft: `auto`
   },
+
   githubBtn: {
     fontSize: `3em`,
     marginLeft: 16
@@ -43,7 +44,14 @@ export default function Navbar() {
     if (innerWidth < minWidth || (innerWidth > minWidth && width < minWidth))
       setWidth(innerWidth);
   };
-  const tabs = [{ name: 'Home' }, { name: 'Account' }, { name: 'History' }];
+  const tabs = [
+    { name: 'Home' },
+    { name: 'Account' },
+    { name: 'History' },
+    {
+      name: 'Login using Github'
+    }
+  ];
   const handleToggle = evt => {
     setOpen(prevState => !prevState);
     open ? setDrawerWidth(0) : setDrawerWidth(200);
@@ -84,9 +92,7 @@ export default function Navbar() {
               <MenuIcon onClick={handleToggle} />
             </div>
           )}
-          {/* <div> */}
           {deltaLogo}
-          {/* </div> */}
 
           {width > minWidth && (
             <div className={styles.button}>
@@ -100,10 +106,9 @@ export default function Navbar() {
                   <ListItemText primary={tab.name} />
                 </Button>
               ))}
-              {/* <Link to={'/orgPath'}> VIEW PROJECTS </Link> */}
               <Button color="inherit" onClick={handleClick}>
                 Login using{' '}
-                <i className={`devicon-github-plain ` + styles.githubBtn}></i>
+                <i className={`devicon-github-plain ${styles.githubBtn}`}></i>
               </Button>
             </div>
           )}
@@ -113,8 +118,8 @@ export default function Navbar() {
               className={styles.button}
               onClick={handleClick}
             >
-              Login using{' '}
-              <i className={`devicon-github-plain ` + styles.githubBtn}></i>
+              {/* "Login using{' '}
+              <i className={`devicon-github-plain ` + styles.githubBtn}></i>" */}
             </Button>
           )}
         </Toolbar>
