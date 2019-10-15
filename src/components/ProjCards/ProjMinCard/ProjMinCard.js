@@ -33,7 +33,7 @@ const useStyles = makeStyles({
 export default function ProjMinCard(props) {
   const classes = useStyles();
   let toolsUsed = "";
-  console.log(props);
+  // console.log(props);
   for (let i = 0; i < props.tools.length; i++) {
     toolsUsed += props.tools[i];
     if (i < props.tools.length - 1) {

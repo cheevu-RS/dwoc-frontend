@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function OrgCard(props) {
   const classes = useStyles();
-  console.log(props);
+  // console.log(props);
 
   const orgPath = "/org/"+props.id+"/"+props.orgName;
 
@@ -57,7 +57,8 @@ export default function OrgCard(props) {
             </Typography>
             <p className={classes.projects}>
               {/* This Org has {props.noOfProjects} projects */}
-              This Org has {props.noOfProjs} projects
+              This Org has {props.noOfProjs === 1 ? (<span>1 project</span>) : (<span>{props.projects} projects</span>)} 
+              
               <br />
               Org ID: {props.id}
             </p>

@@ -27,7 +27,6 @@ border-color: red;
 export default function OrgCards() {
   // const classes = useStyles(); 
 
-  
 
   return (
     <QueryRenderer
@@ -70,7 +69,7 @@ export default function OrgCards() {
         // console.log(structuredOrg);
         let num = 1;
 
-        console.log(`${JSON.stringify(props)} <= props in OrgCards  `);
+        // console.log(`${JSON.stringify(props)} <= props in OrgCards  `);
         return (
             <div>
               {/* <div style={{paddingTop: "2%"}}><RingLoader css={override} color= {'#5CDB95'}/></div> */}
