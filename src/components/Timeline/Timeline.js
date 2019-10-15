@@ -1,12 +1,30 @@
-//jshint esversion:6
 import React from 'react';
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import {
+  VerticalTimeline,
+  VerticalTimelineElement
+} from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 
-export default function HorizontalNonLinearAlternativeLabelStepper() {
+// Stype imports
+import WebFont from 'webfontloader';
+import { header2, header3 } from './../../DwocStyles';
+import { makeStyles } from '@material-ui/core/styles';
 
+WebFont.load({
+  google: {
+    families: [header2.fontFamily]
+  }
+});
+
+const useStyles = makeStyles(theme => ({
+  header2: header2
+}));
+
+export default function HorizontalNonLinearAlternativeLabelStepper() {
+  const classes = useStyles();
   return (
     <div>
+      <h2 className={classes.header2}>Timeline </h2>
       <VerticalTimeline>
         <VerticalTimelineElement
           className="vertical-timeline-element--education"
