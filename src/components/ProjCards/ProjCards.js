@@ -28,7 +28,7 @@ export default function Projects(props) {
   const defaultTools = ['C++', 'Python'];
 
   const orgID = props.match.params.id;
-  console.log(orgID);
+  // console.log(orgID);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -54,7 +54,7 @@ export default function Projects(props) {
         `}
         variables={{ orgid: { organization: { id: orgID } } }}
         render={({ error, props }) => {
-          console.log(props);
+          // console.log(props);
           if (error) {
             console.log(`${error} <= error Relay ProjCards`);
             return <div>Error!</div>;
@@ -71,7 +71,7 @@ export default function Projects(props) {
               </div>
             );
           }
-          console.log(`${JSON.stringify(props)} <= props in ProjCards  `);
+          // console.log(`${JSON.stringify(props)} <= props in ProjCards  `);
 
           let n = props.projects.length;
           const allProjects = props.projects;

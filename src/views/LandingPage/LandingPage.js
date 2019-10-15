@@ -6,6 +6,8 @@ import OrgCards from '../../components/OrgCards/OrgCards';
 import WebFont from 'webfontloader';
 import { header2, paragraph } from '../../DwocStyles';
 
+import SnowStorm from 'react-snowstorm';
+
 import { makeStyles } from '@material-ui/core/styles';
 WebFont.load({
   google: {
@@ -17,6 +19,14 @@ const useStyles = makeStyles(theme => ({
   gridContainer: {
     padding: '4px'
   },
+  landingImg: {
+      display: "block",
+      margin: "auto",
+   },
+   wrapme: {
+      width: "100%",
+      backgroundColor: "#003366"
+   },
   header2: header2,
   paragraph: paragraph
 }));
@@ -25,6 +35,10 @@ function LandingPage() {
   const classes = useStyles();
   return (
     <div>
+       <div>
+            <SnowStorm />
+            <img alt="dwocLogo" className={styles.landingImg} src={require('../../assets/images/dwoc_logo_white.png')} width="50%"/>
+      </div>
       <div id="about">
         <h2 className={classes.header2}>About</h2>
         <p className={classes.paragraph}>
