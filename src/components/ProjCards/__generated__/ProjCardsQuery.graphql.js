@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e1e1d053e76031d9847b725804eb34dc
+ * @relayHash 0fbd77a9feba23548bc98f65ae74e251
  */
 
 /* eslint-disable */
@@ -9,18 +9,23 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type ProjectWhereUniqueInput = {|
+export type ProjectWhereInput = {|
   id?: ?string,
+  organization?: ?OrganizationWhereInput,
+  projName?: ?string,
   projSlug?: ?string,
-  organization?: ?OrganizationWhereUniqueInput,
+  projDesc?: ?string,
+  githubUrl?: ?string,
 |};
-export type OrganizationWhereUniqueInput = {|
+export type OrganizationWhereInput = {|
   id?: ?string,
+  orgName?: ?string,
   orgSlug?: ?string,
+  orgDesc?: ?string,
   githubUrl?: ?string,
 |};
 export type ProjCardsQueryVariables = {|
-  orgid?: ?ProjectWhereUniqueInput
+  orgid?: ?ProjectWhereInput
 |};
 export type ProjCardsQueryResponse = {|
   +projects: $ReadOnlyArray<?{|
@@ -43,7 +48,7 @@ export type ProjCardsQuery = {|
 
 /*
 query ProjCardsQuery(
-  $orgid: ProjectWhereUniqueInput
+  $orgid: ProjectWhereInput
 ) {
   projects(where: $orgid) {
     id
@@ -63,7 +68,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "orgid",
-    "type": "ProjectWhereUniqueInput",
+    "type": "ProjectWhereInput",
     "defaultValue": null
   }
 ],
@@ -154,11 +159,11 @@ return {
     "operationKind": "query",
     "name": "ProjCardsQuery",
     "id": null,
-    "text": "query ProjCardsQuery(\n  $orgid: ProjectWhereUniqueInput\n) {\n  projects(where: $orgid) {\n    id\n    projName\n    projSlug\n    projDesc\n    githubUrl\n    organization {\n      id\n    }\n  }\n}\n",
+    "text": "query ProjCardsQuery(\n  $orgid: ProjectWhereInput\n) {\n  projects(where: $orgid) {\n    id\n    projName\n    projSlug\n    projDesc\n    githubUrl\n    organization {\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'cbb88e0dfc8dd30a143bd647504c8fe2';
+(node/*: any*/).hash = '60f5b3cfaa805b713895c9240c076376';
 module.exports = node;

@@ -26,8 +26,17 @@ const header2 = {
   fontSize: '40px',
   //fontFamily:  'Liu Jian Mao Cao',
 
-  fontFamily: 'Titillium Web',
-  fontWeight: 800
+  //fontFamily: 'Titillium Web',
+  //fontFamily: 'Roboto Mono',
+  fontFamily: 'Poppins',
+
+  fontWeight: 700
+};
+
+const paragraph = {
+  padding: '11px',
+  fontSize: '28px',
+  fontFamily: 'Open Sans'
 };
 
 const header3 = {
@@ -36,4 +45,4 @@ const header3 = {
   fontFamily: 'Mansalva'
 };
 
-module.exports = { header1, header2, header3 };
+module.exports = { header1, header2, header3, paragraph };
