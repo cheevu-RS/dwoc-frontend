@@ -28,10 +28,12 @@ function LandingPage() {
       <div id="about">
         <h2 className={classes.header2}>About</h2>
         <p className={classes.paragraph}>
-          Delta Winter of Code is a program focused on introducing students to
-          open source software development. Students work on a 3 month
-          programming project with an open source organization during their
-          break from university.
+          This is a winter long program organised by Delta Force, the coding
+          club of NIT Trichy. In a hope to improve the culture of open source
+          software around us, we will be opening up projects for you to
+          contribute to We hope this encourages collabrative experiences and
+          allows students from all backgrounds to contribute to amazin technical
+          projects from diverse fields/
         </p>
       </div>
       <Timeline />

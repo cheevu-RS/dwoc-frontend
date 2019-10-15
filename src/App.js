@@ -14,13 +14,12 @@ function App() {
     <div className="App">
       <div className="App-header">
         {/* <ProposalForm /> */}
+        <Navbar />
         <Router>
-          {/* <Switch> */}
-
-          <Route path="/" component={Navbar}></Route>
+          <Switch>
           <Route exact path="/" component={LandingPage}></Route>
           <Route exact path="/org/:id/:orgName" component={ProjCards}></Route>
-          {/* </Switch> */}
+          </Switch>
         </Router>
       </div>
       <br />
