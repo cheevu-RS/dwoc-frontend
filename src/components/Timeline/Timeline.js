@@ -7,7 +7,7 @@ import 'react-vertical-timeline-component/style.min.css';
 
 // Stype imports
 import WebFont from 'webfontloader';
-import { header2, header3 } from './../../DwocStyles';
+import { header2 } from './../../DwocStyles';
 import { makeStyles } from '@material-ui/core/styles';
 
 WebFont.load({
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 export default function HorizontalNonLinearAlternativeLabelStepper() {
   const classes = useStyles();
   return (
-    <div>
+    <div id="timeline">
       <h2 className={classes.header2}>Timeline </h2>
       <VerticalTimeline>
         <VerticalTimelineElement
@@ -35,9 +35,7 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
         >
           <h3 className="vertical-timeline-element-title">Creative Director</h3>
           <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
-          <p>
-            Para 2
-          </p>
+          <p>Para 2</p>
         </VerticalTimelineElement>
         <VerticalTimelineElement
           className="vertical-timeline-element--education"
@@ -46,11 +44,11 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
           date="April 2013"
           iconStyle={{ background: '#379683', color: '#EDF5E1' }}
         >
-          <h3 className="vertical-timeline-element-title">Content Marketing for Web, Mobile and Social Media</h3>
+          <h3 className="vertical-timeline-element-title">
+            Content Marketing for Web, Mobile and Social Media
+          </h3>
           <h4 className="vertical-timeline-element-subtitle">Online Course</h4>
-          <p>
-            Para 3
-          </p>
+          <p>Para 3</p>
         </VerticalTimelineElement>
         <VerticalTimelineElement
           className="vertical-timeline-element--work"
@@ -61,9 +59,7 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
         >
           <h3 className="vertical-timeline-element-title">Creative Director</h3>
           <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
-          <p>
-            Para 1
-          </p>
+          <p>Para 1</p>
         </VerticalTimelineElement>
         <VerticalTimelineElement
           className="vertical-timeline-element--education"
@@ -74,9 +70,7 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
         >
           <h3 className="vertical-timeline-element-title">Creative Director</h3>
           <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
-          <p>
-            Para 2
-          </p>
+          <p>Para 2</p>
         </VerticalTimelineElement>
         <VerticalTimelineElement
           className="vertical-timeline-element--education"
@@ -84,13 +78,12 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
           contentArrowStyle={{ borderRight: '7px solid  #379683' }}
           date="April 2013"
           iconStyle={{ background: '#379683', color: '#EDF5E1' }}
-
         >
-          <h3 className="vertical-timeline-element-title">Content Marketing for Web, Mobile and Social Media</h3>
+          <h3 className="vertical-timeline-element-title">
+            Content Marketing for Web, Mobile and Social Media
+          </h3>
           <h4 className="vertical-timeline-element-subtitle">Online Course</h4>
-          <p>
-            Para 3
-          </p>
+          <p>Para 3</p>
         </VerticalTimelineElement>
         <VerticalTimelineElement
           className="vertical-timeline-element--work"
@@ -101,12 +94,10 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
         >
           <h3 className="vertical-timeline-element-title">Creative Director</h3>
           <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
-          <p>
-            Para 1
-          </p>
+          <p>Para 1</p>
         </VerticalTimelineElement>
       </VerticalTimeline>
-      <div style={{ height: "20px" }}></div>
+      <div style={{ height: '20px' }}></div>
     </div>
   );
 }

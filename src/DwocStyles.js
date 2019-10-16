@@ -14,14 +14,7 @@
 */
 
 
-const about = {
-  width: "85%",
-  // maxWidth: '1200px',
-  margin: "auto",
-  height: '100%',
-  border: '1px white'
-  // textAlign:
-}
+
 
 const header1 = {
     color: 'pink',
@@ -44,10 +37,34 @@ const header1 = {
     fontFamily: 'Open Sans'
   };
   
-  const header3 = {
-    color: 'pink',
-    fontSize: '29px',
-    fontFamily: 'Mansalva'
-  };
-  
-  module.exports = { about, header1, header2, header3, paragraph };
+const { innerWidth: screenWidth, innerHeight: screenHeight } = window;
+
+const section = {
+  minHeight: screenHeight, // i.e. 80% of screen height
+  display: 'block'
+};
+
+const about = {
+  width: "85%",
+  margin: "auto",
+  height: '100%',
+  minHeight: screenHeight, // i.e. 80% of screen height
+  display: 'block'
+}
+
+const header3 = {
+  color: 'pink',
+  fontSize: '29px',
+  fontFamily: 'Mansalva'
+};
+
+module.exports = {
+  header1,
+  header2,
+  header3,
+  paragraph,
+  section,
+  screenHeight,
+  screenWidth,
+  about
+};

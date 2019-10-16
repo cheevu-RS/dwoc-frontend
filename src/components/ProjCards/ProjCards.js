@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import ProjCard from './ProjMinCard/ProjMinCard';
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import { makeStyles } from "@material-ui/core/styles"
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { makeStyles } from '@material-ui/core/styles';
 import RingLoader from 'react-spinners/RingLoader';
 import { QueryRenderer } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
@@ -12,22 +12,21 @@ import { css } from '@emotion/core';
 const useStyles = makeStyles(theme => ({
   container: {
     minWidth: '93%',
-    paddingLeft: "2%",
-  },
+    paddingLeft: '2%'
+  }
 }));
 
 const override = css`
-display: block;
-margin: 0 auto;
-border-color: red;
+  display: block;
+  margin: 0 auto;
+  border-color: red;
 `;
 
 export default function Projects(props) {
-
   const classes = useStyles();
   const orgName = props.match.params.orgName;
-  const defaultTools = ["C++", "Python"];
-  
+  const defaultTools = ['C++', 'Python'];
+
   const orgID = props.match.params.id;
   // console.log(orgID);
 
@@ -40,8 +39,8 @@ export default function Projects(props) {
       <QueryRenderer
         environment={environment}
         query={graphql`
-        query ProjCardsQuery ($orgid: ProjectWhereUniqueInput){
-          projects(where: $orgid){
+          query ProjCardsQuery($orgid: ProjectWhereInput) {
+            projects(where: $orgid) {
               id
               projName
               projSlug
@@ -51,9 +50,9 @@ export default function Projects(props) {
                 id
               }
             }
-        }
-      `}
-        variables={{ orgid: {organization: { id: orgID }} }}
+          }
+        `}
+        variables={{ orgid: { organization: { id: orgID } } }}
         render={({ error, props }) => {
           // console.log(props);
           if (error) {
@@ -61,7 +60,16 @@ export default function Projects(props) {
             return <div>Error!</div>;
           }
           if (!props) {
-            return <div><h2 style={{ textAlign: "center" }}>Projects under {orgName}</h2><div style={{paddingTop: "20%"}}><RingLoader css={override} color= {'#5CDB95'}/></div></div>; 
+            return (
+              <div>
+                <h2 style={{ textAlign: 'center' }}>
+                  Projects under {orgName}
+                </h2>
+                <div style={{ paddingTop: '20%' }}>
+                  <RingLoader css={override} color={'#5CDB95'} />
+                </div>
+              </div>
+            );
           }
           // console.log(`${JSON.stringify(props)} <= props in ProjCards  `);
 
@@ -82,8 +90,20 @@ export default function Projects(props) {
 
           return (
             <div>
-              <h2 style={{ textAlign: "center" }}>Projects under {orgName}</h2>
-              {structuredProjects.map(proj => (<Row key={num++}>{proj.map(o => (o.id ? <Col key={num++}><ProjCard tools={defaultTools} {...o}/></Col> : <Col key={num++}></Col>))} </Row>))}
+              <h2 style={{ textAlign: 'center' }}>Projects under {orgName}</h2>
+              {structuredProjects.map(proj => (
+                <Row key={num++}>
+                  {proj.map(o =>
+                    o.id ? (
+                      <Col key={num++}>
+                        <ProjCard tools={defaultTools} {...o} />
+                      </Col>
+                    ) : (
+                      <Col key={num++}></Col>
+                    )
+                  )}{' '}
+                </Row>
+              ))}
             </div>
           );
         }}

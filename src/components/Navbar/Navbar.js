@@ -1,4 +1,3 @@
-// import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import {
   AppBar,
@@ -57,9 +56,6 @@ export default function Navbar() {
   const handleClick = evt => {
     alert('Redirecting to login...');
   };
-  const closer = evt => {
-    alert('close');
-  };
 
   // TODO make it look good on mobile devices
   let deltaLogo = (
@@ -88,7 +84,7 @@ export default function Navbar() {
         <Toolbar style={{ color: "#5CDB95" }}>
           <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
             <div className={styles.drawerHeader}>
-              <Sidebar open={open} drawerWidth={drawerWidth} tabs={tabs} closer={closer} />
+              <Sidebar open={open} drawerWidth={drawerWidth} tabs={tabs} />
               <MenuIcon onClick={handleToggle} />
             </div>
             {deltaLogo}

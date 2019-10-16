@@ -9,13 +9,17 @@
 }
 
 .back {
-    position: absolute;
-    background-color: #e7eeeb;
-    width: calc(100% - 10px);
-    height: calc(100% - 10px);
-    top: 5px;
-    left: 5px;
-    border-radius: 50%;
+  position: absolute;
+  background-color: #e7eeeb;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  top: 5px;
+  left: 5px;
+  border-radius: 50%;
+}
+
+.vertical-timeline ::before {
+  border-radius: 555px;
 }
 
 /* 
@@ -26,4 +30,3 @@ Website color theme - Don't delete
 #8EE4AF
 #EDF5E1
  */
-

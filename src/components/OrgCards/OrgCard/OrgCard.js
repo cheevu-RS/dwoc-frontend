@@ -16,7 +16,6 @@ const useStyles = makeStyles(theme => ({
     color: '#05386B',
     marginTop: '30px',
     height: '100%'
-    //maxWidth: '400px'
   },
   title: {
     textAlign: 'left'
@@ -46,9 +45,7 @@ export default function OrgCard(props) {
   const orgPath = '/org/' + props.id + '/' + props.orgName;
 
   return (
-
     <Grid item xs={12} sm={6} md={4} xl={3}>
-      {/* <div style={{paddingLeft: "1.5%"}}> */}
       <Flip left>
       <Card className={classes.card}>
         <CardContent style={{ paddingBottom: '0px' }}>
