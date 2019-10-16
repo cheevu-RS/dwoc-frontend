@@ -10,7 +10,7 @@ import {
 import Sidebar from '../Sidebar/Sidebar';
 import MenuIcon from '@material-ui/icons/Menu';
 import dwocLogo from '../..//assets/images/dwocLogoWhite.png';
-const minWidth = 550;
+const minWidth = 700;
 const useStyles = makeStyles(theme => ({
   title: { ...theme.typography.h6 },
   button: {
@@ -46,10 +46,8 @@ export default function Navbar() {
   };
   const tabs = [
     { name: 'Home' },
-    { name: 'Account' },
-    { name: 'History' },
     {
-      name: 'Login using Github'
+      name: 'Login'
     }
   ];
   const handleToggle = evt => {
@@ -70,21 +68,23 @@ export default function Navbar() {
         margin: 0
       }}
     >
-      <a href="https://delta.nitt.edu/">
-        <img
-          alt="delta-logo"
-          width="222px"
-          //src={require('../../assets/images/deltaLogoBlack.png')}
-          src={dwocLogo}
-        />
-      </a>{' '}
-      {/* DWOC */}
+      {/* <a href="https://delta.nitt.edu/"> */}
+      <Link to="/">
+        <img alt="delta-logo" width="222px" src={dwocLogo} />
+      </Link>
+      {/* </a> */}
     </div>
   );
 
   return (
     <div>
-      <AppBar position="fixed" className={styles.navbar}>
+      <AppBar
+        style={{
+          position: 'fixed',
+          overflowX: 'hidden'
+        }}
+        className={styles.navbar}
+      >
         <Toolbar style={{ padding: 0 }}>
           {width < minWidth && (
             <div className={styles.drawerHeader}>
