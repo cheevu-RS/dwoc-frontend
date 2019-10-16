@@ -19,10 +19,6 @@ function App() {
   const [isLogged,toggleIsLogged]=useState(false);
   let role;
 
-  useEffect(()=>{
-
-    });
-
   return (
     <div className="App">
 
