@@ -9,6 +9,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default function DraggableDialog(props) {
+
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -38,9 +40,34 @@ export default function DraggableDialog(props) {
           </DialogContentText>
           <a href={"https://"+props.githubUrl}>Checkout the project on github </a>
         </DialogContent>
-        <DialogActions>
-          {props.taken === "1" ? (<Button onClick={handleClose}>Cancel</Button>) : (<div><Button onClick={handleClose}>Cancel</Button><Button onClick={handleClose}>Apply</Button></div>)}
-        </DialogActions>
+         {
+           props.isLogged&&(
+             <div>
+             <DialogActions>
+
+                   {props.taken === "1" ? (<Button onClick={handleClose}>Cancel</Button>) : (<div><Button onClick={handleClose}>Cancel</Button><Button onClick={handleClose}>Apply</Button></div>)}
+
+
+             </DialogActions>
+             </div>
+             )
+         }
+         {
+           props.isLogged||(
+             <div>
+             <DialogActions>
+
+                   {props.taken === "1" ? (<Button onClick={handleClose}>Cancel</Button>) : (<div><Button onClick={handleClose}>Cancel</Button><Button onClick={handleClose}>Login to apply</Button></div>)}
+
+
+             </DialogActions>
+             </div>
+             )
+
+         }
+
+
+
       </Dialog>
     </div>
   );
