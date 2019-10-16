@@ -63,7 +63,7 @@ const MentorTags = ({ mentors }) => {
             {/* <AccountCircleIcon /> */}
 
             <span className={classes.mentorName}>
-              {`${mentor.user.firstName} ${mentor.user.LastName}`}
+              {`${mentor.user.firstName}`}
             </span>
             <br />
             <a href={`https://github.com/${mentor.user.githubHandle}`}>
@@ -79,9 +79,8 @@ const MentorTags = ({ mentors }) => {
               </span>
             ) : null}
 
-            <br />
             {mentor.user.email ? (
-              <span className={classes.mentorEmail}>Email: {mentor.user.email}</span>
+              <span className={classes.mentorEmail}>{mentor.user.email}</span>
             ) : null}
           </div>
           // </Grid>

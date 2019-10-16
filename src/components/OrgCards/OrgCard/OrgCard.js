@@ -208,14 +208,7 @@ export default function OrgCard(props) {
           <a className={classes.url} href={props.githubUrl} target="_blank"><GitHubIcon />  </a>
           <a className={classes.url} href={props.communicationChannel} target="_blank"><ForumIcon />  </a>
         </div>
-        {role!="Mentor"&&
-        (<div className={classes.CardRowTwo}>
-          <div className={classes.CardRowTwoElements}>
-            {/* <div className={classes.CardRowTwoContent}>12</div> */}
-            <b className={classes.CardRowTwoDetail} style={{paddingTop: '8px'}}>Projects: Coming Soon!</b>
-          </div>
-        </div>)
-      }{role=="Mentor"&&(
+        {/* {role && role.toLowerCase()==="mentor"&&( */}
         <Link
           to={{
             pathname: orgPath,
@@ -227,8 +220,8 @@ export default function OrgCard(props) {
           style={{ textAlign: 'center', textDecoration: 'none' }}
         >
           <Button className={classes.BtnViewProjects}>VIEW PROJECTS</Button>
-        </Link>)
-      }
+        </Link>
+        {/* )     } */}
       </Card>
     </Grid>
   );
