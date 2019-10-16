@@ -9,7 +9,11 @@ import {
 import Sidebar from '../Sidebar/Sidebar';
 import MenuIcon from '@material-ui/icons/Menu';
 import dwocLogo from '../../assets/images/dwoc_logo_white.png';
+import SnowStorm from 'react-snowstorm';
+
 const minWidth = 550;
+
+
 const useStyles = makeStyles(theme => ({
   title: { ...theme.typography.h6 },
   button: {
@@ -45,16 +49,16 @@ export default function Navbar() {
       setWidth(innerWidth);
   };
   const tabs = [
-    { name: 'Timeline' },
-    { name: 'Organizations' },
-    { name: 'Login with Github' }
+    { name: 'Timeline', link: 'http://localhost:3000#timeline' },
+    { name: 'Organizations', link: 'http://localhost:3000#orgs' },
+    { name: 'Login with Github', link: 'https://delta.nitt.edu/dwocb/login' }
   ];
   const handleToggle = evt => {
     setOpen(prevState => !prevState);
     open ? setDrawerWidth(0) : setDrawerWidth(200);
   };
-  const handleClick = evt => {
-    alert('Redirecting to login...');
+  const handleClick = (evt, tabName) => {
+    console.log(tabName);
   };
 
   // TODO make it look good on mobile devices
@@ -77,11 +81,11 @@ export default function Navbar() {
 
 
   let navbarElems = (
-
-
     <div>
+      
       {width < minWidth && (
         <Toolbar style={{ color: "#5CDB95" }}>
+          <SnowStorm />
           <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
             <div className={styles.drawerHeader}>
               <Sidebar open={open} drawerWidth={drawerWidth} tabs={tabs} />
@@ -102,8 +106,9 @@ export default function Navbar() {
               <Button
                 color="inherit"
                 className={styles.button}
-                onClick={handleClick}
+                onClick={(event) => handleClick(event, tab.name)}
                 key={index}
+                href={tab.link}
               >
                 <ListItemText primary={tab.name} />
               </Button>

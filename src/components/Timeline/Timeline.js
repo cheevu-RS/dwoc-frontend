@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 export default function HorizontalNonLinearAlternativeLabelStepper() {
   const classes = useStyles();
   return (
-    <div id="timeline">
+    <div style={{paddingTop: "120px"}} id="timeline">
       <h2 className={classes.header2}>Timeline </h2>
       <VerticalTimeline>
         <VerticalTimelineElement

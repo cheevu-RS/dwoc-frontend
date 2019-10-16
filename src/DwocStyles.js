@@ -13,9 +13,6 @@
 });
 */
 
-
-
-
 const header1 = {
     color: 'pink',
     font: 'Consolas',
@@ -41,21 +38,28 @@ const { innerWidth: screenWidth, innerHeight: screenHeight } = window;
 
 const section = {
   minHeight: screenHeight, // i.e. 80% of screen height
-  display: 'block'
 };
 
 const about = {
-  width: "85%",
+  width: "90%",
   margin: "auto",
   height: '100%',
-  minHeight: screenHeight, // i.e. 80% of screen height
-  display: 'block'
+  minHeight: screenHeight/2, // i.e. 80% of screen height
+  display: 'block',
+  textAlign: 'center'
 }
 
 const header3 = {
   color: 'pink',
   fontSize: '29px',
   fontFamily: 'Mansalva'
+};
+
+const orgs = {
+  paddingTop: screenHeight/4,
+  width: "90%",
+  display: "block",
+  margin: "auto"
 };
 
 module.exports = {
@@ -66,5 +70,6 @@ module.exports = {
   section,
   screenHeight,
   screenWidth,
-  about
+  about,
+  orgs
 };
