@@ -26,7 +26,7 @@ export default function Projects(props) {
   const classes = useStyles();
   const orgName = props.match.params.orgName;
   const defaultTools = ['C++', 'Python'];
-
+  const isLogged=props.isLogged;
   const orgID = props.match.params.id;
   // console.log(orgID);
 
@@ -96,7 +96,7 @@ export default function Projects(props) {
                   {proj.map(o =>
                     o.id ? (
                       <Col key={num++}>
-                        <ProjCard tools={defaultTools} {...o} />
+                        <ProjCard tools={defaultTools} {...o} isLogged={isLogged} />
                       </Col>
                     ) : (
                       <Col key={num++}></Col>

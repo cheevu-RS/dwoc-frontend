@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Navbar() {
+export default function Navbar(props) {
   const styles = useStyles();
   const [open, setOpen] = useState(false);
   const [drawerWidth, setDrawerWidth] = useState(0);
@@ -106,21 +106,56 @@ export default function Navbar() {
                   <ListItemText primary={tab.name} />
                 </Button>
               ))}
-              <Button color="inherit" onClick={handleClick}>
-                Login using{' '}
-                <i className={`devicon-github-plain ${styles.githubBtn}`}></i>
-              </Button>
+              {props.isLogged||(
+                <Button color="inherit" onClick={handleClick} className={styles.button}>
+                  Login using{' '}
+                  <i className={`devicon-github-plain ${styles.githubBtn}`}></i>
+                </Button>
+              )
+
+              }
+              { props.isLogged&& (
+                <Button color="inherit" onClick={handleClick} className={styles.button}>
+                  Logout
+                </Button>
+              )
+
+              }
+
             </div>
           )}
           {width < minWidth && (
-            <Button
-              color="inherit"
-              className={styles.button}
-              onClick={handleClick}
-            >
-              {/* "Login using{' '}
-              <i className={`devicon-github-plain ` + styles.githubBtn}></i>" */}
-            </Button>
+            <div className={styles.button}>
+              {tabs.map((tab, index) => (
+                <Button
+                  color="inherit"
+                  className={styles.button}
+                  onClick={handleClick}
+                  key={index}
+                >
+                  <ListItemText primary={tab.name} />
+                </Button>
+              ))}
+              {props.isLogged||(
+                <Button color="inherit" onClick={handleClick} className={styles.button}>
+                  Login using{' '}
+                  <i className={`devicon-github-plain ${styles.githubBtn}`}></i>
+                </Button>
+              )
+
+              }
+              { props.isLogged&& (
+                <Button color="inherit" onClick={handleClick} className={styles.button}>
+                  Logout
+                </Button>
+              )
+
+              }
+
+            </div>
+
+
+
           )}
         </Toolbar>
       </AppBar>
