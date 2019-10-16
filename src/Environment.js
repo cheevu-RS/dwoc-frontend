@@ -7,9 +7,8 @@ function fetchQuery(operation, variables) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      // 'session': JSON.parse(Cookie.get("dwoc_user_session")).session,
-      // 'id': JSON.parse(Cookie.get("dwoc_user_session")).id
-
+      'session': JSON.parse(Cookie.get("dwoc_user_session")).session,
+      'id': JSON.parse(Cookie.get("dwoc_user_session")).id
     },
     body: JSON.stringify({
       query: operation.text,

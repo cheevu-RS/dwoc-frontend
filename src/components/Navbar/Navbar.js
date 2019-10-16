@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -43,16 +43,43 @@ export default function Navbar(props) {
   const [open, setOpen] = useState(false);
   const [drawerWidth, setDrawerWidth] = useState(0);
   const [width, setWidth] = useState(window.innerWidth);
+  
   window.onresize = evt => {
     const innerWidth = window.innerWidth;
     if (innerWidth < minWidth || (innerWidth > minWidth && width < minWidth))
       setWidth(innerWidth);
   };
-  const tabs = [
+
+  let [tabs, setTabs] = useState([
     { name: 'Timeline', link: 'http://localhost:3000#timeline' },
     { name: 'Organizations', link: 'http://localhost:3000#orgs' },
     { name: 'Login with Github', link: 'https://delta.nitt.edu/dwocb/login' }
-  ];
+  ]);
+
+  console.log(props);
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    console.log("toggle");
+    console.log(props.isLogged, "isLogged");
+    
+    if(props.isLogged){
+      setTabs([
+        { name: 'Timeline', link: 'http://localhost:3000#timeline' },
+        { name: 'Organizations', link: 'http://localhost:3000#orgs' },
+        { name: 'Logout', link: 'https://delta.nitt.edu/dwocb/logout' }
+      ]);
+    }
+    else{
+      setTabs([
+        { name: 'Timeline', link: 'http://localhost:3000#timeline' },
+        { name: 'Organizations', link: 'http://localhost:3000#orgs' },
+        { name: 'Login with Github', link: 'https://delta.nitt.edu/dwocb/login' }
+      ]);
+    }
+
+  }, [props.isLogged]);
+  
   const handleToggle = evt => {
     setOpen(prevState => !prevState);
     open ? setDrawerWidth(0) : setDrawerWidth(200);
@@ -82,7 +109,6 @@ export default function Navbar(props) {
 
   let navbarElems = (
     <div>
-      
       {width < minWidth && (
         <Toolbar style={{ color: "#5CDB95" }}>
           <SnowStorm />
@@ -100,6 +126,7 @@ export default function Navbar(props) {
 
           {width > minWidth && (
             <Toolbar>
+              {deltaLogo}
             <div className={styles.button}>
               {tabs.map((tab, index) => (
                 <Button
@@ -107,28 +134,15 @@ export default function Navbar(props) {
                   className={styles.button}
                   onClick={handleClick}
                   key={index}
+                  href={tab.link}
                 >
                   <ListItemText primary={tab.name} />
                 </Button>
               ))}
-              {props.isLogged||(
-                <Button color="inherit" onClick={handleClick} className={styles.button}>
-                  Login using{' '}
-                  <i className={`devicon-github-plain ${styles.githubBtn}`}></i>
-                </Button>
-              )
-
-              }
-              { props.isLogged&& (
-                <Button color="inherit" onClick={handleClick} className={styles.button}>
-                  Logout
-                </Button>
-              )
-
-              }
+              
 
             </div>
-          )}
+          
           {width < minWidth && (
             <div className={styles.button}>
               {tabs.map((tab, index) => (
@@ -141,20 +155,6 @@ export default function Navbar(props) {
                   <ListItemText primary={tab.name} />
                 </Button>
               ))}
-              {props.isLogged||(
-                <Button color="inherit" onClick={handleClick} className={styles.button}>
-                  Login using{' '}
-                  <i className={`devicon-github-plain ${styles.githubBtn}`}></i>
-                </Button>
-              )
-
-              }
-              { props.isLogged&& (
-                <Button color="inherit" onClick={handleClick} className={styles.button}>
-                  Logout
-                </Button>
-              )
-              }
             </div>
           )}
         </Toolbar>
