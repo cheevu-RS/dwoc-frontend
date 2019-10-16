@@ -14,11 +14,12 @@ const minWidth = 550;
 const useStyles = makeStyles(theme => ({
   title: { ...theme.typography.h6 },
   button: {
-    marginLeft: `auto`
+    marginLeft: `auto`,
+    paddingTop: "11px"
   },
 
   githubBtn: {
-    fontSize: `3em`,
+    fontSize: `2.5em`,
     marginLeft: 16
   },
   drawerHeader: {
@@ -29,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar
   },
   navbar: {
-    backgroundColor: '#5CDB95',
+    backgroundImage: "linear-gradient(to right, #000f29, #5CDB95)",
     color: '#05386B'
   }
 }));
@@ -45,12 +46,9 @@ export default function Navbar() {
       setWidth(innerWidth);
   };
   const tabs = [
-    { name: 'Home' },
-    { name: 'Account' },
-    { name: 'History' },
-    {
-      name: 'Login using Github'
-    }
+    { name: 'Timeline' },
+    { name: 'Organizations' },
+    { name: 'Login with Github' }
   ];
   const handleToggle = evt => {
     setOpen(prevState => !prevState);
@@ -59,15 +57,15 @@ export default function Navbar() {
   const handleClick = evt => {
     alert('Redirecting to login...');
   };
+  const closer = evt => {
+    alert('close');
+  };
 
   // TODO make it look good on mobile devices
   let deltaLogo = (
     <div
       style={{
-        backgroundColor: '#000f29',
-        backgroundImage: "linear-gradient(to right, #000f29 , #5CDB95)",
-        padding: '5px 24px',
-        paddingLeft: "30px",
+        padding: '5px 15px',
         margin: 0
       }}
     >
@@ -81,47 +79,51 @@ export default function Navbar() {
     </div>
   );
 
+
+  let navbarElems = (
+
+
+    <div>
+      {width < minWidth && (
+        <Toolbar style={{ color: "#5CDB95" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+            <div className={styles.drawerHeader}>
+              <Sidebar open={open} drawerWidth={drawerWidth} tabs={tabs} closer={closer} />
+              <MenuIcon onClick={handleToggle} />
+            </div>
+            {deltaLogo}
+          </div>
+        </Toolbar>
+
+      )}
+
+      {width > minWidth && (
+        <Toolbar>
+          <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+          {deltaLogo}
+          <div className={styles.button}>
+            {tabs.map((tab, index) => (
+              <Button
+                color="inherit"
+                className={styles.button}
+                onClick={handleClick}
+                key={index}
+              >
+                <ListItemText primary={tab.name} />
+              </Button>
+            ))}
+          </div>
+          </div>
+        </Toolbar>
+      )}
+
+    </div>
+  );
+
   return (
     <div>
       <AppBar position="fixed" className={styles.navbar}>
-        <Toolbar style={{ padding: 0 }}>
-          {width < minWidth && (
-            <div className={styles.drawerHeader}>
-              <Sidebar open={open} drawerWidth={drawerWidth} tabs={tabs} />
-              <MenuIcon onClick={handleToggle} />
-            </div>
-          )}
-          {deltaLogo}
-
-          {width > minWidth && (
-            <div className={styles.button}>
-              {tabs.map((tab, index) => (
-                <Button
-                  color="inherit"
-                  className={styles.button}
-                  onClick={handleClick}
-                  key={index}
-                >
-                  <ListItemText primary={tab.name} />
-                </Button>
-              ))}
-              <Button color="inherit" onClick={handleClick}>
-                Login using{' '}
-                <i className={`devicon-github-plain ${styles.githubBtn}`}></i>
-              </Button>
-            </div>
-          )}
-          {width < minWidth && (
-            <Button
-              color="inherit"
-              className={styles.button}
-              onClick={handleClick}
-            >
-              {/* "Login using{' '}
-              <i className={`devicon-github-plain ` + styles.githubBtn}></i>" */}
-            </Button>
-          )}
-        </Toolbar>
+        {navbarElems}
       </AppBar>
       <div style={{ height: '80px' }}></div>
     </div>

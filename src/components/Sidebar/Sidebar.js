@@ -29,7 +29,7 @@ export default function Sidebar({ open, tabs, drawerWidth }) {
             style={{ width: `${drawerWidth}px` }}
             variant="persistent"
             anchor="left"
-            open={open}
+            open={open} 
             classes={{
                 paper: classes.drawerPaper,
             }}
