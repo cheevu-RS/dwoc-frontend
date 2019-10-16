@@ -1,4 +1,3 @@
-//jshint esversion:6
 import React from 'react';
 import {
   VerticalTimeline,
@@ -8,7 +7,7 @@ import 'react-vertical-timeline-component/style.min.css';
 
 // Stype imports
 import WebFont from 'webfontloader';
-import { header2, header3, section } from './../../DwocStyles';
+import { header2 } from './../../DwocStyles';
 import { makeStyles } from '@material-ui/core/styles';
 
 WebFont.load({
@@ -18,14 +17,13 @@ WebFont.load({
 });
 
 const useStyles = makeStyles(theme => ({
-  header2: header2,
-  section
+  header2: header2
 }));
 
 export default function HorizontalNonLinearAlternativeLabelStepper() {
   const classes = useStyles();
   return (
-    <div className={classes.section}>
+    <div style={{paddingTop: "120px"}} id="timeline">
       <h2 className={classes.header2}>Timeline </h2>
       <VerticalTimeline>
         <VerticalTimelineElement

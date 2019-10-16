@@ -7,7 +7,7 @@ import { css } from '@emotion/core';
 
 // Stype imports
 import WebFont from 'webfontloader';
-import { header2, header3 } from './../../DwocStyles';
+import { header2, header3, orgs } from './../../DwocStyles';
 
 // Material UI
 import { Grid } from '@material-ui/core';
@@ -29,7 +29,8 @@ const useStyles = makeStyles(theme => ({
     padding: '4px'
   },
   header2: header2,
-  header3: header3
+  header3: header3,
+  orgs: orgs
 }));
 
 const override = css`
@@ -69,15 +70,14 @@ export default function OrgCards() {
           );
         }
         return (
-          <>
-            <h2 className={classes.header2}>Organisations</h2>
-            {/* <h3 className={classes.header3}>Font Loader Testing</h3> */}
+          <div className={classes.orgs}>
+            <h2 className={classes.header2}>Organizations</h2>
             <Grid container className={classes.gridContainer} spacing={1}>
               {props.organizations.map(org => (
                 <OrgCard {...org} key={org.id} />
               ))}
             </Grid>
-          </>
+          </div>
         );
       }}
     />

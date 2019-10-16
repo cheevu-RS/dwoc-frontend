@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import {
   AppBar,
@@ -9,16 +8,21 @@ import {
 } from '@material-ui/core';
 import Sidebar from '../Sidebar/Sidebar';
 import MenuIcon from '@material-ui/icons/Menu';
-import dwocLogo from '../..//assets/images/dwocLogoWhite.png';
-const minWidth = 700;
+import dwocLogo from '../../assets/images/dwoc_logo_white.png';
+import SnowStorm from 'react-snowstorm';
+
+const minWidth = 550;
+
+
 const useStyles = makeStyles(theme => ({
   title: { ...theme.typography.h6 },
   button: {
-    marginLeft: `auto`
+    marginLeft: `auto`,
+    paddingTop: "11px"
   },
 
   githubBtn: {
-    fontSize: `3em`,
+    fontSize: `2.5em`,
     marginLeft: 16
   },
   drawerHeader: {
@@ -29,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar
   },
   navbar: {
-    backgroundColor: '#5CDB95',
+    backgroundImage: "linear-gradient(to right, #000f29, #5CDB95)",
     color: '#05386B'
   }
 }));
@@ -45,119 +49,124 @@ export default function Navbar(props) {
       setWidth(innerWidth);
   };
   const tabs = [
-    { name: 'Home' },
-    {
-      name: 'Login'
-    }
+    { name: 'Timeline', link: 'http://localhost:3000#timeline' },
+    { name: 'Organizations', link: 'http://localhost:3000#orgs' },
+    { name: 'Login with Github', link: 'https://delta.nitt.edu/dwocb/login' }
   ];
   const handleToggle = evt => {
     setOpen(prevState => !prevState);
     open ? setDrawerWidth(0) : setDrawerWidth(200);
   };
-  const handleClick = evt => {
-    alert('Redirecting to login...');
+  const handleClick = (evt, tabName) => {
+    console.log(tabName);
   };
 
   // TODO make it look good on mobile devices
   let deltaLogo = (
     <div
       style={{
-        backgroundColor: '#000f29',
-        padding: '5px 24px',
-        borderRadius: '0  60px 66px 0',
+        padding: '5px 15px',
         margin: 0
       }}
     >
-      {/* <a href="https://delta.nitt.edu/"> */}
-      <Link to="/">
-        <img alt="delta-logo" width="222px" src={dwocLogo} />
-      </Link>
-      {/* </a> */}
+      <a href="https://delta.nitt.edu/">
+        <img
+          alt="delta-logo"
+          width="222px"
+          src={dwocLogo}
+        />
+      </a>
+    </div>
+  );
+
+
+  let navbarElems = (
+    <div>
+      
+      {width < minWidth && (
+        <Toolbar style={{ color: "#5CDB95" }}>
+          <SnowStorm />
+          <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+            <div className={styles.drawerHeader}>
+              <Sidebar open={open} drawerWidth={drawerWidth} tabs={tabs} />
+              <MenuIcon onClick={handleToggle} />
+            </div>
+            {deltaLogo}
+          </div>
+        </Toolbar>
+
+      )}
+
+
+          {width > minWidth && (
+            <Toolbar>
+            <div className={styles.button}>
+              {tabs.map((tab, index) => (
+                <Button
+                  color="inherit"
+                  className={styles.button}
+                  onClick={handleClick}
+                  key={index}
+                >
+                  <ListItemText primary={tab.name} />
+                </Button>
+              ))}
+              {props.isLogged||(
+                <Button color="inherit" onClick={handleClick} className={styles.button}>
+                  Login using{' '}
+                  <i className={`devicon-github-plain ${styles.githubBtn}`}></i>
+                </Button>
+              )
+
+              }
+              { props.isLogged&& (
+                <Button color="inherit" onClick={handleClick} className={styles.button}>
+                  Logout
+                </Button>
+              )
+
+              }
+
+            </div>
+          )}
+          {width < minWidth && (
+            <div className={styles.button}>
+              {tabs.map((tab, index) => (
+                <Button
+                  color="inherit"
+                  className={styles.button}
+                  onClick={handleClick}
+                  key={index}
+                >
+                  <ListItemText primary={tab.name} />
+                </Button>
+              ))}
+              {props.isLogged||(
+                <Button color="inherit" onClick={handleClick} className={styles.button}>
+                  Login using{' '}
+                  <i className={`devicon-github-plain ${styles.githubBtn}`}></i>
+                </Button>
+              )
+
+              }
+              { props.isLogged&& (
+                <Button color="inherit" onClick={handleClick} className={styles.button}>
+                  Logout
+                </Button>
+              )
+              }
+            </div>
+          )}
+        </Toolbar>
+      )}
+
     </div>
   );
 
   return (
     <div>
-      <AppBar
-        style={{
-          position: 'fixed',
-          overflowX: 'hidden'
-        }}
-        className={styles.navbar}
-      >
-        <Toolbar style={{ padding: 0 }}>
-          {width < minWidth && (
-            <div className={styles.drawerHeader}>
-              <Sidebar open={open} drawerWidth={drawerWidth} tabs={tabs} />
-              <MenuIcon onClick={handleToggle} />
-            </div>
-          )}
-          {deltaLogo}
-
-          {width > minWidth && (
-            <div className={styles.button}>
-              {tabs.map((tab, index) => (
-                <Button
-                  color="inherit"
-                  className={styles.button}
-                  onClick={handleClick}
-                  key={index}
-                >
-                  <ListItemText primary={tab.name} />
-                </Button>
-              ))}
-              {props.isLogged||(
-                <Button color="inherit" onClick={handleClick} className={styles.button}>
-                  Login using{' '}
-                  <i className={`devicon-github-plain ${styles.githubBtn}`}></i>
-                </Button>
-              )
-
-              }
-              { props.isLogged&& (
-                <Button color="inherit" onClick={handleClick} className={styles.button}>
-                  Logout
-                </Button>
-              )
-
-              }
-
-            </div>
-          )}
-          {width < minWidth && (
-            <div className={styles.button}>
-              {tabs.map((tab, index) => (
-                <Button
-                  color="inherit"
-                  className={styles.button}
-                  onClick={handleClick}
-                  key={index}
-                >
-                  <ListItemText primary={tab.name} />
-                </Button>
-              ))}
-              {props.isLogged||(
-                <Button color="inherit" onClick={handleClick} className={styles.button}>
-                  Login using{' '}
-                  <i className={`devicon-github-plain ${styles.githubBtn}`}></i>
-                </Button>
-              )
-
-              }
-              { props.isLogged&& (
-                <Button color="inherit" onClick={handleClick} className={styles.button}>
-                  Logout
-                </Button>
-              )
-
-              }
-
-            </div>
-
-
-
-          )}
-        </Toolbar>
+      <AppBar position="fixed" className={styles.navbar}>
+        {navbarElems}
       </AppBar>
       <div style={{ height: '80px' }}></div>
     </div>
