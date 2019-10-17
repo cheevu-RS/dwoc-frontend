@@ -1,22 +1,22 @@
-import React from 'react';
-import OrgCard from '../../components/OrgCards/OrgCard/OrgCard';
+import React from "react";
+import OrgCard from "../../components/OrgCards/OrgCard/OrgCard";
 
 //Spinner
-import RingLoader from 'react-spinners/RingLoader';
-import { css } from '@emotion/core';
+import RingLoader from "react-spinners/RingLoader";
+import { css } from "@emotion/core";
 
 // Stype imports
-import WebFont from 'webfontloader';
-import { header2, header3 } from './../../DwocStyles';
+import WebFont from "webfontloader";
+import { header2, header3, orgs } from "./../../DwocStyles";
 
 // Material UI
-import { Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 // Relay
-import { QueryRenderer } from 'react-relay';
-import graphql from 'babel-plugin-relay/macro';
-import environment from '../../Environment';
+import { QueryRenderer } from "react-relay";
+import graphql from "babel-plugin-relay/macro";
+import environment from "../../Environment";
 
 WebFont.load({
   google: {
@@ -26,10 +26,11 @@ WebFont.load({
 
 const useStyles = makeStyles(theme => ({
   gridContainer: {
-    padding: '4px'
+    padding: "4px"
   },
   header2: header2,
-  header3: header3
+  header3: header3,
+  orgs: orgs
 }));
 
 const override = css`
@@ -39,7 +40,6 @@ const override = css`
 `;
 
 export default function OrgCards() {
-
   const classes = useStyles();
 
   return (
@@ -64,20 +64,19 @@ export default function OrgCards() {
         if (!props) {
           return (
             <div>
-              <RingLoader css={override} color={'#5CDB95'} />
+              <RingLoader css={override} color={"#5CDB95"} />
             </div>
           );
         }
         return (
-          <>
-            <h2 className={classes.header2}>Organisations</h2>
-            {/* <h3 className={classes.header3}>Font Loader Testing</h3> */}
+          <div className={classes.orgs}>
+            <h2 className={classes.header2}>Organizations</h2>
             <Grid container className={classes.gridContainer} spacing={1}>
               {props.organizations.map(org => (
                 <OrgCard {...org} key={org.id} />
               ))}
             </Grid>
-          </>
+          </div>
         );
       }}
     />

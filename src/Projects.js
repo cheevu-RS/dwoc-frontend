@@ -1,11 +1,11 @@
-import React from 'react';
-import { QueryRenderer } from 'react-relay';
-import graphql from 'babel-plugin-relay/macro';
+import React from "react";
+import { QueryRenderer } from "react-relay";
+import graphql from "babel-plugin-relay/macro";
 //import graphql from 'babel-plugin-relay';
 //import graphql from 'react-relay';
 
 //let environment = require('./Environment');
-import environment from './Environment';
+import environment from "./Environment";
 
 console.log(`${JSON.stringify(environment)} <= environment`);
 function Projects() {

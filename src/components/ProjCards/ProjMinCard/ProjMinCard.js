@@ -1,34 +1,33 @@
 /* @flow */
 
-import React from 'react';
-import './ProjMinCard.css';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import ProjMaxCard from '../ProjMaxCard/ProjMaxCard';
-import Flip from 'react-reveal/Flip';
+import React from "react";
+import "./ProjMinCard.css";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import ProjMaxCard from "../ProjMaxCard/ProjMaxCard";
+import Flip from "react-reveal/Flip";
 
 const useStyles = makeStyles({
   card: {
-    marginTop: '30px',
+    marginTop: "30px",
     backgroundColor: "#EDF5E1",
     color: "#05386B",
-    maxWidth: "400px",
+    maxWidth: "400px"
   },
   title: {
-    fontSize: 17,
+    fontSize: 17
   },
   pos: {
-    marginBottom: 12,
+    marginBottom: 12
   },
   rightAlign: {
-    float: 'right',
-    display: 'inline',
+    float: "right",
+    display: "inline"
   }
 });
-
 
 export default function ProjMinCard(props) {
   const classes = useStyles();
@@ -44,7 +43,11 @@ export default function ProjMinCard(props) {
   let titleWithTick = (
     <Typography variant="h4" component="h2">
       {props.projName}
-      <img className={classes.rightAlign} alt="tick-logo" src={require('../../../assets/icons/check_circle_black_18x18.png')} />
+      <img
+        className={classes.rightAlign}
+        alt="tick-logo"
+        src={require("../../../assets/icons/check_circle_black_18x18.png")}
+      />
     </Typography>
   );
 
@@ -60,9 +63,7 @@ export default function ProjMinCard(props) {
         <CardContent>
           {props.taken === "0" ? title : titleWithTick}
           <br />
-          <Typography variant="h6">
-            Description: {props.projDesc}
-        </Typography>
+          <Typography variant="h6">Description: {props.projDesc}</Typography>
 
           <Typography>
             Tools Used: <b>{toolsUsed}</b>
@@ -70,7 +71,12 @@ export default function ProjMinCard(props) {
           <Typography>Applicants: {props.applicants}</Typography>
         </CardContent>
         <CardActions>
-          <ProjMaxCard btnText="Read more" taken={props.taken} isLogged={props.isLogged} {...props}/>
+          <ProjMaxCard
+            btnText="Read more"
+            taken={props.taken}
+            isLogged={props.isLogged}
+            {...props}
+          />
         </CardActions>
       </Card>
     </Flip>
