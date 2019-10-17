@@ -1,24 +1,40 @@
+type AggregateProject {
+  count: Int!
+}
+
+scalar DateTime
+
+type Event {
+  id: ID!
+  date: DateTime!
+  eventDesc: String!
+}
+
+type File {
+  fileName: String!
+}
+
 type Mentor {
   id: ID!
   user: User!
-  project: Project!
+  organization: Organization!
 }
 
 input MentorCreateInput {
   id: ID
   user: UserCreateOneInput!
-  project: ProjectCreateOneInput!
+  organization: OrganizationCreateOneInput!
 }
 
 input MentorUpdateInput {
   user: UserUpdateOneRequiredInput
-  project: ProjectUpdateOneRequiredInput
+  organization: OrganizationUpdateOneRequiredInput
 }
 
 input MentorWhereInput {
   id: ID
   user: UserWhereInput
-  project: ProjectWhereInput
+  organization: OrganizationWhereInput
 }
 
 input MentorWhereUniqueInput {
@@ -48,6 +64,7 @@ type Mutation {
   updateMentor(data: MentorUpdateInput!, where: MentorWhereUniqueInput!): Mentor
   createMentor(data: MentorCreateInput!): Mentor!
   deleteMentor(where: MentorWhereUniqueInput!): Mentor
+  uploadFile(file: Upload!): File!
 }
 
 type Organization {
@@ -71,6 +88,13 @@ input OrganizationCreateOneInput {
   connect: OrganizationWhereUniqueInput
 }
 
+input OrganizationUpdateDataInput {
+  orgName: String
+  orgSlug: String
+  orgDesc: String
+  githubUrl: String
+}
+
 input OrganizationUpdateInput {
   orgName: String
   orgSlug: String
@@ -79,8 +103,15 @@ input OrganizationUpdateInput {
 }
 
 input OrganizationUpdateOneRequiredInput {
-  update: OrganizationUpdateInput
+  create: OrganizationCreateInput
+  update: OrganizationUpdateDataInput
+  upsert: OrganizationUpsertNestedInput
   connect: OrganizationWhereUniqueInput
+}
+
+input OrganizationUpsertNestedInput {
+  update: OrganizationUpdateDataInput!
+  create: OrganizationCreateInput!
 }
 
 input OrganizationWhereInput {
@@ -104,15 +135,21 @@ type Project {
   projSlug: String!
   projDesc: String
   githubUrl: String
+  projMinDesc: String
+}
+
+type ProjectConnection {
+  aggregate: AggregateProject!
 }
 
 input ProjectCreateInput {
   id: ID
+  organization: OrganizationCreateOneInput!
   projName: String!
   projSlug: String!
   projDesc: String
   githubUrl: String
-  organization: OrganizationCreateOneInput!
+  projMinDesc: String
 }
 
 input ProjectCreateOneInput {
@@ -121,11 +158,12 @@ input ProjectCreateOneInput {
 }
 
 input ProjectUpdateInput {
+  organization: OrganizationUpdateOneRequiredInput
   projName: String
   projSlug: String
   projDesc: String
   githubUrl: String
-  organization: OrganizationUpdateOneRequiredInput
+  projMinDesc: String
 }
 
 input ProjectUpdateOneRequiredInput {
@@ -145,6 +183,7 @@ input ProjectWhereInput {
 input ProjectWhereUniqueInput {
   id: ID
   projSlug: String
+  organization: OrganizationWhereUniqueInput
 }
 
 type Proposal {
@@ -191,6 +230,8 @@ type Query {
   mentors(where: MentorWhereInput): [Mentor]!
   userProposals: [Proposal]!
   proposals(where: ProposalWhereInput): [Proposal]!
+  events: [Event]!
+  projectsConnection(where: ProjectWhereUniqueInput): ProjectConnection!
 }
 
 enum roles {
@@ -198,6 +239,8 @@ enum roles {
   Mentor
   Admin
 }
+
+scalar Upload
 
 type User {
   id: ID!
@@ -252,4 +295,3 @@ input UserWhereUniqueInput {
   mobileNumber: String
   githubHandle: String
 }
-
