@@ -71,12 +71,7 @@ export default function ProjMinCard(props) {
           <Typography>Applicants: {props.applicants}</Typography>
         </CardContent>
         <CardActions>
-          <ProjMaxCard
-            btnText="Read more"
-            taken={props.taken}
-            isLogged={props.isLogged}
-            {...props}
-          />
+          <ProjMaxCard btnText="Read more" orgName={props.orgName} projName={props.projName} projDesc={props.projDesc} taken={props.taken} isLogged={props.isLogged} {...props}/>
         </CardActions>
       </Card>
     </Flip>

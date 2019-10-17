@@ -62,7 +62,7 @@ export default function Navbar(props) {
     console.log("toggle");
     console.log(props.isLogged, "isLogged");
 
-    if (props.isLogged) {
+    if(props.isLogged){
       setTabs([
         { name: "Timeline", link: "http://localhost:3000#timeline" },
         { name: "Organizations", link: "http://localhost:3000#orgs" },
@@ -158,6 +158,8 @@ export default function Navbar(props) {
       )}
     </div>
   );
+
+
 
   return (
     <div>

@@ -16,7 +16,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // Relay
 import { QueryRenderer } from "react-relay";
 import graphql from "babel-plugin-relay/macro";
-import environment from "../../Environment";
+const environment = require("../../Environment").environment;
 
 WebFont.load({
   google: {

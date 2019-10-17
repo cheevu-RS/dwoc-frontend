@@ -12,14 +12,17 @@ import ProjCards from "./components/ProjCards/ProjCards";
 import SnowStorm from "react-snowstorm";
 import { header2, header3, orgs } from "./DwocStyles";
 import { makeStyles } from "@material-ui/core/styles";
-import environment from "./Environment";
+import ProposalForm from "./components/ProposalForm/ProposalForm"
 import Cookies from "js-cookie";
+
 
 // import OrgCard from './components/OrgCards/OrgCard/OrgCard';
 
 //Spinner
 import RingLoader from "react-spinners/RingLoader";
 import { css } from "@emotion/core";
+
+const environment=require("./Environment").environment1;
 
 // Material UI
 const override = css`
@@ -38,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App() {
-  let [isLogged, toggleIsLogged] = useState(false);
+  let [isLogged, toggleIsLogged] = useState(true);
 
   let role;
   const classes = useStyles();
@@ -64,6 +67,7 @@ function App() {
           `}
           variables={{}}
           render={({ error, props }) => {
+            console.log(props);
             if (error) {
               console.log(`${error} <= error Relay Appjs`);
               return;
@@ -80,33 +84,21 @@ function App() {
             }
             return (
               <div>
-                <SnowStorm />
-                <Router>
-                  <Route
-                    path="/"
-                    render={props => <Navbar isLogged={isLogged} role={role} />}
-                  ></Route>
-                  <Route
-                    exact
-                    path="/"
-                    render={props => (
-                      <LandingPage role={role} {...props} isLogged={isLogged} />
-                    )}
-                  ></Route>
-                  <Route
-                    exact
-                    path="/org/:id/:orgName"
-                    render={props => (
-                      <ProjCards {...props} role={role} isLogged={isLogged} />
-                    )}
-                  ></Route>
-                </Router>
+
+
               </div>
             );
           }}
         />
+        <SnowStorm />
+        <Router>
+          <Route path="/" render={(props) => <Navbar isLogged={isLogged} role={role} />} ></Route>
+          <Route exact path="/" render={(props) => <LandingPage role={role}  {...props} isLogged={isLogged} />}  ></Route>
+          <Route exact path="/org/:id/:orgName" render={(props) => <ProjCards {...props} role={role} isLogged={isLogged} />} ></Route>
+          <Route exact path="/apply" render={(props) => <ProposalForm {...props} role={role} isLogged={isLogged} />} ></Route>
+        </Router>
 
-        {isLogged ? <div>Loggd in</div> : <div>Loggd out</div>}
+        {isLogged ? (<div>Loggd in</div>) : (<div>Loggd out</div>)}
       </div>
       <br />
     </div>
