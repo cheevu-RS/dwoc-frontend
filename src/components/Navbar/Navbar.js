@@ -137,9 +137,9 @@ export default function Navbar(props) {
       {width > minWidth && (
         <Toolbar>
           {deltaLogo}
-          <div className={styles.button}>
+          <div className={styles.button} style={{marginBottom: '6px'}}>
             {defaultBtns.map((tab, index) => (
-              <Button className={styles.button} >
+              <Button className={styles.button} key={index}>
                 <Link smooth={true} to={tab.to}>
                   <ListItemText primary={tab.name}/>
                 </Link>
