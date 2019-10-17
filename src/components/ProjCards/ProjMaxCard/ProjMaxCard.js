@@ -11,11 +11,13 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 
+import {useHistory} from 'react-router-dom'
 
 export default function DraggableDialog(props) {
 
 
   const [open, setOpen] = React.useState(false);
+  let history = useHistory();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -24,6 +26,11 @@ export default function DraggableDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const submitProposal = () => {
+    history.push(history.location.pathname + '/proposal')
+    history.location.state = props;
+  }
 
   return (
     <div>
@@ -41,12 +48,14 @@ export default function DraggableDialog(props) {
          {
            props.isLogged&&(
              <div>
-             <DialogActions>
-
-                   {props.taken === "1" ? (<Button onClick={handleClose}>Cancel</Button>) : (<div><Button onClick={handleClose}>Cancel</Button><Button > <Link to= {{pathname:"/apply",props:{title:props.projName,description:props.projDesc,tags:props.tools,mentors:[] ,org_name:props.orgName} }}  >Apply</Link></Button></div>)}
-
-
-             </DialogActions>
+              <DialogActions>
+                {props.taken === "1" ? (<Button onClick={handleClose}>Cancel</Button>) : (
+                <div>
+                  <Button onClick={handleClose}>Cancel</Button>
+                  <Button onClick={submitProposal}>Apply</Button>
+                </div>
+                )}
+              </DialogActions>
              </div>
              )
          }
@@ -63,9 +72,6 @@ export default function DraggableDialog(props) {
              )
 
          }
-
-
-
       </Dialog>
     </div>
   );

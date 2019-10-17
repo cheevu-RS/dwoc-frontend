@@ -14,6 +14,7 @@ import { header2, header3, orgs } from "./DwocStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import ProposalForm from "./components/ProposalForm/ProposalForm"
 import Cookies from "js-cookie";
+import Footer from './components/Footer/Footer'
 
 
 // import OrgCard from './components/OrgCards/OrgCard/OrgCard';
@@ -95,10 +96,11 @@ function App() {
           <Route path="/" render={(props) => <Navbar isLogged={isLogged} role={role} />} ></Route>
           <Route exact path="/" render={(props) => <LandingPage role={role}  {...props} isLogged={isLogged} />}  ></Route>
           <Route exact path="/org/:id/:orgName" render={(props) => <ProjCards {...props} role={role} isLogged={isLogged} />} ></Route>
-          <Route exact path="/apply" render={(props) => <ProposalForm {...props} role={role} isLogged={isLogged} />} ></Route>
+          <Route exact path="/org/:id/:orgName/proposal" render={(props) => <ProposalForm {...props} role={role} isLogged={isLogged} />} ></Route>
         </Router>
 
         {isLogged ? (<div>Loggd in</div>) : (<div>Loggd out</div>)}
+        <Footer />
       </div>
       <br />
     </div>
