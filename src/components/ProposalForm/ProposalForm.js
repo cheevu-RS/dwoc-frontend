@@ -7,60 +7,60 @@ import {
 	Container
 } from '@material-ui/core';
 
-import Tag from '../Tags/Tag'
-import MentorTags from '../MentorTags/MentorTags'
+import Tag from "../Tags/Tag";
+import MentorTags from "../MentorTags/MentorTags";
 
 const useStyles = makeStyles(theme => ({
-  	paper: {
-		marginTop: theme.spacing(8),
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		backgroundColor: '#5CDB95',
-		padding: theme.spacing(3),
-		borderRadius: 10,
-		color: '#05386b'
-	},
-	heading: {
-		textTransform: 'uppercase'
-	},
-  	form: {
-		marginTop: theme.spacing(1),
-		width: `100%`,
-		textAlign: 'center'
-  	},
-  	submit: {
-		margin: theme.spacing(3, 0, 2),
-		backgroundColor: '#22627D',
-		color: 'dark-grey'
-	},
-	projectOrg: {
-		textAlign: 'center',
-		fontSize: 1.4 * theme.typography.fontSize,
-		marginBottom: 5,
-		marginTop: theme.spacing(4),
-		textTransform: 'uppercase',
-		fontWeight: '700'
-	},
-	projectTitle: {
-		marginTop: theme.spacing(0),
-	},
-	projectTags: {
-		textAlign: 'center',
-		marginBottom: theme.spacing(1.5)
-	},
-	projectDescription: {
-		fontSize: 16,
-		textAlign: 'center'
-	},
-	projectMentors: {
-		marginBottom: theme.spacing(1),
-		textAlign: 'center'
-	},
-	projectProposalInput: {
-		width: 100,
-		fontSize: 16
-	}
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "#5CDB95",
+    padding: theme.spacing(3),
+    borderRadius: 10,
+    color: "#05386b"
+  },
+  heading: {
+    textTransform: "uppercase"
+  },
+  form: {
+    marginTop: theme.spacing(1),
+    width: `100%`,
+    textAlign: "center"
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+    backgroundColor: "#22627D",
+    color: "dark-grey"
+  },
+  projectOrg: {
+    textAlign: "center",
+    fontSize: 1.4 * theme.typography.fontSize,
+    marginBottom: 5,
+    marginTop: theme.spacing(4),
+    textTransform: "uppercase",
+    fontWeight: "700"
+  },
+  projectTitle: {
+    marginTop: theme.spacing(0)
+  },
+  projectTags: {
+    textAlign: "center",
+    marginBottom: theme.spacing(1.5)
+  },
+  projectDescription: {
+    fontSize: 16,
+    textAlign: "center"
+  },
+  projectMentors: {
+    marginBottom: theme.spacing(1),
+    textAlign: "center"
+  },
+  projectProposalInput: {
+    width: 100,
+    fontSize: 16
+  }
 }));
 
 const data={
@@ -80,7 +80,7 @@ const data={
 
 const ProposalForm = (props) => {
 	const project=props.location.props;
-	
+
 
 		const classes = useStyles();
 		if(!project)

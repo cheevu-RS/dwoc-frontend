@@ -1,18 +1,19 @@
-import React, { useEffect } from 'react';
-import ProjCard from './ProjMinCard/ProjMinCard';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { makeStyles } from '@material-ui/core/styles';
-import RingLoader from 'react-spinners/RingLoader';
-import { QueryRenderer } from 'react-relay';
-import graphql from 'babel-plugin-relay/macro';
-import environment from '../../Environment';
-import { css } from '@emotion/core';
+import React, { useEffect } from "react";
+import ProjCard from "./ProjMinCard/ProjMinCard";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { makeStyles } from "@material-ui/core/styles";
+import RingLoader from "react-spinners/RingLoader";
+import { QueryRenderer } from "react-relay";
+import graphql from "babel-plugin-relay/macro";
 
+import { css } from "@emotion/core";
+
+const environment= require( "../../Environment").environment;
 const useStyles = makeStyles(theme => ({
   container: {
-    minWidth: '93%',
-    paddingLeft: '2%'
+    minWidth: "93%",
+    paddingLeft: "2%"
   }
 }));
 
@@ -25,8 +26,8 @@ const override = css`
 export default function Projects(props) {
   const classes = useStyles();
   const orgName = props.match.params.orgName;
-  const defaultTools = ['C++', 'Python'];
-  const isLogged=props.isLogged;
+  const defaultTools = ["C++", "Python"];
+  const isLogged = props.isLogged;
   const orgID = props.match.params.id;
   // console.log(orgID);
 
@@ -62,11 +63,11 @@ export default function Projects(props) {
           if (!props) {
             return (
               <div>
-                <h2 style={{ textAlign: 'center' }}>
+                <h2 style={{ textAlign: "center" }}>
                   Projects under {orgName}
                 </h2>
-                <div style={{ paddingTop: '20%' }}>
-                  <RingLoader css={override} color={'#5CDB95'} />
+                <div style={{ paddingTop: "20%" }}>
+                  <RingLoader css={override} color={"#5CDB95"} />
                 </div>
               </div>
             );
@@ -90,7 +91,7 @@ export default function Projects(props) {
 
           return (
             <div>
-              <h2 style={{ textAlign: 'center' }}>Projects under {orgName}</h2>
+              <h2 style={{ textAlign: "center" }}>Projects under {orgName}</h2>
               {structuredProjects.map(proj => (
                 <Row key={num++}>
                   {proj.map(o =>
@@ -101,7 +102,7 @@ export default function Projects(props) {
                     ) : (
                       <Col key={num++}></Col>
                     )
-                  )}{' '}
+                  )}{" "}
                 </Row>
               ))}
             </div>

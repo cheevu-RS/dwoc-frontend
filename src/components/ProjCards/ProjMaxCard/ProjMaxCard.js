@@ -13,8 +13,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 export default function DraggableDialog(props) {
-  console.log(props);
-  const applyRoute=`/apply/${props.name}`;
+
 
   const [open, setOpen] = React.useState(false);
 
@@ -31,19 +30,13 @@ export default function DraggableDialog(props) {
       <Button onClick={handleClickOpen} variant="outlined">
         <b>{props.btnText}</b>
       </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="dialog-title"
-      >
-        <DialogTitle id="dialog-title">
-          {props.projName}
-        </DialogTitle>
+      <Dialog open={open} onClose={handleClose} aria-labelledby="dialog-title">
+        <DialogTitle id="dialog-title">{props.projName}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Description: {props.projDesc}
-          </DialogContentText>
-          <a href={"https://"+props.githubUrl}>Checkout the project on github </a>
+          <DialogContentText>Description: {props.projDesc}</DialogContentText>
+          <a href={"https://" + props.githubUrl}>
+            Checkout the project on github{" "}
+          </a>
         </DialogContent>
          {
            props.isLogged&&(

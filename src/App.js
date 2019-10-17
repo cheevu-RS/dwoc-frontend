@@ -1,28 +1,28 @@
-
 /* @flow */
 
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import LandingPage from './views/LandingPage/LandingPage';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './components/Navbar/Navbar';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { QueryRenderer } from "react-relay"
-import graphql from 'babel-plugin-relay/macro';
-import ProjCards from './components/ProjCards/ProjCards';
-import SnowStorm from 'react-snowstorm';
-import { header2, header3, orgs } from './DwocStyles';
-import { makeStyles } from '@material-ui/core/styles';
-import environment from './environment1';
-import Cookies from 'js-cookie';
-import ProposalForm from './components/ProposalForm/ProposalForm';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import LandingPage from "./views/LandingPage/LandingPage";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Navbar from "./components/Navbar/Navbar";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { QueryRenderer } from "react-relay";
+import graphql from "babel-plugin-relay/macro";
+import ProjCards from "./components/ProjCards/ProjCards";
+import SnowStorm from "react-snowstorm";
+import { header2, header3, orgs } from "./DwocStyles";
+import { makeStyles } from "@material-ui/core/styles";
+import ProposalForm from "./components/ProposalForm/ProposalForm"
+import Cookies from "js-cookie";
 
 
 // import OrgCard from './components/OrgCards/OrgCard/OrgCard';
 
 //Spinner
-import RingLoader from 'react-spinners/RingLoader';
-import { css } from '@emotion/core';
+import RingLoader from "react-spinners/RingLoader";
+import { css } from "@emotion/core";
+
+const environment=require("./Environment").environment1;
 
 // Material UI
 const override = css`
@@ -33,21 +33,15 @@ const override = css`
 
 const useStyles = makeStyles(theme => ({
   gridContainer: {
-    padding: '4px'
+    padding: "4px"
   },
   header2: header2,
   header3: header3,
   orgs: orgs
 }));
 
-
-
 function App() {
-
-
-
-
-  let [isLogged, toggleIsLogged] = useState(true);
+  let [isLogged, toggleIsLogged] = useState(false);
 
   let role;
   const classes = useStyles();
@@ -57,7 +51,6 @@ function App() {
   return (
     <div className="App">
       <div className="App-header">
-
         <br />
         <br />
         {/* <Navbar /> */}
@@ -65,13 +58,13 @@ function App() {
         <QueryRenderer
           environment={environment}
           query={graphql`
-        query AppQuery {
-          userProfile {
-            id
-            role
-          }
-        }
-      `}
+            query AppQuery {
+              userProfile {
+                id
+                role
+              }
+            }
+          `}
           variables={{}}
           render={({ error, props }) => {
             console.log(props);
@@ -82,7 +75,7 @@ function App() {
             if (!props) {
               return (
                 <div>
-                  <RingLoader css={override} color={'#5CDB95'} />
+                  <RingLoader css={override} color={"#5CDB95"} />
                 </div>
               );
             }
