@@ -1,11 +1,13 @@
+// React with hooks
 import React from "react";
+
 import {
   Drawer,
   List,
   Divider,
-  ListItem,
   ListItemText,
-  makeStyles
+  makeStyles,
+  Button
 } from "@material-ui/core/";
 
 const drawerWidth = 200;
@@ -21,8 +23,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Sidebar({ open, tabs, drawerWidth }) {
+export default function Sidebar({ open, handleToggle, setOpen, tabs, drawerWidth }) {
   const classes = useStyles();
+
+  const handleClick = () => {
+    console.log("clicked")
+    handleToggle();
+  }
+
   return (
     <Drawer
       className={classes.drawer}
@@ -37,9 +45,13 @@ export default function Sidebar({ open, tabs, drawerWidth }) {
       <Divider />
       <List>
         {tabs.map((tab, index) => (
-          <ListItem button key={index}>
+          <Button 
+            key={index} 
+            href={tab.link}
+            onClick={handleClick}
+          >
             <ListItemText primary={tab.name} />
-          </ListItem>
+          </Button>
         ))}
       </List>
       <Divider />

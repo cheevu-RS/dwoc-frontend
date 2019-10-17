@@ -1,4 +1,7 @@
+// React with hooks
 import React, { useState, useEffect } from "react";
+
+// Navbar imports from material UI
 import {
   AppBar,
   Toolbar,
@@ -8,8 +11,9 @@ import {
 } from "@material-ui/core";
 import Sidebar from "../Sidebar/Sidebar";
 import MenuIcon from "@material-ui/icons/Menu";
+
+// DWOC logo import inside navbar
 import dwocLogo from "../../assets/images/dwoc_logo_white.png";
-import SnowStorm from "react-snowstorm";
 
 const minWidth = 550;
 
@@ -50,8 +54,8 @@ export default function Navbar(props) {
   };
 
   let [tabs, setTabs] = useState([
-    { name: "Timeline", link: "http://localhost:3000#timeline" },
-    { name: "Organizations", link: "http://localhost:3000#orgs" },
+    { name: "Timeline", link: "#timeline" },
+    { name: "Organizations", link: "#orgs" },
     { name: "Login with Github", link: "https://delta.nitt.edu/dwocb/login" }
   ]);
 
@@ -62,25 +66,23 @@ export default function Navbar(props) {
     console.log("toggle");
     console.log(props.isLogged, "isLogged");
 
-    if(props.isLogged){
+    if (props.isLogged) {
       setTabs([
-        { name: "Timeline", link: "http://localhost:3000#timeline" },
-        { name: "Organizations", link: "http://localhost:3000#orgs" },
+        { name: "Timeline", link: "#timeline" },
+        { name: "Organizations", link: "#orgs" },
         { name: "Logout", link: "https://delta.nitt.edu/dwocb/logout" }
       ]);
     } else {
       setTabs([
-        { name: "Timeline", link: "http://localhost:3000#timeline" },
-        { name: "Organizations", link: "http://localhost:3000#orgs" },
-        {
-          name: "Login with Github",
-          link: "https://delta.nitt.edu/dwocb/login"
-        }
+        { name: "Timeline", link: "#timeline" },
+        { name: "Organizations", link: "#orgs" },
+        { name: "Login with Github", link: "https://delta.nitt.edu/dwocb/login" }
       ]);
     }
   }, [props.isLogged]);
 
   const handleToggle = evt => {
+    console.log('asdjk')
     setOpen(prevState => !prevState);
     open ? setDrawerWidth(0) : setDrawerWidth(200);
   };
@@ -106,7 +108,6 @@ export default function Navbar(props) {
     <div>
       {width < minWidth && (
         <Toolbar style={{ color: "#5CDB95" }}>
-          <SnowStorm />
           <div
             style={{
               display: "flex",
@@ -115,7 +116,13 @@ export default function Navbar(props) {
             }}
           >
             <div className={styles.drawerHeader}>
-              <Sidebar open={open} drawerWidth={drawerWidth} tabs={tabs} />
+              <Sidebar 
+                open={open} 
+                drawerWidth={drawerWidth}
+                tabs={tabs}
+                setOpen={setOpen}
+                handleToggle={handleToggle}
+               />
               <MenuIcon onClick={handleToggle} />
             </div>
             {deltaLogo}
@@ -139,21 +146,6 @@ export default function Navbar(props) {
               </Button>
             ))}
           </div>
-
-          {width < minWidth && (
-            <div className={styles.button}>
-              {tabs.map((tab, index) => (
-                <Button
-                  color="inherit"
-                  className={styles.button}
-                  onClick={handleClick}
-                  key={index}
-                >
-                  <ListItemText primary={tab.name} />
-                </Button>
-              ))}
-            </div>
-          )}
         </Toolbar>
       )}
     </div>
