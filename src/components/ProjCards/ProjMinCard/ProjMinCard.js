@@ -119,47 +119,45 @@ export default function ProjMinCard(props) {
   const classes = useStyles();
 
   return (
-      <Card className={classes.card}>
-                <div className={classes.title}>{props.projName}</div>
-        {/* <span className={classes.mentorName}>
-          by<b> Mentor names</b>
-        </span> */}
-        <div className={classes.description}>{props.projDesc}</div>
-        <div className={classes.stacks}>
-          <span
-            className={classes.stack}
-            style={{ backgroundColor: colours.stack.TypeScript }}
-          >
-            TypeScript
+    <Card className={classes.card}>
+      <div className={classes.title}>{props.projName}</div>
+
+      <div className={classes.description}>{props.projDesc}</div>
+      <div className={classes.stacks}>
+        <span
+          className={classes.stack}
+          style={{ backgroundColor: colours.stack.TypeScript }}
+        >
+          TypeScript
           </span>
-          <span
-            className={classes.stack}
-            style={{ backgroundColor: colours.stack.JavaScript }}
-          >
-            JavaScript
+        <span
+          className={classes.stack}
+          style={{ backgroundColor: colours.stack.JavaScript }}
+        >
+          JavaScript
           </span>
-          <span
-            className={classes.stack}
-            style={{ backgroundColor: colours.stack.python }}
-          >
-            Python
-          </span> 
-          <span
-            className={classes.stack}
-            style={{ backgroundColor: colours.stack.React }}
-          >
-            React
+        <span
+          className={classes.stack}
+          style={{ backgroundColor: colours.stack.python }}
+        >
+          Python
           </span>
-          <span
-            className={classes.stack}
-            style={{ backgroundColor: colours.stack.cpp }}
-          >
-            C++
+        <span
+          className={classes.stack}
+          style={{ backgroundColor: colours.stack.React }}
+        >
+          React
           </span>
-        </div>
-        <CardActions>
-          <ProjMaxCard btnText="Read more" orgName={props.orgName} projName={props.projName} projDesc={props.projDesc} taken={props.taken} isLogged={props.isLogged} {...props}/>
-        </CardActions>
-      </Card>
+        <span
+          className={classes.stack}
+          style={{ backgroundColor: colours.stack.cpp }}
+        >
+          C++
+          </span>
+      </div>
+      <CardActions>
+        <ProjMaxCard btnText="Read more" orgName={props.orgName} projName={props.projName} projDesc={props.projDesc} taken={props.taken} isLogged={props.isLogged} {...props} />
+      </CardActions>
+    </Card>
   );
 }

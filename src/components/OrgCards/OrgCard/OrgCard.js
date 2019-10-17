@@ -4,6 +4,14 @@ import { Link } from 'react-router-dom';
 import { Grid, Card } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
+// React relay
+import { QueryRenderer } from 'react-relay';
+import graphql from 'babel-plugin-relay/macro';
+
+//Spinner
+import RingLoader from 'react-spinners/RingLoader';
+import { css } from '@emotion/core';
+
 // Style imports
 import { makeStyles } from '@material-ui/core/styles';
 import { OrgProjCard, colours } from '../../../DwocStyles';
@@ -14,11 +22,17 @@ WebFont.load({
   }
 });
 
+const environment = require('../../../Environment').environment;
+
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
 const useStyles = makeStyles(theme => ({
   card: {
-    //backgroundColor: '#EDF5E1',
-    //color: '#05386B',
-    //border: '1px solid red',
     marginTop: '30px',
     height: '100%',
     opacity: 100,
@@ -113,6 +127,51 @@ export default function OrgCard(props) {
   console.log(`${JSON.stringify(props)} <= props OrgCars props`);
 
   const orgPath = '/org/' + props.id + '/' + props.orgName;
+  const orgID = props.id;
+
+  let mentorFetch = (
+    <QueryRenderer
+      environment={environment}
+      query={graphql`
+        query OrgCardQuery($orgid: MentorWhereInput) {
+          mentors(where: $orgid) {
+            id
+            user{
+              firstName
+            }
+          }
+        }
+      `}
+      variables={{ orgid: { organization: { id: orgID } } }}
+      render={({ error, props }) => {
+        if (error) {
+          console.log(`${error} <= error Relay orgCard.js ${orgPath}`);
+          return <div>Error!</div>;
+        }
+        if (!props) {
+          return (
+            <div>
+              <RingLoader css={override} color={'#5CDB95'} />
+            </div>
+          );
+        }
+        console.log(props.mentors);
+        let mentorsLen = props.mentors.length;
+        let mentors = "";
+        for(let i = 0; i<mentorsLen; i++){
+          mentors += props.mentors[i].user.firstName;
+          // console.log(props.mentors[i].user.firstName);
+          if(i!=mentorsLen-1){mentors += ",";}
+        }
+        console.log(mentors)
+        return (
+          <b>
+            {mentors}
+          </b>
+        );
+      }}
+    />
+  )
 
   return (
     <Grid
@@ -125,8 +184,11 @@ export default function OrgCard(props) {
     >
       <Card className={classes.card}>
         <div className={classes.title}>{props.orgName}</div>
+        {/* <p>{props.id}</p> */}
+        
+        
         <span className={classes.mentorName}>
-          by<b> Mentor names</b>
+          by {mentorFetch}
         </span>
         <div className={classes.description}>{props.orgDesc}</div>
         <div className={classes.stacks}>
