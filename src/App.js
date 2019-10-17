@@ -1,7 +1,6 @@
 /* @flow */
 import React, { useState } from 'react';
 
-
 /*
     BrowserRouter fix for Apache server for proper routing instead of HashRouting:
     Create .htaccess file in the same directory of index.html with this content and build:

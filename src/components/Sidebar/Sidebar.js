@@ -1,6 +1,9 @@
 // React with hooks
 import React from "react";
 
+// Smooth scroll
+import { Link, animateScroll as scroll } from "react-scroll";
+
 import {
   Drawer,
   List,
@@ -23,11 +26,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Sidebar({ open, handleToggle, setOpen, tabs, drawerWidth }) {
+export default function Sidebar({ open, handleToggle, tabs, drawerWidth, defaultBtns }) {
   const classes = useStyles();
 
+  // console.log(defaultBtns)
+
   const handleClick = () => {
-    console.log("clicked")
+    // console.log("clicked")
     handleToggle();
   }
 
@@ -44,15 +49,16 @@ export default function Sidebar({ open, handleToggle, setOpen, tabs, drawerWidth
     >
       <Divider />
       <List>
-        {tabs.map((tab, index) => (
+        {defaultBtns.map((defaultBtn, index) => (
           <Button 
             key={index} 
-            href={tab.link}
-            onClick={handleClick}
           >
-            <ListItemText primary={tab.name} />
+            <Link onClick={handleClick} smooth={true} to={defaultBtn.to}>
+              <ListItemText primary={defaultBtn.name} />
+            </Link>
           </Button>
         ))}
+        {(<Button onClick={handleToggle} href={tabs.link}><ListItemText primary={tabs.name}></ListItemText></Button>)}
       </List>
       <Divider />
     </Drawer>

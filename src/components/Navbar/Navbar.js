@@ -12,6 +12,9 @@ import {
 import Sidebar from "../Sidebar/Sidebar";
 import MenuIcon from "@material-ui/icons/Menu";
 
+// Smooth scroll
+import { Link, animateScroll as scroll } from "react-scroll";
+
 // DWOC logo import inside navbar
 import dwocLogo from "../../assets/images/dwoc_logo_white.png";
 
@@ -21,7 +24,10 @@ const useStyles = makeStyles(theme => ({
   title: { ...theme.typography.h6 },
   button: {
     marginLeft: `auto`,
-    paddingTop: "11px"
+    paddingTop: "11px",
+    display: 'flex',
+    // flexWrap: 'wrap',
+    justifyContent: 'space-between'
   },
 
   githubBtn: {
@@ -53,11 +59,14 @@ export default function Navbar(props) {
       setWidth(innerWidth);
   };
 
-  let [tabs, setTabs] = useState([
-    { name: "Timeline", link: "#timeline" },
-    { name: "Organizations", link: "#orgs" },
+  let defaultBtns = [
+    { name: "Timeline", to: "timeline" },
+    { name: "Organizations", to: "orgs" },
+  ];
+
+  let [tabs, setTabs] = useState(
     { name: "Login with Github", link: "https://delta.nitt.edu/dwocb/login" }
-  ]);
+  );
 
   console.log(props);
 
@@ -67,22 +76,17 @@ export default function Navbar(props) {
     console.log(props.isLogged, "isLogged");
 
     if (props.isLogged) {
-      setTabs([
-        { name: "Timeline", link: "#timeline" },
-        { name: "Organizations", link: "#orgs" },
+      setTabs(  
         { name: "Logout", link: "https://delta.nitt.edu/dwocb/logout" }
-      ]);
+      );
     } else {
-      setTabs([
-        { name: "Timeline", link: "#timeline" },
-        { name: "Organizations", link: "#orgs" },
+      setTabs(
         { name: "Login with Github", link: "https://delta.nitt.edu/dwocb/login" }
-      ]);
+      );
     }
   }, [props.isLogged]);
 
   const handleToggle = evt => {
-    console.log('asdjk')
     setOpen(prevState => !prevState);
     open ? setDrawerWidth(0) : setDrawerWidth(200);
   };
@@ -119,8 +123,8 @@ export default function Navbar(props) {
               <Sidebar 
                 open={open} 
                 drawerWidth={drawerWidth}
+                defaultBtns={defaultBtns}
                 tabs={tabs}
-                setOpen={setOpen}
                 handleToggle={handleToggle}
                />
               <MenuIcon onClick={handleToggle} />
@@ -134,17 +138,18 @@ export default function Navbar(props) {
         <Toolbar>
           {deltaLogo}
           <div className={styles.button}>
-            {tabs.map((tab, index) => (
-              <Button
-                color="inherit"
-                className={styles.button}
-                onClick={handleClick}
-                key={index}
-                href={tab.link}
-              >
-                <ListItemText primary={tab.name} />
+            {defaultBtns.map((tab, index) => (
+              <Button className={styles.button} >
+                <Link smooth={true} to={tab.to}>
+                  <ListItemText primary={tab.name}/>
+                </Link>
               </Button>
             ))}
+            {(
+              <Button className={styles.button} href={tabs.link}>
+                <ListItemText primary={tabs.name}/>
+              </Button>
+            )}
           </div>
         </Toolbar>
       )}
