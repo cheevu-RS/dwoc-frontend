@@ -55,7 +55,7 @@ export default function DraggableDialog(props) {
              <div>
              <DialogActions>
 
-                   {props.taken === "1" ? (<Button onClick={handleClose}>Cancel</Button>) : (<div><Button onClick={handleClose}>Cancel</Button><Button onClick={handleClose}>Login to apply</Button></div>)}
+                   {props.taken === "1" ? (<Button onClick={handleClose}>Cancel</Button>) : (<div><Button onClick={handleClose}>Cancel</Button><Button >  <a href="https://delta.nitt.edu/dwocb/login">Login to apply</a></Button></div>)}
 
 
              </DialogActions>
