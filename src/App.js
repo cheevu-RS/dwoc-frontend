@@ -40,12 +40,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App() {
-  let [isLogged, toggleIsLogged] = useState(true);
 
+  let [isLogged, toggleIsLogged] = useState(true);
   let role;
   const classes = useStyles();
-  // console.log(Cookies.get());
-  // console.log(JSON.parse(Cookies.get("dwoc_user_session")).session);
 
   return (
     <div className="App">
