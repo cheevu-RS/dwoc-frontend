@@ -43,7 +43,7 @@ export default function Navbar(props) {
   const [open, setOpen] = useState(false);
   const [drawerWidth, setDrawerWidth] = useState(0);
   const [width, setWidth] = useState(window.innerWidth);
-  
+
   window.onresize = evt => {
     const innerWidth = window.innerWidth;
     if (innerWidth < minWidth || (innerWidth > minWidth && width < minWidth))
@@ -62,7 +62,7 @@ export default function Navbar(props) {
     // Update the document title using the browser API
     console.log("toggle");
     console.log(props.isLogged, "isLogged");
-    
+
     if(props.isLogged){
       setTabs([
         { name: 'Timeline', link: 'http://localhost:3000#timeline' },
@@ -79,7 +79,7 @@ export default function Navbar(props) {
     }
 
   }, [props.isLogged]);
-  
+
   const handleToggle = evt => {
     setOpen(prevState => !prevState);
     open ? setDrawerWidth(0) : setDrawerWidth(200);
@@ -139,10 +139,10 @@ export default function Navbar(props) {
                   <ListItemText primary={tab.name} />
                 </Button>
               ))}
-              
+
 
             </div>
-          
+
           {width < minWidth && (
             <div className={styles.button}>
               {tabs.map((tab, index) => (
@@ -162,6 +162,8 @@ export default function Navbar(props) {
 
     </div>
   );
+  
+
 
   return (
     <div>

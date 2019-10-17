@@ -7,9 +7,14 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+
+
 
 export default function DraggableDialog(props) {
-
+  console.log(props);
+  const applyRoute=`/apply/${props.name}`;
 
   const [open, setOpen] = React.useState(false);
 
@@ -45,7 +50,7 @@ export default function DraggableDialog(props) {
              <div>
              <DialogActions>
 
-                   {props.taken === "1" ? (<Button onClick={handleClose}>Cancel</Button>) : (<div><Button onClick={handleClose}>Cancel</Button><Button onClick={handleClose}>Apply</Button></div>)}
+                   {props.taken === "1" ? (<Button onClick={handleClose}>Cancel</Button>) : (<div><Button onClick={handleClose}>Cancel</Button><Button > <Link to= {{pathname:"/apply",props:{title:props.projName,description:props.projDesc,tags:props.tools,mentors:[] ,org_name:props.orgName} }}  >Apply</Link></Button></div>)}
 
 
              </DialogActions>

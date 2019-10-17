@@ -96,7 +96,7 @@ export default function Projects(props) {
                   {proj.map(o =>
                     o.id ? (
                       <Col key={num++}>
-                        <ProjCard tools={defaultTools} {...o} isLogged={isLogged} />
+                        <ProjCard tools={defaultTools} projName={o.projName} orgName={orgName} projDesc={o.projDesc}   {...o} isLogged={isLogged} />
                       </Col>
                     ) : (
                       <Col key={num++}></Col>

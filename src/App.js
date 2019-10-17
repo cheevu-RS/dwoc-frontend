@@ -13,8 +13,10 @@ import ProjCards from './components/ProjCards/ProjCards';
 import SnowStorm from 'react-snowstorm';
 import { header2, header3, orgs } from './DwocStyles';
 import { makeStyles } from '@material-ui/core/styles';
-import environment from './Environment';
-import Cookies from 'js-cookie'
+import environment from './environment1';
+import Cookies from 'js-cookie';
+import ProposalForm from './components/ProposalForm/ProposalForm';
+
 
 // import OrgCard from './components/OrgCards/OrgCard/OrgCard';
 
@@ -45,7 +47,7 @@ function App() {
 
 
 
-  let [isLogged, toggleIsLogged] = useState(false);
+  let [isLogged, toggleIsLogged] = useState(true);
 
   let role;
   const classes = useStyles();
@@ -72,6 +74,7 @@ function App() {
       `}
           variables={{}}
           render={({ error, props }) => {
+            console.log(props);
             if (error) {
               console.log(`${error} <= error Relay Appjs`);
               return;
@@ -88,17 +91,19 @@ function App() {
             }
             return (
               <div>
-                <SnowStorm />
-                <Router>
-                  <Route path="/" render={(props) => <Navbar isLogged={isLogged} role={role} />} ></Route>
-                  <Route exact path="/" render={(props) => <LandingPage role={role}  {...props} isLogged={isLogged} />}  ></Route>
-                  <Route exact path="/org/:id/:orgName" render={(props) => <ProjCards {...props} role={role} isLogged={isLogged} />} ></Route>
-                </Router>
+
+
               </div>
             );
           }}
         />
-
+        <SnowStorm />
+        <Router>
+          <Route path="/" render={(props) => <Navbar isLogged={isLogged} role={role} />} ></Route>
+          <Route exact path="/" render={(props) => <LandingPage role={role}  {...props} isLogged={isLogged} />}  ></Route>
+          <Route exact path="/org/:id/:orgName" render={(props) => <ProjCards {...props} role={role} isLogged={isLogged} />} ></Route>
+          <Route exact path="/apply" render={(props) => <ProposalForm {...props} role={role} isLogged={isLogged} />} ></Route>
+        </Router>
 
         {isLogged ? (<div>Loggd in</div>) : (<div>Loggd out</div>)}
       </div>
