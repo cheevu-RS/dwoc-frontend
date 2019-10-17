@@ -9,11 +9,11 @@ import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-import { OrgProjCard } from '../../../DwocStyles';
+import { OrgProjCard, colours } from '../../../DwocStyles';
 import WebFont from 'webfontloader';
 WebFont.load({
   google: {
-    families: ['Source Sans Pro', 'Rubik', 'Lato']
+    families: ['Source Sans Pro', 'Rubik', 'Lato', 'Roboto Mono']
   }
 });
 
@@ -26,6 +26,8 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     opacity: 100,
     position: 'relative',
+    display: 'flex',
+    flexFlow: 'column',
     padding: 0,
     color: '#000000',
     ...OrgProjCard
@@ -33,25 +35,26 @@ const useStyles = makeStyles(theme => ({
   //card: OrgProjCard,
   title: {
     textAlign: 'left',
-    fontSize: 25,
+    fontSize: 26,
     margin: 0,
     //fontFamily: 'Source Sans Pro'
     fontFamily: 'Rubik',
     color: '#000000',
-    padding: '13px 15px 0px 15px'
+    padding: '10px 15px 0px 15px'
   },
   mentorName: {
-    fontSize: 18,
+    fontSize: 16,
     lineHeight: 0.8,
     display: 'block',
     padding: '0px 15px'
   },
   description: {
-    marginTop: 5,
+    marginTop: 9,
     fontSize: 17,
     color: '#424242',
-    lineHeight: 1.1,
+    lineHeight: 1.3,
     color: '#424242',
+    flex: '1 1 auto',
     fontFamily: 'Lato',
     padding: '5px 15px 0px 15px'
   },
@@ -63,24 +66,21 @@ const useStyles = makeStyles(theme => ({
   viewProjectsBtn: {
     color: '#05386B'
   },
-  stacks: { padding: '4px 15px 0px 15px' },
+  stacks: { padding: '0px 15px', fontFamily: 'Roboto Mono' },
   stack: {
-    fontSize: 16,
+    fontSize: 13,
     borderRadius: 5,
-    padding: '5px 7px',
+    padding: '4px 7px',
     margin: '0px 8px 0px 0',
     backgroundColor: ' purple',
     color: '#ffffff'
   },
-  // cardActions: {
-  //   paddingTop: '0px',
-  //   position: 'absolute',
-  //   bottom: 0
-  // },
+
   CardRowTwo: {
+    flex: '0 1 auto',
     display: 'flex',
-    margin: '9px 0 15px 0',
-    padding: '0px 8px 7px 8px',
+    margin: '10px 0 15px 0',
+    padding: '0px 8px 0px 8px',
     justifyContent: 'space-evenly',
     borderTop: '1px solid #BDBDBD'
   },
@@ -90,9 +90,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: 5
   },
   CardRowTwoContent: {
-    fontSize: 22,
+    fontSize: 20,
     margin: 0,
-    padding: 0
+    padding: 0,
+    fontWeight: 500
   },
   CardRowTwoDetail: {
     fontSize: 17,
@@ -103,10 +104,8 @@ const useStyles = makeStyles(theme => ({
     color: '#424242'
   },
   BtnViewProjects: {
-    position: 'absolute',
-    // bottom: 0,
-    fontSize: 16,
-    bottom: 2
+    flex: '0 1 auto',
+    backgroundColor: '#F6F6F6'
   }
 }));
 
@@ -131,32 +130,41 @@ export default function OrgCard(props) {
         <span className={classes.mentorName}>
           by<b> Mentor name</b>
         </span>
-        <p className={classes.description}>{props.orgDesc}</p>
-        {/* <div style={{ position: 'absolute', bottom: '0' }}> */}
+        <div className={classes.description}>{props.orgDesc}</div>
         <div className={classes.stacks}>
-          <span className={classes.stack}> JavaScript</span>
-          <span className={classes.stack}> JavaScript</span>
-
-          <div className={classes.CardRowTwo}>
-            <div className={classes.CardRowTwoElements}>
-              <div className={classes.CardRowTwoContent}>44</div>
-
-              <span className={classes.CardRowTwoDetail}> projects</span>
-            </div>
-            <div className={classes.CardRowTwoElements}>
-              <div className={classes.CardRowTwoContent}>44</div>
-
-              <span className={classes.CardRowTwoDetail}> projects</span>
-            </div>{' '}
-            <div className={classes.CardRowTwoElements}>
-              <div className={classes.CardRowTwoContent}>44</div>
-
-              <span className={classes.CardRowTwoDetail}> projects</span>
-            </div>
-          </div>
-          <Button className={classes.BtnViewProjects}>View projects</Button>
+          <span
+            className={classes.stack}
+            style={{ backgroundColor: colours.stack.TypeScript }}
+          >
+            TypeScript
+          </span>
+          <span
+            className={classes.stack}
+            style={{ backgroundColor: colours.stack.python }}
+          >
+            Python
+          </span>
         </div>
-        {/* </div> */}
+        <div className={classes.CardRowTwo}>
+          <div className={classes.CardRowTwoElements}>
+            <div className={classes.CardRowTwoContent}>12</div>
+
+            <span className={classes.CardRowTwoDetail}>Projects</span>
+          </div>
+          <div className={classes.CardRowTwoElements}>
+            <div className={classes.CardRowTwoContent}>32</div>
+
+            <span className={classes.CardRowTwoDetail}> Coders</span>
+          </div>{' '}
+          <div className={classes.CardRowTwoElements}>
+            <div className={classes.CardRowTwoContent}>2</div>
+
+            <span className={classes.CardRowTwoDetail}>Name</span>
+          </div>
+        </div>
+        <Button className={classes.BtnViewProjects}>
+          <Link to={orgPath}> VIEW PROJECTS </Link>
+        </Button>
       </Card>
     </Grid>
   );

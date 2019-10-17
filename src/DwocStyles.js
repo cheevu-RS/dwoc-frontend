@@ -30,7 +30,9 @@ const header2 = {
 
 const paragraph = {
   padding: '11px',
-  fontSize: '28px',
+  fontSize: 23,
+  lineHeight: 1.3,
+
   fontFamily: 'Open Sans'
 };
 
@@ -46,7 +48,9 @@ const about = {
   height: '100%',
   minHeight: screenHeight / 2,
   display: 'block',
-  textAlign: 'center'
+  textAlign: 'center',
+  textAlign: 'justify',
+  textJustify: 'inter-character'
 };
 
 const header3 = {
@@ -63,10 +67,10 @@ const orgs = {
 };
 
 const colours = {
-  language: {
-    JavaScript: 'pink',
-    TypeScript: 'purple',
-    python: 'red'
+  stack: {
+    JavaScript: '#263238',
+    TypeScript: '#3E2723',
+    python: '#1A237E'
   }
 };
 
