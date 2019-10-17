@@ -1,14 +1,19 @@
-import Flip from 'react-reveal/Flip';
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { Grid, Card } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 
+// React relay
+import { QueryRenderer } from 'react-relay';
+import graphql from 'babel-plugin-relay/macro';
+
+//Spinner
+import RingLoader from 'react-spinners/RingLoader';
+import { css } from '@emotion/core';
+
+// Style imports
+import { makeStyles } from '@material-ui/core/styles';
 import { OrgProjCard, colours } from '../../../DwocStyles';
 import WebFont from 'webfontloader';
 WebFont.load({
@@ -17,11 +22,17 @@ WebFont.load({
   }
 });
 
+const environment = require('../../../Environment').environment;
+
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
 const useStyles = makeStyles(theme => ({
   card: {
-    //backgroundColor: '#EDF5E1',
-    //color: '#05386B',
-    //border: '1px solid red',
     marginTop: '30px',
     height: '100%',
     opacity: 100,
@@ -72,7 +83,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 5,
     padding: '4px 7px',
     margin: '0px 8px 0px 0',
-    backgroundColor: ' purple',
+    backgroundColor: 'purple',
     color: '#ffffff'
   },
 
@@ -105,7 +116,8 @@ const useStyles = makeStyles(theme => ({
   },
   BtnViewProjects: {
     flex: '0 1 auto',
-    backgroundColor: '#F6F6F6'
+    backgroundColor: '#F6F6F6',
+    width: '100%'
   }
 }));
 
@@ -115,6 +127,51 @@ export default function OrgCard(props) {
   console.log(`${JSON.stringify(props)} <= props OrgCars props`);
 
   const orgPath = '/org/' + props.id + '/' + props.orgName;
+  const orgID = props.id;
+
+  let mentorFetch = (
+    <QueryRenderer
+      environment={environment}
+      query={graphql`
+        query OrgCardQuery($orgid: MentorWhereInput) {
+          mentors(where: $orgid) {
+            id
+            user{
+              firstName
+            }
+          }
+        }
+      `}
+      variables={{ orgid: { organization: { id: orgID } } }}
+      render={({ error, props }) => {
+        if (error) {
+          console.log(`${error} <= error Relay orgCard.js ${orgPath}`);
+          return <div>Error!</div>;
+        }
+        if (!props) {
+          return (
+            <div>
+              <RingLoader css={override} color={'#5CDB95'} />
+            </div>
+          );
+        }
+        console.log(props.mentors);
+        let mentorsLen = props.mentors.length;
+        let mentors = "";
+        for(let i = 0; i<mentorsLen; i++){
+          mentors += props.mentors[i].user.firstName;
+          // console.log(props.mentors[i].user.firstName);
+          if(i!=mentorsLen-1){mentors += ",";}
+        }
+        console.log(mentors)
+        return (
+          <b>
+            {mentors}
+          </b>
+        );
+      }}
+    />
+  )
 
   return (
     <Grid
@@ -127,8 +184,11 @@ export default function OrgCard(props) {
     >
       <Card className={classes.card}>
         <div className={classes.title}>{props.orgName}</div>
+        {/* <p>{props.id}</p> */}
+        
+        
         <span className={classes.mentorName}>
-          by<b> Mentor name</b>
+          by {mentorFetch}
         </span>
         <div className={classes.description}>{props.orgDesc}</div>
         <div className={classes.stacks}>
@@ -140,10 +200,29 @@ export default function OrgCard(props) {
           </span>
           <span
             className={classes.stack}
+            style={{ backgroundColor: colours.stack.JavaScript }}
+          >
+            JavaScript
+          </span>
+          <span
+            className={classes.stack}
             style={{ backgroundColor: colours.stack.python }}
           >
             Python
+          </span> 
+          <span
+            className={classes.stack}
+            style={{ backgroundColor: colours.stack.React }}
+          >
+            React
           </span>
+          <span
+            className={classes.stack}
+            style={{ backgroundColor: colours.stack.cpp }}
+          >
+            C++
+          </span>
+          
         </div>
         <div className={classes.CardRowTwo}>
           <div className={classes.CardRowTwoElements}>
@@ -162,9 +241,11 @@ export default function OrgCard(props) {
             <span className={classes.CardRowTwoDetail}>Name</span>
           </div>
         </div>
-        <Button className={classes.BtnViewProjects}>
-          <Link to={orgPath}> VIEW PROJECTS </Link>
-        </Button>
+        
+          <Link to={orgPath} style={{textAlign: 'center', textDecoration: 'none'}}> 
+            <Button className={classes.BtnViewProjects}>VIEW PROJECTS</Button> 
+          </Link>
+        
       </Card>
     </Grid>
   );

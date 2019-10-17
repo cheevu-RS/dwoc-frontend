@@ -1,11 +1,16 @@
+// React with hooks
 import React from "react";
+
+// Smooth scroll
+import { Link, animateScroll as scroll } from "react-scroll";
+
 import {
   Drawer,
   List,
   Divider,
-  ListItem,
   ListItemText,
-  makeStyles
+  makeStyles,
+  Button
 } from "@material-ui/core/";
 
 const drawerWidth = 200;
@@ -21,8 +26,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Sidebar({ open, tabs, drawerWidth }) {
+export default function Sidebar({ open, handleToggle, tabs, drawerWidth, defaultBtns }) {
   const classes = useStyles();
+
+  // console.log(defaultBtns)
+
+  const handleClick = () => {
+    // console.log("clicked")
+    handleToggle();
+  }
+
   return (
     <Drawer
       className={classes.drawer}
@@ -36,11 +49,16 @@ export default function Sidebar({ open, tabs, drawerWidth }) {
     >
       <Divider />
       <List>
-        {tabs.map((tab, index) => (
-          <ListItem button key={index}>
-            <ListItemText primary={tab.name} />
-          </ListItem>
+        {defaultBtns.map((defaultBtn, index) => (
+          <Button 
+            key={index} 
+          >
+            <Link onClick={handleClick} smooth={true} to={defaultBtn.to}>
+              <ListItemText primary={defaultBtn.name} />
+            </Link>
+          </Button>
         ))}
+        {(<Button onClick={handleToggle} href={tabs.link}><ListItemText primary={tabs.name}></ListItemText></Button>)}
       </List>
       <Divider />
     </Drawer>

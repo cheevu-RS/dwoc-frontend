@@ -1,10 +1,14 @@
 import React from 'react';
+
+// Subcomponent imports
 import Timeline from '../../components/Timeline/Timeline';
 import OrgCards from '../../components/OrgCards/OrgCards';
+
+// Animation imports
 import Reveal from 'react-reveal/Reveal';
 import Pulse from 'react-reveal/Pulse';
 
-// Stype imports
+// Style imports
 import WebFont from 'webfontloader';
 import {
   header2,
@@ -14,8 +18,8 @@ import {
   screenWidth,
   about
 } from '../../DwocStyles';
-
 import { makeStyles } from '@material-ui/core/styles';
+
 WebFont.load({
   google: {
     families: [paragraph.fontFamily, header2.fontFamily]
@@ -86,9 +90,7 @@ function LandingPage() {
         </Pulse>
       </Reveal>
       <Reveal><Timeline /></Reveal>
-      <Reveal>
-        <OrgCards />
-      </Reveal>
+      <Reveal><Pulse><OrgCards /></Pulse></Reveal>
     </div>
   );
 }

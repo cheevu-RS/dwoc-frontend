@@ -1,11 +1,13 @@
 import React from 'react';
+
+// Subcomponent import
 import OrgCard from '../../components/OrgCards/OrgCard/OrgCard';
 
 //Spinner
 import RingLoader from 'react-spinners/RingLoader';
 import { css } from '@emotion/core';
 
-// Stype imports
+// Style imports
 import WebFont from 'webfontloader';
 import { header2, header3, orgs } from './../../DwocStyles';
 
@@ -69,7 +71,7 @@ export default function OrgCards() {
           );
         }
         return (
-          <div className={classes.orgs}>
+          <div className={classes.orgs} id="orgs">
             <h2 className={classes.header2}>Organizations</h2>
             <Grid container className={classes.gridContainer} spacing={2}>
               {props.organizations.map(org => (

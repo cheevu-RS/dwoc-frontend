@@ -6,8 +6,6 @@ function fetchQuery(operation, variables) {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
-      // 'session': JSON.parse(Cookie.get("dwoc_user_session")).session,
-      // 'id': JSON.parse(Cookie.get("dwoc_user_session")).id
     },
     body: JSON.stringify({
       query: operation.text,
@@ -22,8 +20,8 @@ function fetchQuery1(operation, variables) {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
-      // 'session': JSON.parse(Cookie.get("dwoc_user_session")).session,
-      // 'id': JSON.parse(Cookie.get("dwoc_user_session")).id
+      'session': JSON.parse(Cookie.get("dwoc_user_session")).session,
+      'id': JSON.parse(Cookie.get("dwoc_user_session")).id
     },
     body: JSON.stringify({
       query: operation.text,
@@ -33,10 +31,6 @@ function fetchQuery1(operation, variables) {
     return response.json();
   });
 }
-
-
-
-
 
 const environment = new Environment({
   network: Network.create(fetchQuery),

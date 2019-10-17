@@ -1,26 +1,37 @@
 /* @flow */
+import React, { useState } from 'react';
 
-import React, { useState, useEffect } from 'react';
+/*
+    BrowserRouter fix for Apache server for proper routing instead of HashRouting:
+    Create .htaccess file in the same directory of index.html with this content and build:
+    Options -MultiViews
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.html [QSA,L]
+ */
+// React-router
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+// Style imports
 import './App.css';
-import LandingPage from './views/LandingPage/LandingPage';
+import { makeStyles } from '@material-ui/core/styles';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { header2, header3, orgs } from './DwocStyles';
+
+// Subcomponent imports
+import LandingPage from './views/LandingPage/LandingPage';
 import Navbar from './components/Navbar/Navbar';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { QueryRenderer } from 'react-relay';
-import graphql from 'babel-plugin-relay/macro';
+import ProposalForm from './components/ProposalForm/ProposalForm';
 import ProjCards from './components/ProjCards/ProjCards';
 import SnowStorm from 'react-snowstorm';
-import { header2, header3, orgs } from './DwocStyles';
-import { makeStyles } from '@material-ui/core/styles';
-import ProposalForm from './components/ProposalForm/ProposalForm';
-import Cookies from 'js-cookie';
-
-// import OrgCard from './components/OrgCards/OrgCard/OrgCard';
 
 //Spinner
 import RingLoader from 'react-spinners/RingLoader';
 import { css } from '@emotion/core';
 
+// Relay with Env containing session and id in the headers
+import { QueryRenderer } from 'react-relay';
+import graphql from 'babel-plugin-relay/macro';
 const environment = require('./Environment').environment1;
 
 // Material UI
@@ -62,7 +73,7 @@ function App() {
           render={({ error, props }) => {
             console.log(props);
             if (error) {
-              console.log(`${error} <= error Relay Appjs`);
+              console.log(`${error} <= Relay error Appjs(query userProfile)`);
               return;
             }
             if (!props) {
