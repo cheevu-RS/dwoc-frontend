@@ -85,7 +85,7 @@ function LandingPage() {
           </div>
         </Pulse>
       </Reveal>
-      <Reveal>{/* <Timeline /> */}</Reveal>
+      <Reveal><Timeline /></Reveal>
       <Reveal>
         <OrgCards />
       </Reveal>

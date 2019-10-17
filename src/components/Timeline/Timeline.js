@@ -22,8 +22,9 @@ const useStyles = makeStyles(theme => ({
   header2: header2
 }));
 
-const colorArry=["#285467","#00818A","#2FAF91","#8CD881","#00C6BB"]
-
+let colors = ['linear-gradient(#285467, #00818A)', 'linear-gradient(#00818A, #379683)', 'linear-gradient(#379683, #0CBE9E)', 'linear-gradient(#0CBE9E, #5CDB95)', 'linear-gradient(to top, #0CBE9E, #5CDB95)', 'linear-gradient(to top, #379683, #0CBE9E)', 'linear-gradient(to top, #00818A, #379683)', 'linear-gradient(to top, #285467, #00818A)'];
+let color = ['#285467', '#00818A', '#379683', '#0CBE9E', '#5CDB95', '#0CBE9E', '#379683', '#00818A'];
+const len = colors.length;
 
 const environment=require("../../Environment").environment
 function formatDate(date) {
@@ -42,8 +43,10 @@ function formatDate(date) {
 
 
 export default function HorizontalNonLinearAlternativeLabelStepper() {
+  
   const classes = useStyles();
-  let color=colorArry[Math.random()*colorArry.length]
+  let i = 0;
+
   return (
     <div>
 
@@ -53,7 +56,6 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
       <QueryRenderer
         environment={environment}
         query={graphql`
-
           query TimelineQuery {
             events {
               id
@@ -72,20 +74,23 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
             return (
               <div>
 
-               {props.events.map(element=>(
+               {props.events.map(element=>{
+
+                 let timelineElement = (
                   <VerticalTimelineElement
                       key={element.id}
                       className="vertical-timeline-element--education"
-                      contentStyle={{ background:color , color: "#fff" }}
-                      contentArrowStyle={{ borderRight: `7px solid ${color}` }}
+                      contentStyle={{ color: "#fff", backgroundImage: colors[i%len] }}
+                      contentArrowStyle={{ borderRight: `7px solid ${color[i%len]}` }}
                       date={formatDate(element.date)}
-                      iconStyle={{ background: color, color: "#fff" }}
+                      iconStyle={{ background: color[i++%len], color: "#fff" }}
                     >
                       <h3 className="vertical-timeline-element-title">{element.eventDesc}</h3>
-
                       <p>Para 2</p>
                     </VerticalTimelineElement>
-                  ))}
+                  );
+                  return (timelineElement)
+               })}
                 </div>
             );
 
@@ -95,12 +100,6 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
 
         }}
       />
-
-
-
-
-
-
       </VerticalTimeline>
       <div style={{ height: "20px" }}></div>
     </div>

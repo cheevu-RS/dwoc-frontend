@@ -12,6 +12,7 @@
   }
 });
 */
+// let backImg = require('./assets/images/winter-wall-10.jpg');
 
 const header1 = {
   color: 'pink',
@@ -39,7 +40,9 @@ const paragraph = {
 const { innerWidth: screenWidth, innerHeight: screenHeight } = window;
 
 const section = {
-  minHeight: screenHeight // i.e. 80% of screen height
+  minHeight: screenHeight, // i.e. 80% of screen height
+  // backgroundImage: `url(${backImg})`,
+  backgroundSize: 'cover'
 };
 
 const about = {
