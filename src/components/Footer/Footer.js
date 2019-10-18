@@ -5,6 +5,8 @@ import {
     CssBaseline,
     makeStyles,
 } from '@material-ui/core'
+import FacebookIcon from '@material-ui/icons/Facebook';
+import TwitterIcon from '@material-ui/icons/Twitter'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -37,12 +39,16 @@ const useStyles = makeStyles(theme => ({
         paddingLeft: 0,
     },
     footerLinks: {
-        color: `rgba(255, 255, 255, 0.7)`,
         '&:hover': {
             color: `rgba(255, 255, 255, 0.7)`,
-            textDecoration: 'none',
         }
-    }
+    },
+    // footerLinkIcon: {
+    //     transition: `0.5s`,
+    //     '&:hover': {
+    //         transform: `rotateZ(180deg)`
+    //     }
+    // }
 }));
 
 export default function Footer() {
@@ -75,21 +81,38 @@ export default function Footer() {
         }}/>
         <CssBaseline />
         <footer className={classes.footer}>
-            {
-                sections.map((item, index) => (
-                    <Grid className={classes.footerSection} container key={index}>
-                        <Grid item xs={12}>
-                            <Typography className={classes.footerHead} variantMapping={{body1: 'h2'}} variant="body1" gutterBottom>{item.heading}</Typography>
-                        </Grid>
-                        <ul className={classes.footerLinksWrapper}>
-                        {item.items.map((item1, index1) => (
-                            <li key={index1} className={classes.footerLinksItem}><a className={classes.footerLinks} href={item1.link}><Typography variantMapping={{body2: 'h3'}} variant="body2">{item1.title}</Typography></a></li>
-                        ))}
-                        </ul>
-                    </Grid>
-                ))
-            }
+            <Grid className={classes.footerSection} container>
+                <Grid item xs={12}>
+                    <Typography className={classes.footerHead} variantMapping={{body1: 'h2'}} variant="body1" gutterBottom>Community</Typography>
+                </Grid>
+                <ul className={classes.footerLinksWrapper}>
+                    <li className={classes.footerLinksItem}>
+                        <a className={classes.footerLinks} href={'https://twitter.com'}><TwitterIcon style={{color:'#00aced'}} className={classes.footerLinkIcon}/></a>
+                    </li>
+                    <li className={classes.footerLinksItem}>
+                        <a className={classes.footerLinks} href={'https://facebook.com'}><FacebookIcon style={{color:'#3b5998'}} className={classes.footerLinkIcon}/></a>
+                    </li>
+                </ul>
+            </Grid>
+            <Grid className={classes.footerSection} container>
+                <Grid item xs={12}>
+                    <Typography className={classes.footerHead} variantMapping={{body1: 'h2'}} variant="body1" gutterBottom>Contacts</Typography>
+                </Grid>
+                <ul className={classes.footerLinksWrapper}>
+                    <li className={classes.footerLinksItem}>
+                        <Typography className={classes.footerHead} variantMapping={{body2: 'h2'}} variant="body2" gutterBottom>Abc Def: 0987654321</Typography>
+                    </li>
+                    <li className={classes.footerLinksItem}>
+                    <Typography className={classes.footerHead} variantMapping={{body2: 'h2'}} variant="body2" gutterBottom>Abc Def: 0987654321</Typography>
+                    </li>
+                </ul>
+            </Grid>
         </footer>
+        <div style={{display: 'block', margin: 'auto', textAlign: 'center', fontSize: '20px'}}>
+            Made with <span style={{color: 'red'}}>💙</span> by <a href="https://delta.nitt.edu" style={{ color: '#5CDB95' }}>
+                Delta Force
+              </a>
+            </div>
     </div>
     );
 }

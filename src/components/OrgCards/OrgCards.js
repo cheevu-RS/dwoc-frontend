@@ -1,22 +1,24 @@
-import React from "react";
-import OrgCard from "../../components/OrgCards/OrgCard/OrgCard";
+import React from 'react';
+
+// Subcomponent import
+import OrgCard from '../../components/OrgCards/OrgCard/OrgCard';
 
 //Spinner
-import RingLoader from "react-spinners/RingLoader";
-import { css } from "@emotion/core";
+import RingLoader from 'react-spinners/RingLoader';
+import { css } from '@emotion/core';
 
-// Stype imports
-import WebFont from "webfontloader";
-import { header2, header3, orgs } from "./../../DwocStyles";
+// Style imports
+import WebFont from 'webfontloader';
+import { header2, header3, orgs } from './../../DwocStyles';
 
 // Material UI
-import { Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 // Relay
-import { QueryRenderer } from "react-relay";
-import graphql from "babel-plugin-relay/macro";
-const environment = require("../../Environment").environment;
+import { QueryRenderer } from 'react-relay';
+import graphql from 'babel-plugin-relay/macro';
+const environment = require('../../Environment').environment;
 
 WebFont.load({
   google: {
@@ -26,7 +28,7 @@ WebFont.load({
 
 const useStyles = makeStyles(theme => ({
   gridContainer: {
-    padding: "4px"
+    padding: '4px'
   },
   header2: header2,
   header3: header3,
@@ -64,18 +66,19 @@ export default function OrgCards() {
         if (!props) {
           return (
             <div>
-              <RingLoader css={override} color={"#5CDB95"} />
+              <RingLoader css={override} color={'#5CDB95'} />
             </div>
           );
         }
         return (
-          <div className={classes.orgs}>
+          <div className={classes.orgs} id="orgs">
             <h2 className={classes.header2}>Organizations</h2>
-            <Grid container className={classes.gridContainer} spacing={1}>
+            <Grid container className={classes.gridContainer} spacing={3}>
               {props.organizations.map(org => (
                 <OrgCard {...org} key={org.id} />
               ))}
             </Grid>
+            <div style={{height: "50px"}}></div>
           </div>
         );
       }}

@@ -1,28 +1,42 @@
+// React with hooks
 import React from "react";
+
+// Smooth scroll
+import { Link, animateScroll as scroll } from "react-scroll";
+
 import {
   Drawer,
   List,
   Divider,
-  ListItem,
   ListItemText,
-  makeStyles
+  makeStyles,
+  Button,
+  ListItem
 } from "@material-ui/core/";
 
-const drawerWidth = 200;
+const drawerWidth = `100%`;
 
 const useStyles = makeStyles(theme => ({
   drawer: {
     flexShrink: 0,
-    color: "#05386B"
+    color: "#05386B",
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: "#5CDB95"
+    backgroundColor: "#5CDB95",
+    top: 75,
+    height: 200,
+    backgroundImage: `linear-gradient(to right, #000f29, #5CDB95)`
   }
 }));
 
-export default function Sidebar({ open, tabs, drawerWidth }) {
+export default function Sidebar({ open, handleToggle, tabs, drawerWidth, defaultBtns }) {
   const classes = useStyles();
+
+  const handleClick = () => {
+    handleToggle();
+  }
+
   return (
     <Drawer
       className={classes.drawer}
@@ -31,16 +45,25 @@ export default function Sidebar({ open, tabs, drawerWidth }) {
       anchor="left"
       open={open}
       classes={{
-        paper: classes.drawerPaper
+        paper: classes.drawerPaper,
       }}
     >
       <Divider />
       <List>
-        {tabs.map((tab, index) => (
-          <ListItem button key={index}>
-            <ListItemText primary={tab.name} />
+        {defaultBtns.map((defaultBtn, index) => (
+          <ListItem>
+            <Button 
+              key={index} 
+            >
+              <Link onClick={handleClick} smooth={true} to={defaultBtn.to}>
+                <ListItemText style={{color: 'white'}} primary={defaultBtn.name} />
+              </Link>
+            </Button>
           </ListItem>
         ))}
+        <ListItem>
+          {(<Button onClick={handleToggle} href={tabs.link}><ListItemText style={{color: 'white'}} primary={tabs.name} /></Button>)}
+        </ListItem>
       </List>
       <Divider />
     </Drawer>

@@ -1,39 +1,40 @@
-import React, { useState, useEffect } from "react";
+// React with hooks
+import React, { useState, useEffect } from 'react';
+
+// Navbar imports from material UI
 import {
   AppBar,
   Toolbar,
   Button,
   makeStyles,
   ListItemText
-} from "@material-ui/core";
-import Sidebar from "../Sidebar/Sidebar";
-import MenuIcon from "@material-ui/icons/Menu";
-import dwocLogo from "../../assets/images/dwoc_logo_white.png";
-import SnowStorm from "react-snowstorm";
+} from '@material-ui/core';
+import Sidebar from '../Sidebar/Sidebar';
+import MenuIcon from '@material-ui/icons/Menu';
+
+// Smooth scroll
+import { Link, animateScroll as scroll } from 'react-scroll';
+
+// DWOC logo import inside navbar
+import dwocLogo from '../../assets/images/dwoc_logo_white.png';
 
 const minWidth = 550;
 
 const useStyles = makeStyles(theme => ({
   title: { ...theme.typography.h6 },
   button: {
-    marginLeft: `auto`,
-    paddingTop: "11px"
-  },
-
-  githubBtn: {
-    fontSize: `2.5em`,
-    marginLeft: 16
+    marginLeft: `auto`
   },
   drawerHeader: {
-    display: "flex",
-    alignItems: "center",
-    padding: "0 8px",
-    justifyContent: "flex-end",
+    display: 'flex',
+    alignItems: 'center',
+    padding: '0 8px',
+    justifyContent: 'flex-end',
     ...theme.mixins.toolbar
   },
   navbar: {
-    backgroundImage: "linear-gradient(to right, #000f29, #5CDB95)",
-    color: "#05386B"
+    backgroundImage: 'linear-gradient(to right, #000f29, #5CDB95)',
+    color: '#05386B'
   }
 }));
 
@@ -49,40 +50,36 @@ export default function Navbar(props) {
       setWidth(innerWidth);
   };
 
-  let [tabs, setTabs] = useState([
-    { name: "Timeline", link: "http://localhost:3000#timeline" },
-    { name: "Organizations", link: "http://localhost:3000#orgs" },
-    { name: "Login with Github", link: "https://delta.nitt.edu/dwocb/login" }
-  ]);
+  let defaultBtns = [
+    { name: 'Timeline', to: 'timeline' },
+    { name: 'Organizations', to: 'orgs' }
+  ];
+
+  let [tabs, setTabs] = useState({
+    name: 'Login with Github',
+    link: 'https://delta.nitt.edu/dwocb/login'
+  });
 
   console.log(props);
 
   useEffect(() => {
     // Update the document title using the browser API
-    console.log("toggle");
-    console.log(props.isLogged, "isLogged");
+    console.log('toggle');
+    console.log(props.isLogged, 'isLogged');
 
-    if(props.isLogged){
-      setTabs([
-        { name: "Timeline", link: "http://localhost:3000#timeline" },
-        { name: "Organizations", link: "http://localhost:3000#orgs" },
-        { name: "Logout", link: "https://delta.nitt.edu/dwocb/logout" }
-      ]);
+    if (props.isLogged) {
+      setTabs({ name: 'Logout', link: 'https://delta.nitt.edu/dwocb/logout' });
     } else {
-      setTabs([
-        { name: "Timeline", link: "http://localhost:3000#timeline" },
-        { name: "Organizations", link: "http://localhost:3000#orgs" },
-        {
-          name: "Login with Github",
-          link: "https://delta.nitt.edu/dwocb/login"
-        }
-      ]);
+      setTabs({
+        name: 'Login with Github',
+        link: 'https://delta.nitt.edu/dwocb/login'
+      });
     }
   }, [props.isLogged]);
 
   const handleToggle = evt => {
     setOpen(prevState => !prevState);
-    open ? setDrawerWidth(0) : setDrawerWidth(200);
+    // open ? setDrawerWidth(0) : setDrawerWidth(200);
   };
   const handleClick = (evt, tabName) => {
     console.log(tabName);
@@ -92,7 +89,7 @@ export default function Navbar(props) {
   let deltaLogo = (
     <div
       style={{
-        padding: "5px 15px",
+        padding: '5px 15px',
         margin: 0
       }}
     >
@@ -105,17 +102,22 @@ export default function Navbar(props) {
   let navbarElems = (
     <div>
       {width < minWidth && (
-        <Toolbar style={{ color: "#5CDB95" }}>
-          <SnowStorm />
+        <Toolbar style={{ color: '#5CDB95' }}>
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "100%"
+              display: 'flex',
+              // justifyContent: 'space-between',
+              width: '100%'
             }}
           >
             <div className={styles.drawerHeader}>
-              <Sidebar open={open} drawerWidth={drawerWidth} tabs={tabs} />
+              <Sidebar
+                open={open}
+                drawerWidth={drawerWidth}
+                defaultBtns={defaultBtns}
+                tabs={tabs}
+                handleToggle={handleToggle}
+              />
               <MenuIcon onClick={handleToggle} />
             </div>
             {deltaLogo}
@@ -126,47 +128,31 @@ export default function Navbar(props) {
       {width > minWidth && (
         <Toolbar>
           {deltaLogo}
-          <div className={styles.button}>
-            {tabs.map((tab, index) => (
-              <Button
-                color="inherit"
-                className={styles.button}
-                onClick={handleClick}
-                key={index}
-                href={tab.link}
-              >
-                <ListItemText primary={tab.name} />
+          <div className={styles.button} style={{ marginBottom: '6px' }}>
+            {defaultBtns.map((tab, index) => (
+              <Button className={styles.button} key={index}>
+                <Link smooth={true} to={tab.to}>
+                  <ListItemText primary={tab.name} />
+                </Link>
               </Button>
             ))}
+            {
+              <Button className={styles.button} href={tabs.link}>
+                <ListItemText primary={tabs.name} />
+              </Button>
+            }
           </div>
-
-          {width < minWidth && (
-            <div className={styles.button}>
-              {tabs.map((tab, index) => (
-                <Button
-                  color="inherit"
-                  className={styles.button}
-                  onClick={handleClick}
-                  key={index}
-                >
-                  <ListItemText primary={tab.name} />
-                </Button>
-              ))}
-            </div>
-          )}
         </Toolbar>
       )}
     </div>
   );
-
-
 
   return (
     <div>
       <AppBar position="fixed" className={styles.navbar}>
         {navbarElems}
       </AppBar>
-      <div style={{ height: "80px" }}></div>
+      <div style={{ height: '50px' }}></div>
     </div>
   );
 }

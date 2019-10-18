@@ -14,28 +14,29 @@ import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 
 import Tag from '../Tags/Tag'
 
-function fetchQuery(operation, variables) {
-	let body = "--xxBOUNDARYxx"
-			+ "\r\nContent-Disposition: form-data; name=\"abc.pdf\""
-			+ "\r\nContent-Type: application/pdf"
-			+ "\r\n"
-			+ JSON.stringify({
-				query: operation.text,
-				variables
-			  })
+/*
+curl https://delta.nitt.edu/dwocb \
+  -F operations='{ "query": "mutation ($file: Upload!) { uploadFile(file: $file) { fileName } }", "variables": { "file": null } }' \
+  -F map='{ "0": ["variables.file"] }' \
+  -F 0=@f1.txt
+  */
+function fetchQuery(operation, 	variables) {
+	var data = new FormData();
+	data.append("operations", "{ \"query\": \"mutation ($file: Upload!) { uploadFile(file: $file) { fileName } }\", \"variables\": { \"file\": null } }");
+	data.append("map", "{ \"0\": [\"variables.file\"] }");
+	data.append("0", variables.file);
 
-			  + "\r\n--xxBOUNDARYxx--\r\n"
 	return fetch('https://delta.nitt.edu/dwocb', {
 	  method: 'POST',
 	  headers: {
-		'Content-Type': 'multipart/form-data; boundary=xxBOUNDARYxx',
-		"session":"af0daa02d75b03d25a22f2a7c2aafa6643eeaecc","id":"ck1utqsnp02p608474ggeyzbj"
+		"session":"af0daa02d75b03d25a22f2a7c2aafa6643eeaecc","id":"ck1utqsnp02p608474ggeyzbj",
+		"ContentType": "multipart/form-data; boundary=--------------------------493219481310761479495526"
 	  },
-	  body
+	  body:data
 	}).then(response => {
-	  console.error(response)
 	  return response.json();
-	});
+	})
+	.catch(err => console.log(err));
 }
   
 const environment = new Environment({
@@ -91,7 +92,7 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center"
   },
   projectProposalInput: {
-    width: 100,
+    width: 95,
     fontSize: 16
   }
 }));
@@ -108,55 +109,10 @@ const ProposalForm = (props) => {
 	if (props.location.state === undefined) return <Redirect to={`/org/${props.match.params.id}/${props.match.params.orgName}`}/>
 	const {projDesc, projName, tools} = props.location.state;
 	const {orgName} = props.match.params;
-	// const {projDesc, projName, tools} = {projDesc:'', projName:'', tools:['']};
-	// const orgName = '';
 	const mentors = ['Mentor1', 'Mentor2'];
 	const getFile = evt => {
 		evt.preventDefault();
 		let file = document.getElementById('proposalFile').files[0];
-		console.log(file)
-		// contentType = file.type;
-		// const reader = new FileReader();
-		// reader.readAsArrayBuffer(file)
-		// reader.onload = e => {
-		// 	console.log('ArrayBuffer')
-		// 	console.log(e.target.result)
-		// 	reader.readAsBinaryString(file)
-		// 	reader.onload = e => {
-		// 		console.log('BinaryString')
-		// 		console.log(e.target.result)
-		// 		reader.readAsDataURL(file)
-		// 		reader.onload = e => {
-		// 			console.log('DataUrl')
-		// 			console.log(e.target.result)
-		// 			reader.readAsText(file)
-		// 			readerreader.readAsArrayBuffer(file)
-		// 			reader.onload = e => {
-		// 				console.log('ArrayBuffer')
-		// 				console.log(e.target.result)
-		// 				reader.readAsBinaryString(file)
-		// 				reader.onload = e => {
-		// 					console.log('BinaryString')
-		// 					console.log(e.target.result)
-		// 					reader.readAsDataURL(file)
-		// 					reader.onload = e => {
-		// 						console.log('DataUrl')
-		// 						console.log(e.target.result)
-		// 						reader.readAsText(file)
-		// 						reader.onload = e => {
-		// 							console.log('Text')
-		// 							console.log(e.target.result)
-		// 						}
-		// 					}
-		// 				}
-		// 			}.onload = e => {
-		// 				console.log('Text')
-		// 				console.log(e.target.result)
-		// 			}
-		// 		}
-		// 	}
-		// }
-		// return
 		commitMutation(
 			environment,
 			{
@@ -168,20 +124,6 @@ const ProposalForm = (props) => {
 				onError: err => console.error(err),
 			}
 		);
-		// reader.readAsDataURL(file);
-		// reader.onload = e => {
-		// 	commitMutation(
-		// 		environment,
-		// 		{
-		// 			mutation,
-		// 			variables:{file},
-		// 			onCompleted: (response, errors) => {
-		// 				console.log('Response received from server.')
-		// 			},
-		// 			onError: err => console.error(err),
-		// 		}
-		// 	);
-		// }
 	}
 	const dataURItoBlob = dataURI => {
 		var byteString = atob(dataURI.split(',')[1]);

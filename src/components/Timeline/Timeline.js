@@ -7,8 +7,10 @@ import "react-vertical-timeline-component/style.min.css";
 
 // Stype imports
 import WebFont from "webfontloader";
-import { header2 } from "./../../DwocStyles";
+import { header2, timeline } from "./../../DwocStyles";
 import { makeStyles } from "@material-ui/core/styles";
+import { QueryRenderer } from "react-relay";
+import graphql from "babel-plugin-relay/macro";
 
 WebFont.load({
   google: {
@@ -17,87 +19,90 @@ WebFont.load({
 });
 
 const useStyles = makeStyles(theme => ({
-  header2: header2
+  header2: header2,
+  timeline: timeline
 }));
 
+let colors = ['linear-gradient(#285467, #00818A)', 'linear-gradient(#00818A, #379683)', 'linear-gradient(#379683, #0CBE9E)', 'linear-gradient(#0CBE9E, #5CDB95)', 'linear-gradient(to top, #0CBE9E, #5CDB95)', 'linear-gradient(to top, #379683, #0CBE9E)', 'linear-gradient(to top, #00818A, #379683)', 'linear-gradient(to top, #285467, #00818A)'];
+let color = ['#285467', '#00818A', '#379683', '#0CBE9E', '#5CDB95', '#0CBE9E', '#379683', '#00818A'];
+const len = colors.length;
+
+const environment=require("../../Environment").environment
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+
+    return [day, month, year].join('-');
+}
+
+
 export default function HorizontalNonLinearAlternativeLabelStepper() {
+  
   const classes = useStyles();
+  let i = 0;
+
   return (
+    <div className={classes.timeline}>
     <div style={{ paddingTop: "120px" }} id="timeline">
       <h2 className={classes.header2}>Timeline </h2>
       <VerticalTimeline>
-        <VerticalTimelineElement
-          className="vertical-timeline-element--education"
-          contentStyle={{ background: "rgb(233, 30, 99)", color: "#fff" }}
-          contentArrowStyle={{ borderRight: "7px solid  rgb(233, 30, 99)" }}
-          date="April 2013"
-          iconStyle={{ background: "rgb(233, 30, 99)", color: "#fff" }}
-        >
-          <h3 className="vertical-timeline-element-title">Creative Director</h3>
-          <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
-          <p>Para 2</p>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement
-          className="vertical-timeline-element--education"
-          contentStyle={{ background: "#379683", color: "#EDF5E1" }}
-          contentArrowStyle={{ borderRight: "7px solid  #379683" }}
-          date="April 2013"
-          iconStyle={{ background: "#379683", color: "#EDF5E1" }}
-        >
-          <h3 className="vertical-timeline-element-title">
-            Content Marketing for Web, Mobile and Social Media
-          </h3>
-          <h4 className="vertical-timeline-element-subtitle">Online Course</h4>
-          <p>Para 3</p>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement
-          className="vertical-timeline-element--work"
-          contentStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
-          contentArrowStyle={{ borderRight: "7px solid  rgb(33, 150, 243)" }}
-          date="2011 - present"
-          iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
-        >
-          <h3 className="vertical-timeline-element-title">Creative Director</h3>
-          <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
-          <p>Para 1</p>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement
-          className="vertical-timeline-element--education"
-          contentStyle={{ background: "rgb(233, 30, 99)", color: "#fff" }}
-          contentArrowStyle={{ borderRight: "7px solid  rgb(233, 30, 99)" }}
-          date="April 2013"
-          iconStyle={{ background: "rgb(233, 30, 99)", color: "#fff" }}
-        >
-          <h3 className="vertical-timeline-element-title">Creative Director</h3>
-          <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
-          <p>Para 2</p>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement
-          className="vertical-timeline-element--education"
-          contentStyle={{ background: "#379683", color: "#EDF5E1" }}
-          contentArrowStyle={{ borderRight: "7px solid  #379683" }}
-          date="April 2013"
-          iconStyle={{ background: "#379683", color: "#EDF5E1" }}
-        >
-          <h3 className="vertical-timeline-element-title">
-            Content Marketing for Web, Mobile and Social Media
-          </h3>
-          <h4 className="vertical-timeline-element-subtitle">Online Course</h4>
-          <p>Para 3</p>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement
-          className="vertical-timeline-element--work"
-          contentStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
-          contentArrowStyle={{ borderRight: "7px solid  rgb(33, 150, 243)" }}
-          date="2011 - present"
-          iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
-        >
-          <h3 className="vertical-timeline-element-title">Creative Director</h3>
-          <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
-          <p>Para 1</p>
-        </VerticalTimelineElement>
+      <QueryRenderer
+        environment={environment}
+        query={graphql`
+          query TimelineQuery {
+            events {
+              id
+              date
+              eventDesc
+            }
+          }
+        `}
+        variables={{}}
+        render={({ error, props }) => {
+          if (error) {
+            console.log(`${error} <= error Relay OrgCards`);
+            return <div>Error!</div>;
+          }
+          if(props && props.events){
+            return (
+              <div>
+
+               {props.events.map(element=>{
+
+                 let timelineElement = (
+                  <VerticalTimelineElement
+                      key={element.id}
+                      className="vertical-timeline-element--education"
+                      contentStyle={{ color: "#fff", backgroundImage: colors[i%len] }}
+                      contentArrowStyle={{ borderRight: `7px solid ${color[i%len]}` }}
+                      date={formatDate(element.date)}
+                      iconStyle={{ background: color[i++%len], color: "#fff" }}
+                    >
+                      <h3 className="vertical-timeline-element-title">{element.eventDesc}</h3>
+                      <p>Para 2</p>
+                    </VerticalTimelineElement>
+                  );
+                  return (timelineElement)
+               })}
+                </div>
+            );
+
+          }else{
+            return(<h1>Hello</h1>)
+          }
+
+        }}
+      />
       </VerticalTimeline>
       <div style={{ height: "20px" }}></div>
+    </div>
     </div>
   );
 }

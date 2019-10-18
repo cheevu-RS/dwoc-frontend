@@ -1,14 +1,44 @@
-type Query {
-  info: String!
-  userProfile: User!
-  users(where: UserWhereInput): [User]!
-  projects(where: ProjectWhereInput): [Project]!
-  organizations(where: OrganizationWhereInput): [Organization]!
-  mentors(where: MentorWhereInput): [Mentor]!
-  userProposals: [Proposal]!
-  proposals(where: ProposalWhereInput): [Proposal]!
-  events: [Event]!
-  projectsConnection(where: ProjectWhereUniqueInput): ProjectConnection!
+type AggregateProject {
+  count: Int!
+}
+
+scalar DateTime
+
+type Event {
+  id: ID!
+  date: DateTime!
+  eventDesc: String!
+}
+
+type File {
+  fileName: String!
+}
+
+type Mentor {
+  id: ID!
+  user: User!
+  organization: Organization!
+}
+
+input MentorCreateInput {
+  id: ID
+  user: UserCreateOneInput!
+  organization: OrganizationCreateOneInput!
+}
+
+input MentorUpdateInput {
+  user: UserUpdateOneRequiredInput
+  organization: OrganizationUpdateOneRequiredInput
+}
+
+input MentorWhereInput {
+  id: ID
+  user: UserWhereInput
+  organization: OrganizationWhereInput
+}
+
+input MentorWhereUniqueInput {
+  id: ID
 }
 
 type Mutation {
@@ -37,103 +67,12 @@ type Mutation {
   uploadFile(file: Upload!): File!
 }
 
-scalar Upload
-
-type DateTime {
-  id: ID
-}
-
-type File {
-  fileName: String
-}
-
-input UserWhereUniqueInput {
-  id: ID
-  email: String
-  mobileNumber: String
-  githubHandle: String
-}
-
-input ProjectWhereUniqueInput {
-  id: ID
-  projSlug: String
-  organization: OrganizationWhereUniqueInput
-}
-
-input OrganizationWhereUniqueInput {
-  id: ID
-  orgSlug: String
+type Organization {
+  id: ID!
+  orgName: String!
+  orgSlug: String!
+  orgDesc: String
   githubUrl: String
-}
-
-input MentorWhereUniqueInput {
-  id: ID
-}
-
-input ProposalWhereUniqueInput {
-  id: ID
-}
-
-input UserUpdateInput {
-  firstName: String
-  lastName: String
-  role: roles
-  email: String
-  mobileNumber: String
-  githubHandle: String
-  password: String
-  isVerified: Boolean
-  session: String
-}
-
-input ProjectCreateInput {
-  id: ID
-  organization: OrganizationCreateOneInput!
-  projName: String!
-  projSlug: String!
-  projDesc: String
-  githubUrl: String
-  projMinDesc: String
-}
-input OrganizationCreateOneInput {
-  create: OrganizationCreateInput
-  connect: OrganizationWhereUniqueInput
-}
-input ProjectUpdateInput {
-  organization: OrganizationUpdateOneRequiredInput
-  projName: String
-  projSlug: String
-  projDesc: String
-  githubUrl: String
-  projMinDesc: String
-}
-input OrganizationUpdateOneRequiredInput {
-  update: OrganizationUpdateInput
-  connect: OrganizationWhereUniqueInput
-}
-
-input ProposalCreateInput {
-  id: ID
-  isAccepted: Boolean
-  propUrl: String!
-  user: UserCreateOneInput!
-  project: ProjectCreateOneInput!
-}
-
-input UserCreateOneInput {
-  connect: UserWhereUniqueInput
-}
-
-input ProjectCreateOneInput {
-  create: ProjectCreateInput
-  connect: ProjectWhereUniqueInput
-}
-
-input ProposalUpdateInput {
-  isAccepted: Boolean
-  propUrl: String
-  user: UserUpdateOneRequiredInput
-  project: ProjectUpdateOneRequiredInput
 }
 
 input OrganizationCreateInput {
@@ -144,16 +83,23 @@ input OrganizationCreateInput {
   githubUrl: String
 }
 
-input OrganizationUpdateInput {
+input OrganizationCreateOneInput {
+  create: OrganizationCreateInput
+  connect: OrganizationWhereUniqueInput
+}
+
+input OrganizationUpdateDataInput {
   orgName: String
   orgSlug: String
   orgDesc: String
   githubUrl: String
 }
 
-input MentorUpdateInput {
-  user: UserUpdateOneRequiredInput
-  organization: OrganizationUpdateOneRequiredInput
+input OrganizationUpdateInput {
+  orgName: String
+  orgSlug: String
+  orgDesc: String
+  githubUrl: String
 }
 
 input OrganizationUpdateOneRequiredInput {
@@ -168,10 +114,56 @@ input OrganizationUpsertNestedInput {
   create: OrganizationCreateInput!
 }
 
+input OrganizationWhereInput {
+  id: ID
+  orgName: String
+  orgSlug: String
+  orgDesc: String
+  githubUrl: String
+}
 
-input UserUpdateOneRequiredInput {
-  connect: UserWhereUniqueInput
-  update: UserUpdateInput
+input OrganizationWhereUniqueInput {
+  id: ID
+  orgSlug: String
+  githubUrl: String
+}
+
+type Project {
+  id: ID!
+  organization: Organization!
+  projName: String!
+  projSlug: String!
+  projDesc: String
+  githubUrl: String
+  projMinDesc: String
+}
+
+type ProjectConnection {
+  aggregate: AggregateProject!
+}
+
+input ProjectCreateInput {
+  id: ID
+  organization: OrganizationCreateOneInput!
+  projName: String!
+  projSlug: String!
+  projDesc: String
+  githubUrl: String
+  projMinDesc: String
+}
+
+input ProjectCreateOneInput {
+  create: ProjectCreateInput
+  connect: ProjectWhereUniqueInput
+}
+
+input ProjectUpdateInput {
+  organization: OrganizationUpdateOneRequiredInput
+  projName: String
+  projSlug: String
+  projDesc: String
+  githubUrl: String
+  projMinDesc: String
 }
 
 input ProjectUpdateOneRequiredInput {
@@ -179,11 +171,76 @@ input ProjectUpdateOneRequiredInput {
   update: ProjectUpdateInput
 }
 
-input MentorCreateInput {
+input ProjectWhereInput {
   id: ID
-  user: UserCreateOneInput!
-  organization: OrganizationCreateOneInput!
+  organization: OrganizationWhereInput
+  projName: String
+  projSlug: String
+  projDesc: String
+  githubUrl: String
 }
+
+input ProjectWhereUniqueInput {
+  id: ID
+  projSlug: String
+  organization: OrganizationWhereUniqueInput
+}
+
+type Proposal {
+  id: ID!
+  user: User!
+  project: Project!
+  isAccepted: Boolean!
+  propUrl: String!
+}
+
+input ProposalCreateInput {
+  id: ID
+  isAccepted: Boolean
+  propUrl: String!
+  user: UserCreateOneInput!
+  project: ProjectCreateOneInput!
+}
+
+input ProposalUpdateInput {
+  isAccepted: Boolean
+  propUrl: String
+  user: UserUpdateOneRequiredInput
+  project: ProjectUpdateOneRequiredInput
+}
+
+input ProposalWhereInput {
+  id: ID
+  user: UserWhereInput
+  project: ProjectWhereInput
+  isAccepted: Boolean
+  propUrl: String
+}
+
+input ProposalWhereUniqueInput {
+  id: ID
+}
+
+type Query {
+  info: String!
+  userProfile: User!
+  users(where: UserWhereInput): [User]!
+  projects(where: ProjectWhereInput): [Project]!
+  organizations(where: OrganizationWhereInput): [Organization]!
+  mentors(where: MentorWhereInput): [Mentor]!
+  userProposals: [Proposal]!
+  proposals(where: ProposalWhereInput): [Proposal]!
+  events: [Event]!
+  projectsConnection(where: ProjectWhereUniqueInput): ProjectConnection!
+}
+
+enum roles {
+  Dev
+  Mentor
+  Admin
+}
+
+scalar Upload
 
 type User {
   id: ID!
@@ -198,48 +255,25 @@ type User {
   session: String
 }
 
-enum roles {
-  Dev
-  Mentor
-  Admin
+input UserCreateOneInput {
+  connect: UserWhereUniqueInput
 }
 
-type Project {
-  id: ID!
-  organization: Organization!
-  projName: String!
-  projSlug: String!
-  projDesc: String
-  githubUrl: String
-  projMinDesc: String
+input UserUpdateInput {
+  firstName: String
+  lastName: String
+  role: roles
+  email: String
+  mobileNumber: String
+  githubHandle: String
+  password: String
+  isVerified: Boolean
+  session: String
 }
 
-type Organization {
-  id: ID!
-  orgName: String!
-  orgSlug: String!
-  orgDesc: String
-  githubUrl: String
-}
-
-type Mentor {
-  id: ID!
-  user: User!
-  organization: Organization!
-}
-
-type Proposal {
-  id: ID!
-  user: User!
-  project: Project!
-  isAccepted: Boolean!
-  propUrl: String!
-}
-
-type Event {
-  id: ID!
-  date: DateTime!
-  eventDesc: String!
+input UserUpdateOneRequiredInput {
+  connect: UserWhereUniqueInput
+  update: UserUpdateInput
 }
 
 input UserWhereInput {
@@ -255,48 +289,9 @@ input UserWhereInput {
   session: String
 }
 
-input ProjectWhereInput {
+input UserWhereUniqueInput {
   id: ID
-  organization: OrganizationWhereInput
-  projName: String
-  projSlug: String
-  projDesc: String
-  githubUrl: String
-}
-
-input ProposalWhereInput {
-  id: ID
-  user: UserWhereInput
-  project: ProjectWhereInput
-  isAccepted: Boolean
-  propUrl: String
-}
-
-input MentorWhereInput {
-  id: ID
-  user: UserWhereInput
-  organization: OrganizationWhereInput
-}
-
-input OrganizationWhereInput {
-  id: ID
-  orgName: String
-  orgSlug: String
-  orgDesc: String
-  githubUrl: String
-}
-
-input OrganizationUpdateDataInput {
-  orgName: String
-  orgSlug: String
-  orgDesc: String
-  githubUrl: String
-}
-
-type AggregateProject {
-  count: Int!
-}
-
-type ProjectConnection {
-  aggregate: AggregateProject!
+  email: String
+  mobileNumber: String
+  githubHandle: String
 }
