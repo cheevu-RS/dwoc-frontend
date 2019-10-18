@@ -29,7 +29,6 @@ export default function Projects(props) {
   const defaultTools = ["C++", "Python"];
   const isLogged = props.isLogged;
   const orgID = props.match.params.id;
-  // console.log(orgID);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -55,7 +54,6 @@ export default function Projects(props) {
         `}
         variables={{ orgid: { organization: { id: orgID } } }}
         render={({ error, props }) => {
-          // console.log(props);
           if (error) {
             console.log(`${error} <= error Relay ProjCards`);
             return <div>Error!</div>;

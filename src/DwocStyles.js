@@ -12,7 +12,8 @@
   }
 });
 */
-// let backImg = require('./assets/images/winter-wall-10.jpg');
+let landingBackImg = require('./assets/images/rsz_landing.png');
+let aboutImg = require('./assets/images/rsz_landing.png')
 
 const header1 = {
   color: 'pink',
@@ -26,7 +27,7 @@ const header2 = {
   fontSize: '40px',
   textAlign: 'center',
   fontFamily: 'Poppins',
-  fontWeight: 700
+  fontWeight: 700,
 };
 
 const header3 = {
@@ -46,25 +47,47 @@ const { innerWidth: screenWidth, innerHeight: screenHeight } = window;
 
 const section = {
   minHeight: screenHeight, // i.e. 80% of screen height
-  // backgroundImage: `url(${backImg})`,
-  backgroundSize: 'cover'
+  backgroundImage: `url(${landingBackImg})`,
+  backgroundSize: 'cover',
+  backgroundAttachment: 'fixed'
 };
 
 const about = {
-  width: '90%',
+  width: '100%',
   margin: 'auto',
+  padding: "0% 10%",
+  paddingTop: screenHeight/4,
   height: '100%',
-  minHeight: screenHeight / 2,
+  minHeight: screenHeight / 1.5,
   display: 'block',
   textAlign: 'justify',
-  textJustify: 'inter-character'
+  textJustify: 'inter-character',
+  backgroundImage: `url(${aboutImg})`,
+  backgroundSize: 'cover',  
+  backgroundAttachment: 'fixed'
 };
 
+const timeline = {
+  backgroundImage: `url(${aboutImg})`,
+  backgroundSize: 'cover',  
+  backgroundAttachment: 'fixed'
+}
+
+// const orgCards = {
+//   backgroundImage: `url(${aboutImg})`,
+//   backgroundSize: 'cover',  
+//   backgroundAttachment: 'fixed'
+// }
+
 const orgs = {
+  padding: "0% 5%",
   paddingTop: screenHeight / 4,
-  width: '90%',
+  width: '100%',
   display: 'block',
-  margin: 'auto'
+  margin: 'auto',
+  backgroundImage: `url(${aboutImg})`,
+  backgroundSize: 'cover',  
+  backgroundAttachment: 'fixed'
 };
 
 const colours = {
@@ -87,6 +110,11 @@ const OrgProjCard = {
   //color: '#DD2C00',
   //borderBottom: '2px solid #4681fe'
 };
+const footer = {
+  width: '100%',
+  backgroundColor: "black"
+}
+
 module.exports = {
   header1,
   header2,
@@ -98,5 +126,7 @@ module.exports = {
   about,
   orgs,
   OrgProjCard,
-  colours
+  colours,
+  timeline,
+  footer
 };

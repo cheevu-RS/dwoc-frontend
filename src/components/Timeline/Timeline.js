@@ -7,7 +7,7 @@ import "react-vertical-timeline-component/style.min.css";
 
 // Stype imports
 import WebFont from "webfontloader";
-import { header2 } from "./../../DwocStyles";
+import { header2, timeline } from "./../../DwocStyles";
 import { makeStyles } from "@material-ui/core/styles";
 import { QueryRenderer } from "react-relay";
 import graphql from "babel-plugin-relay/macro";
@@ -19,7 +19,8 @@ WebFont.load({
 });
 
 const useStyles = makeStyles(theme => ({
-  header2: header2
+  header2: header2,
+  timeline: timeline
 }));
 
 let colors = ['linear-gradient(#285467, #00818A)', 'linear-gradient(#00818A, #379683)', 'linear-gradient(#379683, #0CBE9E)', 'linear-gradient(#0CBE9E, #5CDB95)', 'linear-gradient(to top, #0CBE9E, #5CDB95)', 'linear-gradient(to top, #379683, #0CBE9E)', 'linear-gradient(to top, #00818A, #379683)', 'linear-gradient(to top, #285467, #00818A)'];
@@ -48,8 +49,7 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
   let i = 0;
 
   return (
-    <div>
-
+    <div className={classes.timeline}>
     <div style={{ paddingTop: "120px" }} id="timeline">
       <h2 className={classes.header2}>Timeline </h2>
       <VerticalTimeline>
