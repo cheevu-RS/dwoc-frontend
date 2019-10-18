@@ -38,8 +38,13 @@ const header3 = {
 
 const paragraph = {
   padding: '11px',
-  fontSize: 23,
+  fontSize: 18,
   lineHeight: 1.3,
+<<<<<<< HEAD
+=======
+  maxWidth: 900,
+  margin: 'auto',
+>>>>>>> minor ui changes
   fontFamily: 'Open Sans'
 };
 
