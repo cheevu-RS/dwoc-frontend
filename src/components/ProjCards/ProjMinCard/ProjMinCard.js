@@ -1,13 +1,12 @@
 /* @flow */
 
-import React from "react";
-import "./ProjMinCard.css";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import Typography from "@material-ui/core/Typography";
-import ProjMaxCard from "../ProjMaxCard/ProjMaxCard";
-
+import React from 'react';
+import './ProjMinCard.css';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import Typography from '@material-ui/core/Typography';
+import ProjMaxCard from '../ProjMaxCard/ProjMaxCard';
 
 import { Link } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
@@ -18,7 +17,14 @@ import { OrgProjCard, colours } from '../../../DwocStyles';
 import WebFont from 'webfontloader';
 WebFont.load({
   google: {
-    families: ['Source Sans Pro', 'Rubik', 'Lato', 'Roboto Mono']
+    families: [
+      'Source Sans Pro',
+      'Rubik',
+      'Lato',
+      'Roboto Mono',
+      OrgProjCard.stacks.fontFamily,
+      OrgProjCard.description.fontFamily
+    ]
   }
 });
 
@@ -53,16 +59,7 @@ const useStyles = makeStyles(theme => ({
     display: 'block',
     padding: '0px 15px'
   },
-  description: {
-    marginTop: 9,
-    fontSize: 17,
-    color: '#424242',
-    lineHeight: 1.3,
-    color: '#424242',
-    flex: '1 1 auto',
-    fontFamily: 'Lato',
-    padding: '5px 15px 0px 15px'
-  },
+  description: OrgProjCard.description,
   projects: {
     fontSize: 19,
     marginTop: 8,
@@ -71,15 +68,8 @@ const useStyles = makeStyles(theme => ({
   viewProjectsBtn: {
     color: '#05386B'
   },
-  stacks: { padding: '0px 15px', fontFamily: 'Roboto Mono' },
-  stack: {
-    fontSize: 13,
-    borderRadius: 5,
-    padding: '4px 7px',
-    margin: '0px 8px 0px 0',
-    backgroundColor: 'purple',
-    color: '#ffffff'
-  },
+  stacks: OrgProjCard.stacks,
+  stack: OrgProjCard.stack,
 
   CardRowTwo: {
     flex: '0 1 auto',
@@ -129,34 +119,42 @@ export default function ProjMinCard(props) {
           style={{ backgroundColor: colours.stack.TypeScript }}
         >
           TypeScript
-          </span>
+        </span>
         <span
           className={classes.stack}
           style={{ backgroundColor: colours.stack.JavaScript }}
         >
           JavaScript
-          </span>
+        </span>
         <span
           className={classes.stack}
           style={{ backgroundColor: colours.stack.python }}
         >
           Python
-          </span>
+        </span>
         <span
           className={classes.stack}
           style={{ backgroundColor: colours.stack.React }}
         >
           React
-          </span>
+        </span>
         <span
           className={classes.stack}
           style={{ backgroundColor: colours.stack.cpp }}
         >
           C++
-          </span>
+        </span>
       </div>
       <CardActions>
-        <ProjMaxCard btnText="Read more" orgName={props.orgName} projName={props.projName} projDesc={props.projDesc} taken={props.taken} isLogged={props.isLogged} {...props} />
+        <ProjMaxCard
+          btnText="Read more"
+          orgName={props.orgName}
+          projName={props.projName}
+          projDesc={props.projDesc}
+          taken={props.taken}
+          isLogged={props.isLogged}
+          {...props}
+        />
       </CardActions>
     </Card>
   );
