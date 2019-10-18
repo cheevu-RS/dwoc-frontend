@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Grid, Card } from '@material-ui/core';
@@ -18,12 +17,18 @@ import { OrgProjCard, colours } from '../../../DwocStyles';
 import WebFont from 'webfontloader';
 WebFont.load({
   google: {
-    families: ['Source Sans Pro', 'Rubik', 'Lato', 'Roboto Mono']
+    families: [
+      'Source Sans Pro',
+      'Rubik',
+      'Lato',
+      'Roboto Mono',
+      OrgProjCard.stacks.fontFamily,
+      OrgProjCard.description.fontFamily
+    ]
   }
 });
 
 const environment = require('../../../Environment').environment;
-
 
 const override = css`
   display: block;
@@ -40,15 +45,14 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexFlow: 'column',
     padding: 0,
-    color: '#000000',
-    ...OrgProjCard
+
+    color: '#000000'
+    //...OrgProjCard
   },
-  //card: OrgProjCard,
   title: {
     textAlign: 'left',
     fontSize: 26,
     margin: 0,
-    //fontFamily: 'Source Sans Pro'
     fontFamily: 'Rubik',
     color: '#000000',
     padding: '10px 15px 0px 15px'
@@ -59,16 +63,7 @@ const useStyles = makeStyles(theme => ({
     display: 'block',
     padding: '0px 15px'
   },
-  description: {
-    marginTop: 9,
-    fontSize: 17,
-    color: '#424242',
-    lineHeight: 1.3,
-    color: '#424242',
-    flex: '1 1 auto',
-    fontFamily: 'Lato',
-    padding: '5px 15px 0px 15px'
-  },
+  description: OrgProjCard.description,
   projects: {
     fontSize: 19,
     marginTop: 8,
@@ -86,7 +81,6 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'purple',
     color: '#ffffff'
   },
-
   CardRowTwo: {
     flex: '0 1 auto',
     display: 'flex',
@@ -137,7 +131,7 @@ export default function OrgCard(props) {
         query OrgCardQuery($orgid: MentorWhereInput) {
           mentors(where: $orgid) {
             id
-            user{
+            user {
               firstName
             }
           }
@@ -156,23 +150,22 @@ export default function OrgCard(props) {
             </div>
           );
         }
-        console.log(props.mentors);
-        let mentorsLen = props.mentors.length;
-        let mentors = "";
-        for(let i = 0; i<mentorsLen; i++){
+        console.log(`${JSON.stringify(props.mentors)} <= props.mentors`);
+
+        //let mentorsLen = props.mentors.length;
+        let mentors = props.mentors.map(m => m.user.firstName).join(', ');
+        for (let i = 0; i < mentorsLen; i++) {
           mentors += props.mentors[i].user.firstName;
           // console.log(props.mentors[i].user.firstName);
-          if(i!=mentorsLen-1){mentors += ",";}
+          if (i != mentorsLen - 1) {
+            mentors += ', ';
+          }
         }
-        console.log(mentors)
-        return (
-          <b>
-            {mentors}
-          </b>
-        );
+        console.log(mentors);
+        return <b>{mentors}</b>;
       }}
     />
-  )
+  );
 
   console.log(props)
 
@@ -187,15 +180,11 @@ export default function OrgCard(props) {
       <Card className={classes.card} >
         <div className={classes.title}>{props.orgName}</div>
         {/* <p>{props.id}</p> */}
-        
-        
-        <span className={classes.mentorName}>
-          by {mentorFetch}
-        </span>
+
+        <span className={classes.mentorName}>by {mentorFetch}</span>
         <div className={classes.description}>{props.orgDesc}</div>
         <div className={classes.stacks}>
           {props.stack.map(tool => {
-
             if(tool.toLowerCase() === "c++"){
               return (<span className={classes.stack} style={{ backgroundColor: colours.stack.cpp }}> C++ </span>);
             }
@@ -213,7 +202,6 @@ export default function OrgCard(props) {
             }
             return (<></>);
           })}
-          
         </div>
         <div className={classes.CardRowTwo}>
           <div className={classes.CardRowTwoElements}>
@@ -232,11 +220,13 @@ export default function OrgCard(props) {
             <span className={classes.CardRowTwoDetail}>Name</span>
           </div>
         </div>
-        
-          <Link to={orgPath} style={{textAlign: 'center', textDecoration: 'none'}}> 
-            <Button className={classes.BtnViewProjects}>VIEW PROJECTS</Button> 
-          </Link>
-        
+
+        <Link
+          to={orgPath}
+          style={{ textAlign: 'center', textDecoration: 'none' }}
+        >
+          <Button className={classes.BtnViewProjects}>VIEW PROJECTS</Button>
+        </Link>
       </Card>
     </Grid>
   );

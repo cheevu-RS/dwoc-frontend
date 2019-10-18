@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
 function LandingPage() {
   const classes = useStyles();
   return (
-    <div style={{paddingBottom: "0px", marginBottom: '0px'}}>
+    <div style={{ paddingBottom: '0px', marginBottom: '0px' }}>
       <Reveal>
         <Pulse>
           <div className={classes.section}>
@@ -62,7 +62,9 @@ function LandingPage() {
                 width: '50%',
                 position: 'absolute',
                 left: `25%`,
-                top: `${(0.5 * screenHeight - 0.5 * screenWidth * 0.296875)+100}px`,
+                top: `${0.5 * screenHeight -
+                  0.5 * screenWidth * 0.296875 +
+                  100}px`,
                 margin: 'auto',
                 transform: 'translateY(-50%, -50%)'
               }}
@@ -71,29 +73,33 @@ function LandingPage() {
         </Pulse>
       </Reveal>
       <Reveal>
-        
-          <div id="about" className={classes.about}>
-            <Flip left>
-            <h2 className={classes.header2} >About</h2>
-            </Flip>
-            <p className={classes.paragraph}>
-              This is a winter long program organised by{' '}
-              <a href="https://delta.nitt.edu" style={{ color: '#5CDB95' }}>
-                Delta Force
-              </a>
-              , the coding club of NIT Trichy. With an aim to support and
-              improve the culture of open source software around us, this serves
-              as a platform for young student developers (or even starters) to
-              hone their technical skills by taking up projects of their
-              interests. We hope this encourages collabrative experiences and
-              allows students from all backgrounds to contribute to quality
-              technical projects from diverse fields.
-            </p>
-          </div>
-        
+        <div id="about" className={classes.about}>
+          <Flip left>
+            <h2 className={classes.header2}>About</h2>
+          </Flip>
+          <p className={classes.paragraph}>
+            This is a winter long program organised by{' '}
+            <a href="https://delta.nitt.edu" style={{ color: '#5CDB95' }}>
+              Delta Force
+            </a>
+            , the coding club of NIT Trichy. With an aim to support and improve
+            the culture of open source software around us, this serves as a
+            platform for young student developers (or even starters) to hone
+            their technical skills by taking up projects of their interests. We
+            hope this encourages collabrative experiences and allows students
+            from all backgrounds to contribute to quality technical projects
+            from diverse fields.
+          </p>
+        </div>
       </Reveal>
-      <Reveal><Timeline /></Reveal>
-      <Reveal><Pulse><OrgCards /></Pulse></Reveal>
+      <Reveal>
+        <Timeline />
+      </Reveal>
+      <Reveal>
+        <Pulse>
+          <OrgCards />
+        </Pulse>
+      </Reveal>
       <Footer></Footer>
     </div>
   );

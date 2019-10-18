@@ -6,14 +6,24 @@ import RingLoader from "react-spinners/RingLoader";
 import { QueryRenderer } from "react-relay";
 import graphql from "babel-plugin-relay/macro";
 import { css } from "@emotion/core";
+import WebFont from 'webfontloader';
+import { header1 } from '../../DwocStyles';
 
-const environment= require( "../../Environment").environment;
+const environment = require('../../Environment').environment;
+
 const useStyles = makeStyles(theme => ({
   container: {
-    minWidth: "93%",
-    paddingLeft: "2%"
-  }
+    minWidth: '93%',
+    paddingLeft: '2%'
+  },
+  header1: header1
 }));
+
+WebFont.load({
+  google: {
+    families: [header1.fontFamily]
+  }
+});
 
 const override = css`
   display: block;
@@ -24,7 +34,7 @@ const override = css`
 export default function Projects(props) {
   const classes = useStyles();
   const orgName = props.match.params.orgName;
-  const defaultTools = ["C++", "Python"];
+  const defaultTools = ['C++', 'Python'];
   const isLogged = props.isLogged;
   const orgID = props.match.params.id;
 
@@ -42,6 +52,7 @@ export default function Projects(props) {
               id
               projName
               projSlug
+              projMinDesc
               projDesc
               githubUrl
               organization {
@@ -62,8 +73,8 @@ export default function Projects(props) {
                 <h2 style={{ textAlign: "center" }}>
                   {orgName}
                 </h2>
-                <div style={{ paddingTop: "20%" }}>
-                  <RingLoader css={override} color={"#5CDB95"} />
+                <div style={{ paddingTop: '20%' }}>
+                  <RingLoader css={override} color={'#5CDB95'} />
                 </div>
               </div>
             );
@@ -73,7 +84,6 @@ export default function Projects(props) {
           let n = props.projects.length;
           const allProjects = props.projects;
           let structuredProjects = [];
-
           for (let i = 0; i < n; i += 4) {
             let row = [];
             for (let j = i; j < i + 4; j++) {
@@ -97,6 +107,7 @@ export default function Projects(props) {
                   )
                   ))}
               </Grid>
+
             </div>
           );
         }}

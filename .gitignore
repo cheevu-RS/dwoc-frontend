@@ -3,3 +3,4 @@ node_modules/
 src/__generated__
 src/components/OrgCards/__generated__
 src/components/ProjCards/__generated__
+build
