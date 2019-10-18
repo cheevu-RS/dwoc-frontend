@@ -13,6 +13,9 @@
 });
 */
 
+const gridContainer = {
+  padding: 4
+};
 const header1 = {
   color: '#ffffff',
   fontFamily: 'Poppins',
@@ -145,5 +148,6 @@ module.exports = {
   OrgProjCard,
   colours,
   timeline,
-  footer
+  footer,
+  gridContainer
 };
