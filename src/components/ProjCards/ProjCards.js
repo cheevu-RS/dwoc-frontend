@@ -70,6 +70,7 @@ export default function Projects(props) {
           if (!props) {
             return (
               <div>
+                <br />
                 <h2
                   //style={{ textAlign: 'center' }}
                   className={classes.header1}

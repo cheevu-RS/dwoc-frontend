@@ -19,7 +19,8 @@ const header1 = {
   color: '#ffffff',
   fontFamily: 'Poppins',
   fontSize: 50,
-  textAlign: 'center'
+  textAlign: 'center',
+  fontWeight: 800
 };
 
 const header2 = {

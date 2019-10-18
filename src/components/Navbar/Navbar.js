@@ -86,7 +86,6 @@ export default function Navbar(props) {
     console.log(tabName);
   };
 
-  // TODO make it look good on mobile devices
   let deltaLogo = (
     <div
       style={{
