@@ -1,34 +1,41 @@
+
 import React, { useEffect } from 'react';
 import ProjCard from './ProjMinCard/ProjMinCard';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+
+// Material UI
+import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+
 import RingLoader from 'react-spinners/RingLoader';
 import { QueryRenderer } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
 import WebFont from 'webfontloader';
 import { css } from '@emotion/core';
-import { header1 } from '../../DwocStyles';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Form from './AddProjectForm/Form';
+import { header1, gridContainer } from '../../DwocStyles';
+
 
 const environment = require('../../Environment').environment;
-
-const useStyles = makeStyles(theme => ({
-  container: {
-    minWidth: '93%',
-    paddingLeft: '2%'
-  },
-  header1: header1
-}));
 
 WebFont.load({
   google: {
     families: [header1.fontFamily]
   }
 });
+
+const useStyles = makeStyles(theme => ({
+  container: {
+    minWidth: '93%',
+    paddingLeft: '2%'
+  },
+  header1: header1,
+  gridContainer: gridContainer
+}));
 
 const override = css`
   display: block;
@@ -85,13 +92,9 @@ export default function Projects(props) {
           if (!props) {
             return (
               <div>
+
                 <br />
-                <h2
-                  //style={{ textAlign: 'center' }}
-                  className={classes.header1}
-                >
-                  Projects under {orgName}
-                </h2>
+                <h2 className={classes.header1}>Projects under {orgName}</h2>
                 <div style={{ paddingTop: '20%' }}>
                   <RingLoader css={override} color={'#5CDB95'} />
                 </div>
@@ -128,36 +131,78 @@ export default function Projects(props) {
           return (
             <div>
               {extra}
+
               <br />
-              <h2
-                //style={{ textAlign: 'center' }}
-                className={classes.header1}
-              >
-                Projects under {orgName}
-              </h2>
-              {structuredProjects.map(proj => (
-                <Row key={num++}>
-                  {proj.map(o =>
-                    o.id ? (
-                      <Col key={num++}>
-                        <ProjCard
-                          tools={defaultTools}
-                          projName={o.projName}
-                          orgName={orgName}
-                          projDesc={o.projDesc}
-                          projMinDesc={o.projMinDesc}
-                          {...o}
-                          isLogged={isLogged}
-                        />
-                      </Col>
-                    ) : (
-                      <Col key={num++}></Col>
-                    )
-                  )}{' '}
-                </Row>
-              ))}
-            </div>
+
+              <h2 className={classes.header1}>Projects under {orgName}</h2>
+              <Grid container className={classes.gridContainer} spacing={3}>
+                {props.projects.map(project => (
+                  <ProjCard
+                    tools={defaultTools}
+                    projName={project.projName}
+                    orgName={orgName}
+                    projDesc={project.projDesc}
+                    projMinDesc={project.projMinDesc}
+                    {...project}
+                    isLogged={isLogged}
+                    key={project.id}
+                  />
+                ))}
+              </Grid>
+            </>
+
           );
+
+          // let n = props.projects.length;
+          // const allProjects = props.projects;
+          // let structuredProjects = [];
+          // for (let i = 0; i < n; i += 4) {
+          //   let row = [];
+          //   for (let j = i; j < i + 4; j++) {
+          //     if (j >= n) break;
+          //     row.push(allProjects[j]);
+          //   }
+          //   while (row.length < 4) row.push([]);
+          //   structuredProjects.push(row);
+          // }
+          // let num = 1;
+
+          // return (
+          //   <div>
+          //     <br />
+          //     <h2
+          //       //style={{ textAlign: 'center' }}
+          //       className={classes.header1}
+          //     >
+          //       Projects under {orgName}
+          //     </h2>
+          //     {/* {structuredProjects.map(proj => (
+          //       <Row key={num++}>
+          //         {proj.map(o =>
+          //           o.id ? (
+          //             <Col key={num++}>
+          //               <ProjCard
+          //                 tools={defaultTools}
+          //                 projName={o.projName}
+          //                 orgName={orgName}
+          //                 projDesc={o.projDesc}
+          //                 projMinDesc={o.projMinDesc}
+          //                 {...o}
+          //                 isLogged={isLogged}
+          //               />
+          //             </Col>
+          //           ) : (
+          //             <Col key={num++}></Col>
+          //           )
+          //         )}{' '}
+          //       </Row>
+          //     ))} */}
+
+          //     {structuredProjects.map(proj => ({
+          //       console.log(`${proj} <= proj`);
+          //     }))}
+          //   </div>
+          //);
         }}
       />
     </div>
