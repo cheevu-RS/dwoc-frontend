@@ -16,9 +16,10 @@ let landingBackImg = require('./assets/images/rsz_landing.png');
 let aboutImg = require('./assets/images/rsz_landing.png');
 
 const header1 = {
-  color: 'pink',
-  font: 'Consolas',
-  fontSize: '55px'
+  color: '#ffffff',
+  fontFamily: 'Poppins',
+  fontSize: 50,
+  textAlign: 'center'
 };
 
 const header2 = {
