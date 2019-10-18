@@ -13,6 +13,10 @@ import { QueryRenderer } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
 import WebFont from 'webfontloader';
 import { css } from '@emotion/core';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Form from './AddProjectForm/Form';
 import { header1, gridContainer } from '../../DwocStyles';
 
 
@@ -45,11 +49,21 @@ export default function Projects(props) {
   const defaultTools = ['C++', 'Python'];
   const isLogged = props.isLogged;
   const orgID = props.match.params.id;
+  //const role= props.match.params.role;
+  const role="mentor";
+  const orgSlug=props.location.state.orgSlug;
+  console.log("SLUG:"+orgSlug);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <div className={classes.container}>
       <QueryRenderer
@@ -87,15 +101,37 @@ export default function Projects(props) {
               </div>
             );
           }
+          // console.log(`${JSON.stringify(props)} <= props in ProjCards  `);
 
-          console.log(
-            `${JSON.stringify(
-              props.projects
-            )} <= JSON.stringify(props.projects)`
-          );
-
+          let n = props.projects.length;
+          const allProjects = props.projects;
+          let structuredProjects = [];
+          for (let i = 0; i < n; i += 4) {
+            let row = [];
+            for (let j = i; j < i + 4; j++) {
+              if (j >= n) break;
+              row.push(allProjects[j]);
+            }
+            while (row.length < 4) row.push([]);
+            structuredProjects.push(row);
+          }
+          let num = 1;
+          let extra;
+          console.log("SLUG:"+orgSlug);
+          if (role==="mentor")
+           extra = (<div>
+                      <Button color="secondary" variant="outlined" onClick={handleClickOpen}>
+                       Add Project
+                      </Button>
+                      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                        <DialogTitle id="form-dialog-title">New Project</DialogTitle>
+                        <Form onClose={handleClose} orgName={orgSlug}/>
+                      </Dialog>
+                    </div>);
           return (
-            <>
+            <div>
+              {extra}
+
               <br />
 
               <h2 className={classes.header1}>Projects under {orgName}</h2>

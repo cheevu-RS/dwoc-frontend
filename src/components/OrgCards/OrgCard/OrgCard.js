@@ -254,7 +254,7 @@ export default function OrgCard(props) {
         </div>
 
         <Link
-          to={orgPath}
+          to={{ pathname: orgPath, state: { orgSlug: props.orgSlug} }}
           style={{ textAlign: 'center', textDecoration: 'none' }}
         >
           <Button className={classes.BtnViewProjects}>VIEW PROJECTS</Button>
