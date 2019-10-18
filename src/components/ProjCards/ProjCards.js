@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
-import ProjCard from './ProjMinCard/ProjMinCard';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { makeStyles } from '@material-ui/core/styles';
-import RingLoader from 'react-spinners/RingLoader';
-import { QueryRenderer } from 'react-relay';
-import graphql from 'babel-plugin-relay/macro';
+import React, { useEffect } from "react";
+import ProjCard from "./ProjMinCard/ProjMinCard";
+import { Grid } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core/styles";
+import RingLoader from "react-spinners/RingLoader";
+import { QueryRenderer } from "react-relay";
+import graphql from "babel-plugin-relay/macro";
+import { css } from "@emotion/core";
 import WebFont from 'webfontloader';
-import { css } from '@emotion/core';
 import { header1 } from '../../DwocStyles';
 
 const environment = require('../../Environment').environment;
@@ -71,12 +70,8 @@ export default function Projects(props) {
           if (!props) {
             return (
               <div>
-                <br />
-                <h2
-                  //style={{ textAlign: 'center' }}
-                  className={classes.header1}
-                >
-                  Projects under {orgName}
+                <h2 style={{ textAlign: "center" }}>
+                  {orgName}
                 </h2>
                 <div style={{ paddingTop: '20%' }}>
                   <RingLoader css={override} color={'#5CDB95'} />
@@ -103,33 +98,16 @@ export default function Projects(props) {
           return (
             <div>
               <br />
-              <h2
-                //style={{ textAlign: 'center' }}
-                className={classes.header1}
-              >
-                Projects under {orgName}
-              </h2>
-              {structuredProjects.map(proj => (
-                <Row key={num++}>
-                  {proj.map(o =>
-                    o.id ? (
-                      <Col key={num++}>
-                        <ProjCard
-                          tools={defaultTools}
-                          projName={o.projName}
-                          orgName={orgName}
-                          projDesc={o.projDesc}
-                          projMinDesc={o.projMinDesc}
-                          {...o}
-                          isLogged={isLogged}
-                        />
-                      </Col>
-                    ) : (
-                      <Col key={num++}></Col>
-                    )
-                  )}{' '}
-                </Row>
-              ))}
+              <br />
+              <h2 style={{ textAlign: "center", marginTop: "5px" }}>{orgName}</h2>
+              <Grid key={num++} container className={classes.gridContainer} spacing={3}>
+                 {structuredProjects.map(proj => (
+                    proj.map(o => 
+                    o.id ? (<ProjCard key={num++} tools={defaultTools} key={num++} projName={o.projName} orgName={orgName} projDesc={o.projDesc}   {...o} isLogged={isLogged} />) : (<div key={num++}></div>)
+                  )
+                  ))}
+              </Grid>
+
             </div>
           );
         }}

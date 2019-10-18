@@ -51,9 +51,11 @@ export default function Navbar(props) {
       setWidth(innerWidth);
   };
 
-  let defaultBtns = [
-    { name: 'Timeline', to: 'timeline' },
-    { name: 'Organizations', to: 'orgs' }
+  let defaultBtns = [];
+  
+  if(props.showBtns) defaultBtns = [
+    { name: "Timeline", to: "timeline" },
+    { name: "Organizations", to: "orgs" },
   ];
 
   let [tabs, setTabs] = useState({
@@ -93,7 +95,7 @@ export default function Navbar(props) {
         margin: 0
       }}
     >
-      <a href="https://delta.nitt.edu/">
+      <a href="/">
         <img alt="delta-logo" width="222px" src={dwocLogo} />
       </a>
     </div>
@@ -152,7 +154,8 @@ export default function Navbar(props) {
       <AppBar position="fixed" className={styles.navbar}>
         {navbarElems}
       </AppBar>
-      <div style={{ height: '50px' }}></div>
+      {/* <div style={{ height: "50px" }}></div> */}
+
     </div>
   );
 }
