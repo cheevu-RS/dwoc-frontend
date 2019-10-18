@@ -50,10 +50,10 @@ const useStyles = makeStyles(theme => ({
 function LandingPage() {
   const classes = useStyles();
   return (
-    <div style={{paddingBottom: "0px", marginBottom: '0px'}}>
+    <div style={{ paddingBottom: '0px', marginBottom: '0px' }}>
       <Reveal>
         <Pulse>
-          <div className={classes.section}>
+          {/* <div className={classes.section}>
             <img
               alt="dwocLogo"
               className={classes.landingImg}
@@ -62,15 +62,17 @@ function LandingPage() {
                 width: '50%',
                 position: 'absolute',
                 left: `25%`,
-                top: `${(0.5 * screenHeight - 0.5 * screenWidth * 0.296875)+100}px`,
+                top: `${0.5 * screenHeight -
+                  0.5 * screenWidth * 0.296875 +
+                  100}px`,
                 margin: 'auto',
                 transform: 'translateY(-50%, -50%)'
               }}
             />
-          </div>
+          </div> */}
         </Pulse>
       </Reveal>
-      <Reveal>
+      {/* <Reveal>
         
           <div id="about" className={classes.about}>
             <Flip left>
@@ -92,8 +94,12 @@ function LandingPage() {
           </div>
         
       </Reveal>
-      <Reveal><Timeline /></Reveal>
-      <Reveal><Pulse><OrgCards /></Pulse></Reveal>
+      <Reveal><Timeline /></Reveal> */}
+      <Reveal>
+        <Pulse>
+          <OrgCards />
+        </Pulse>
+      </Reveal>
       <Footer></Footer>
     </div>
   );
