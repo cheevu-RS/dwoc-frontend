@@ -43,6 +43,7 @@ const useStyles = makeStyles(theme => ({
     color: '#000000',
     ...OrgProjCard
   },
+
   //card: OrgProjCard,
   title: {
     textAlign: 'left',
@@ -108,53 +109,55 @@ const useStyles = makeStyles(theme => ({
 export default function ProjMinCard(props) {
   const classes = useStyles();
   return (
-    <Card className={classes.card}>
-      <div className={classes.title}>{props.projName}</div>
+    <Grid item xs={12} sm={6} md={4} xl={3}>
+      <Card className={classes.card}>
+        <div className={classes.title}>{props.projName}</div>
 
-      <div className={classes.description}>{props.projMinDesc}</div>
-      <div className={classes.stacks}>
-        <span
-          className={classes.stack}
-          style={{ backgroundColor: colours.stack.TypeScript }}
-        >
-          TypeScript
-        </span>
-        <span
-          className={classes.stack}
-          style={{ backgroundColor: colours.stack.JavaScript }}
-        >
-          JavaScript
-        </span>
-        <span
-          className={classes.stack}
-          style={{ backgroundColor: colours.stack.python }}
-        >
-          Python
-        </span>
-        <span
-          className={classes.stack}
-          style={{ backgroundColor: colours.stack.React }}
-        >
-          React
-        </span>
-        <span
-          className={classes.stack}
-          style={{ backgroundColor: colours.stack.cpp }}
-        >
-          C++
-        </span>
-      </div>
-      <CardActions>
-        <ProjMaxCard
-          btnText="Read more"
-          orgName={props.orgName}
-          projName={props.projName}
-          projDesc={props.projDesc}
-          taken={props.taken}
-          isLogged={props.isLogged}
-          {...props}
-        />
-      </CardActions>
-    </Card>
+        <div className={classes.description}>{props.projMinDesc}</div>
+        <div className={classes.stacks}>
+          <span
+            className={classes.stack}
+            style={{ backgroundColor: colours.stack.TypeScript }}
+          >
+            TypeScript
+          </span>
+          <span
+            className={classes.stack}
+            style={{ backgroundColor: colours.stack.JavaScript }}
+          >
+            JavaScript
+          </span>
+          <span
+            className={classes.stack}
+            style={{ backgroundColor: colours.stack.python }}
+          >
+            Python
+          </span>
+          <span
+            className={classes.stack}
+            style={{ backgroundColor: colours.stack.React }}
+          >
+            React
+          </span>
+          <span
+            className={classes.stack}
+            style={{ backgroundColor: colours.stack.cpp }}
+          >
+            C++
+          </span>
+        </div>
+        <CardActions>
+          <ProjMaxCard
+            btnText="Read more"
+            orgName={props.orgName}
+            projName={props.projName}
+            projDesc={props.projDesc}
+            taken={props.taken}
+            isLogged={props.isLogged}
+            {...props}
+          />
+        </CardActions>
+      </Card>
+    </Grid>
   );
 }

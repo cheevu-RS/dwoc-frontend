@@ -15,6 +15,9 @@
 let landingBackImg = require('./assets/images/rsz_landing.png');
 let aboutImg = require('./assets/images/rsz_landing.png');
 
+const gridContainer = {
+  padding: 4
+};
 const header1 = {
   color: '#ffffff',
   fontFamily: 'Poppins',
@@ -155,5 +158,6 @@ module.exports = {
   OrgProjCard,
   colours,
   timeline,
-  footer
+  footer,
+  gridContainer
 };
