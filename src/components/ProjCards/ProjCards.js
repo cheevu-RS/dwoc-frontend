@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import ProjCard from './ProjMinCard/ProjMinCard';
 import Row from 'react-bootstrap/Row';
@@ -13,6 +14,7 @@ import graphql from 'babel-plugin-relay/macro';
 import WebFont from 'webfontloader';
 import { css } from '@emotion/core';
 import { header1, gridContainer } from '../../DwocStyles';
+
 
 const environment = require('../../Environment').environment;
 
@@ -76,6 +78,7 @@ export default function Projects(props) {
           if (!props) {
             return (
               <div>
+
                 <br />
                 <h2 className={classes.header1}>Projects under {orgName}</h2>
                 <div style={{ paddingTop: '20%' }}>
@@ -94,6 +97,7 @@ export default function Projects(props) {
           return (
             <>
               <br />
+
               <h2 className={classes.header1}>Projects under {orgName}</h2>
               <Grid container className={classes.gridContainer} spacing={3}>
                 {props.projects.map(project => (
@@ -110,6 +114,7 @@ export default function Projects(props) {
                 ))}
               </Grid>
             </>
+
           );
 
           // let n = props.projects.length;

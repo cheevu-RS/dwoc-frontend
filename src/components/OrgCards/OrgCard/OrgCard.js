@@ -72,9 +72,15 @@ const useStyles = makeStyles(theme => ({
   viewProjectsBtn: {
     color: '#05386B'
   },
-  stacks: OrgProjCard.stacks,
-  stack: OrgProjCard.stack,
-
+  stacks: { padding: '0px 15px', fontFamily: 'Roboto Mono', display: 'flex', flexWrap: 'wrap' },
+  stack: {
+    fontSize: 13,
+    borderRadius: 5,
+    padding: '4px 7px',
+    margin: '3px 8px 0px 0',
+    backgroundColor: 'purple',
+    color: '#ffffff'
+  },
   CardRowTwo: {
     flex: '0 1 auto',
     display: 'flex',
@@ -116,6 +122,7 @@ export default function OrgCard(props) {
 
   const orgPath = '/org/' + props.id + '/' + props.orgName;
   const orgID = props.id;
+  console.log(props.stack)
 
   let mentorFetch = (
     <QueryRenderer
@@ -147,58 +154,56 @@ export default function OrgCard(props) {
 
         //let mentorsLen = props.mentors.length;
         let mentors = props.mentors.map(m => m.user.firstName).join(', ');
-        // for (let i = 0; i < mentorsLen; i++) {
-        //   mentors += props.mentors[i].user.firstName;
-        //   // console.log(props.mentors[i].user.firstName);
-        //   if (i != mentorsLen - 1) {
-        //     mentors += ', ';
-        //   }
-        // }
+        for (let i = 0; i < mentorsLen; i++) {
+          mentors += props.mentors[i].user.firstName;
+          // console.log(props.mentors[i].user.firstName);
+          if (i != mentorsLen - 1) {
+            mentors += ', ';
+          }
+        }
         console.log(mentors);
         return <b>{mentors}</b>;
       }}
     />
   );
 
+  console.log(props)
+
   return (
-    <Grid item xs={12} lg={4} sm={6} md={6} xl={4}>
-      <Card className={classes.card}>
+
+    <Grid
+      item
+      xs={12}
+      sm={6}
+      md={4}
+      xl={3}
+    >
+      <Card className={classes.card} >
+
         <div className={classes.title}>{props.orgName}</div>
         {/* <p>{props.id}</p> */}
 
         <span className={classes.mentorName}>by {mentorFetch}</span>
         <div className={classes.description}>{props.orgDesc}</div>
         <div className={classes.stacks}>
-          <span
-            className={classes.stack}
-            style={{ backgroundColor: colours.stack.TypeScript }}
-          >
-            TypeScript
-          </span>
-          <span
-            className={classes.stack}
-            style={{ backgroundColor: colours.stack.JavaScript }}
-          >
-            JavaScript
-          </span>
-          <span
-            className={classes.stack}
-            style={{ backgroundColor: colours.stack.python }}
-          >
-            Python
-          </span>
-          <span
-            className={classes.stack}
-            style={{ backgroundColor: colours.stack.React }}
-          >
-            React
-          </span>
-          <span
-            className={classes.stack}
-            style={{ backgroundColor: colours.stack.cpp }}
-          >
-            C++
-          </span>
+          {props.stack.map(tool => {
+            if(tool.toLowerCase() === "c++"){
+              return (<span className={classes.stack} style={{ backgroundColor: colours.stack.cpp }}> C++ </span>);
+            }
+            else if(tool.toLowerCase() === "python"){
+              return (<span className={classes.stack} style={{ backgroundColor: colours.stack.python }}> Python </span>);
+            }
+            else if(tool.toLowerCase() === "react"){
+              return (<span className={classes.stack} style={{ backgroundColor: colours.stack.React }}> React </span>);
+            }
+            else if(tool.toLowerCase() === "typescript"){
+              return (<span className={classes.stack} style={{ backgroundColor: colours.stack.TypeScript }}> TypeScript </span>)
+            }
+            else if(tool.toLowerCase()  === "javascript"){
+              return (<span className={classes.stack} style={{ backgroundColor: colours.stack.JavaScript }}> JavaScript </span>)
+            }
+            return (<></>);
+          })}
         </div>
         <div className={classes.CardRowTwo}>
           <div className={classes.CardRowTwoElements}>
