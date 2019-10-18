@@ -51,7 +51,7 @@ const { innerWidth: screenWidth, innerHeight: screenHeight } = window;
 
 const section = {
   minHeight: screenHeight, // i.e. 80% of screen height
-  backgroundImage: `url(${landingBackImg})`,
+  // backgroundImage: `url(${landingBackImg})`,
   backgroundSize: 'cover',
   backgroundAttachment: 'fixed'
 };
