@@ -102,8 +102,8 @@ export default function Projects(props) {
               <h2 style={{ textAlign: "center", marginTop: "5px" }}>{orgName}</h2>
               <Grid key={num++} container className={classes.gridContainer} spacing={3}>
                  {structuredProjects.map(proj => (
-                    proj.map(o => 
-                    o.id ? (<ProjCard key={num++} tools={defaultTools} key={num++} projName={o.projName} orgName={orgName} projDesc={o.projDesc}   {...o} isLogged={isLogged} />) : (<div key={num++}></div>)
+                    proj.map(o =>
+                    o.id ? (<ProjCard key={num++} tools={defaultTools} projSlug={o.projSlug}  key={num++} projName={o.projName} orgName={orgName} projDesc={o.projDesc}   {...o} isLogged={isLogged} />) : (<div key={num++}></div>)
                   )
                   ))}
               </Grid>

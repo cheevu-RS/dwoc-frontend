@@ -152,7 +152,7 @@ export default function OrgCard(props) {
         }
         console.log(`${JSON.stringify(props.mentors)} <= props.mentors`);
 
-        //let mentorsLen = props.mentors.length;
+        let mentorsLen = props.mentors.length;
         let mentors = props.mentors.map(m => m.user.firstName).join(', ');
         for (let i = 0; i < mentorsLen; i++) {
           mentors += props.mentors[i].user.firstName;
