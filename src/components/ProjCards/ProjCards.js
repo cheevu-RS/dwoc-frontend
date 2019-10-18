@@ -9,6 +9,10 @@ import graphql from 'babel-plugin-relay/macro';
 import WebFont from 'webfontloader';
 import { css } from '@emotion/core';
 import { header1 } from '../../DwocStyles';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Form from './AddProjectForm/Form';
 
 const environment = require('../../Environment').environment;
 
@@ -38,11 +42,21 @@ export default function Projects(props) {
   const defaultTools = ['C++', 'Python'];
   const isLogged = props.isLogged;
   const orgID = props.match.params.id;
+  //const role= props.match.params.role;
+  const role="mentor";
+  const orgSlug=props.location.state.orgSlug;
+  console.log("SLUG:"+orgSlug);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <div className={classes.container}>
       <QueryRenderer
@@ -99,9 +113,21 @@ export default function Projects(props) {
             structuredProjects.push(row);
           }
           let num = 1;
-
+          let extra;
+          console.log("SLUG:"+orgSlug);
+          if (role==="mentor")
+           extra = (<div>
+                      <Button color="secondary" variant="outlined" onClick={handleClickOpen}>
+                       Add Project
+                      </Button>
+                      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                        <DialogTitle id="form-dialog-title">New Project</DialogTitle>
+                        <Form onClose={handleClose} orgName={orgSlug}/>
+                      </Dialog>
+                    </div>);
           return (
             <div>
+              {extra}
               <br />
               <h2
                 //style={{ textAlign: 'center' }}

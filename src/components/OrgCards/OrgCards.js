@@ -52,6 +52,7 @@ export default function OrgCards() {
           organizations {
             orgName
             id
+            orgSlug
             orgDesc
             githubUrl
           }
