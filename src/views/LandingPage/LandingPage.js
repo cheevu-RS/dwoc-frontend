@@ -53,7 +53,7 @@ function LandingPage() {
     <div style={{ paddingBottom: '0px', marginBottom: '0px' }}>
       <Reveal>
         <Pulse>
-          {/* <div className={classes.section}>
+          <div className={classes.section}>
             <img
               alt="dwocLogo"
               className={classes.landingImg}
@@ -69,32 +69,32 @@ function LandingPage() {
                 transform: 'translateY(-50%, -50%)'
               }}
             />
-          </div> */}
+          </div>
         </Pulse>
       </Reveal>
-      {/* <Reveal>
-        
-          <div id="about" className={classes.about}>
-            <Flip left>
-            <h2 className={classes.header2} >About</h2>
-            </Flip>
-            <p className={classes.paragraph}>
-              This is a winter long program organised by{' '}
-              <a href="https://delta.nitt.edu" style={{ color: '#5CDB95' }}>
-                Delta Force
-              </a>
-              , the coding club of NIT Trichy. With an aim to support and
-              improve the culture of open source software around us, this serves
-              as a platform for young student developers (or even starters) to
-              hone their technical skills by taking up projects of their
-              interests. We hope this encourages collabrative experiences and
-              allows students from all backgrounds to contribute to quality
-              technical projects from diverse fields.
-            </p>
-          </div>
-        
+      <Reveal>
+        <div id="about" className={classes.about}>
+          <Flip left>
+            <h2 className={classes.header2}>About</h2>
+          </Flip>
+          <p className={classes.paragraph}>
+            This is a winter long program organised by{' '}
+            <a href="https://delta.nitt.edu" style={{ color: '#5CDB95' }}>
+              Delta Force
+            </a>
+            , the coding club of NIT Trichy. With an aim to support and improve
+            the culture of open source software around us, this serves as a
+            platform for young student developers (or even starters) to hone
+            their technical skills by taking up projects of their interests. We
+            hope this encourages collabrative experiences and allows students
+            from all backgrounds to contribute to quality technical projects
+            from diverse fields.
+          </p>
+        </div>
       </Reveal>
-      <Reveal><Timeline /></Reveal> */}
+      <Reveal>
+        <Timeline />
+      </Reveal>
       <Reveal>
         <Pulse>
           <OrgCards />
