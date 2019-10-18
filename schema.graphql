@@ -73,6 +73,7 @@ type Organization {
   orgSlug: String!
   orgDesc: String
   githubUrl: String
+  stack: [String]
 }
 
 input OrganizationCreateInput {

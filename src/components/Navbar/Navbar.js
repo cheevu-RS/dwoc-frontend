@@ -18,7 +18,7 @@ import { Link, animateScroll as scroll } from 'react-scroll';
 // DWOC logo import inside navbar
 import dwocLogo from '../../assets/images/dwoc_logo_white.png';
 
-const minWidth = 550;
+const minWidth = 730;
 
 const useStyles = makeStyles(theme => ({
   title: { ...theme.typography.h6 },
@@ -50,9 +50,11 @@ export default function Navbar(props) {
       setWidth(innerWidth);
   };
 
-  let defaultBtns = [
-    { name: 'Timeline', to: 'timeline' },
-    { name: 'Organizations', to: 'orgs' }
+  let defaultBtns = [];
+  
+  if(props.showBtns) defaultBtns = [
+    { name: "Timeline", to: "timeline" },
+    { name: "Organizations", to: "orgs" },
   ];
 
   let [tabs, setTabs] = useState({
@@ -85,7 +87,6 @@ export default function Navbar(props) {
     console.log(tabName);
   };
 
-  // TODO make it look good on mobile devices
   let deltaLogo = (
     <div
       style={{
@@ -93,7 +94,7 @@ export default function Navbar(props) {
         margin: 0
       }}
     >
-      <a href="https://delta.nitt.edu/">
+      <a href="/">
         <img alt="delta-logo" width="222px" src={dwocLogo} />
       </a>
     </div>
@@ -152,7 +153,8 @@ export default function Navbar(props) {
       <AppBar position="fixed" className={styles.navbar}>
         {navbarElems}
       </AppBar>
-      <div style={{ height: '50px' }}></div>
+      {/* <div style={{ height: "50px" }}></div> */}
+
     </div>
   );
 }

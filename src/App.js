@@ -1,5 +1,5 @@
 /* @flow */
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 /*
     BrowserRouter fix for Apache server for proper routing instead of HashRouting:
@@ -10,29 +10,29 @@ import React, { useState } from 'react';
     RewriteRule ^ index.html [QSA,L]
  */
 // React-router
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // Style imports
-import './App.css';
-import { makeStyles } from '@material-ui/core/styles';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { header2, header3, orgs } from './DwocStyles';
+import "./App.css";
+import { makeStyles } from "@material-ui/core/styles";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { header2, header3, orgs } from "./DwocStyles";
 
 // Subcomponent imports
-import LandingPage from './views/LandingPage/LandingPage';
-import Navbar from './components/Navbar/Navbar';
-import ProposalForm from './components/ProposalForm/ProposalForm';
-import ProjCards from './components/ProjCards/ProjCards';
-import SnowStorm from 'react-snowstorm';
+import LandingPage from "./views/LandingPage/LandingPage";
+import Navbar from "./components/Navbar/Navbar";
+import ProposalForm from "./components/ProposalForm/ProposalForm";
+import ProjCards from "./components/ProjCards/ProjCards";
+import SnowStorm from "react-snowstorm";
 
 //Spinner
-import RingLoader from 'react-spinners/RingLoader';
-import { css } from '@emotion/core';
+import RingLoader from "react-spinners/RingLoader";
+import { css } from "@emotion/core";
 
 // Relay with Env containing session and id in the headers
-import { QueryRenderer } from 'react-relay';
-import graphql from 'babel-plugin-relay/macro';
-const environment = require('./Environment').environment1;
+import { QueryRenderer } from "react-relay";
+import graphql from "babel-plugin-relay/macro";
+const environment = require("./Environment").environment1;
 
 // Material UI
 const override = css`
@@ -43,7 +43,7 @@ const override = css`
 
 const useStyles = makeStyles(theme => ({
   gridContainer: {
-    padding: '4px'
+    padding: "4px"
   },
   header2: header2,
   header3: header3,
@@ -51,7 +51,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App() {
-
   let [isLogged, toggleIsLogged] = useState(true);
   let role;
   const classes = useStyles();
@@ -79,7 +78,7 @@ function App() {
             if (!props) {
               return (
                 <div>
-                  <RingLoader css={override} color={'#5CDB95'} />
+                  <RingLoader css={override} color={"#5CDB95"} />
                 </div>
               );
             }
@@ -89,8 +88,8 @@ function App() {
             return <div></div>;
           }}
         />
-        <SnowStorm />
-        <Router>
+        <SnowStorm excludeMobile={false} snowStick={false} flakesMax="128" vMaxY="1" vMaxX="1" usePositionFixed={true} useTwinkleEffect={true}/>
+        <Router basename="/dwocf">
           <Route
             path="/"
             render={props => <Navbar isLogged={isLogged} role={role} />}
@@ -99,21 +98,30 @@ function App() {
             exact
             path="/"
             render={props => (
+              <>
+              <Navbar isLogged={isLogged} role={role} showBtns={true} />
               <LandingPage role={role} {...props} isLogged={isLogged} />
+              </>
             )}
           ></Route>
           <Route
             exact
             path="/org/:id/:orgName"
             render={props => (
+              <>
+              <Navbar isLogged={isLogged} role={role} showBtns={false} />
               <ProjCards {...props} role={role} isLogged={isLogged} />
+              </>
             )}
           ></Route>
           <Route
             exact
             path="/org/:id/:orgName/apply"
             render={props => (
+              <>
+              <Navbar isLogged={isLogged} role={role} showBtns={false} />
               <ProposalForm {...props} role={role} isLogged={isLogged} />
+              </>
             )}
           ></Route>
         </Router>
