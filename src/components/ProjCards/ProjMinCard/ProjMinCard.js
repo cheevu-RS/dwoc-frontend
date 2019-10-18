@@ -107,12 +107,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function ProjMinCard(props) {
   const classes = useStyles();
-
   return (
     <Card className={classes.card}>
       <div className={classes.title}>{props.projName}</div>
 
-      <div className={classes.description}>{props.projDesc}</div>
+      <div className={classes.description}>{props.projMinDesc}</div>
       <div className={classes.stacks}>
         <span
           className={classes.stack}

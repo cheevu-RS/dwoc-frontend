@@ -1,21 +1,30 @@
-import React, { useEffect } from "react";
-import ProjCard from "./ProjMinCard/ProjMinCard";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { makeStyles } from "@material-ui/core/styles";
-import RingLoader from "react-spinners/RingLoader";
-import { QueryRenderer } from "react-relay";
-import graphql from "babel-plugin-relay/macro";
+import React, { useEffect } from 'react';
+import ProjCard from './ProjMinCard/ProjMinCard';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { makeStyles } from '@material-ui/core/styles';
+import RingLoader from 'react-spinners/RingLoader';
+import { QueryRenderer } from 'react-relay';
+import graphql from 'babel-plugin-relay/macro';
+import WebFont from 'webfontloader';
+import { css } from '@emotion/core';
+import { header1 } from '../../DwocStyles';
 
-import { css } from "@emotion/core";
+const environment = require('../../Environment').environment;
 
-const environment= require( "../../Environment").environment;
 const useStyles = makeStyles(theme => ({
   container: {
-    minWidth: "93%",
-    paddingLeft: "2%"
-  }
+    minWidth: '93%',
+    paddingLeft: '2%'
+  },
+  header1: header1
 }));
+
+WebFont.load({
+  google: {
+    families: [header1.fontFamily]
+  }
+});
 
 const override = css`
   display: block;
@@ -26,7 +35,7 @@ const override = css`
 export default function Projects(props) {
   const classes = useStyles();
   const orgName = props.match.params.orgName;
-  const defaultTools = ["C++", "Python"];
+  const defaultTools = ['C++', 'Python'];
   const isLogged = props.isLogged;
   const orgID = props.match.params.id;
 
@@ -44,6 +53,7 @@ export default function Projects(props) {
               id
               projName
               projSlug
+              projMinDesc
               projDesc
               githubUrl
               organization {
@@ -61,11 +71,15 @@ export default function Projects(props) {
           if (!props) {
             return (
               <div>
-                <h2 style={{ textAlign: "center" }}>
+                <br />
+                <h2
+                  //style={{ textAlign: 'center' }}
+                  className={classes.header1}
+                >
                   Projects under {orgName}
                 </h2>
-                <div style={{ paddingTop: "20%" }}>
-                  <RingLoader css={override} color={"#5CDB95"} />
+                <div style={{ paddingTop: '20%' }}>
+                  <RingLoader css={override} color={'#5CDB95'} />
                 </div>
               </div>
             );
@@ -75,7 +89,6 @@ export default function Projects(props) {
           let n = props.projects.length;
           const allProjects = props.projects;
           let structuredProjects = [];
-
           for (let i = 0; i < n; i += 4) {
             let row = [];
             for (let j = i; j < i + 4; j++) {
@@ -89,18 +102,32 @@ export default function Projects(props) {
 
           return (
             <div>
-              <h2 style={{ textAlign: "center" }}>Projects under {orgName}</h2>
+              <br />
+              <h2
+                //style={{ textAlign: 'center' }}
+                className={classes.header1}
+              >
+                Projects under {orgName}
+              </h2>
               {structuredProjects.map(proj => (
                 <Row key={num++}>
                   {proj.map(o =>
                     o.id ? (
                       <Col key={num++}>
-                        <ProjCard tools={defaultTools} projName={o.projName} orgName={orgName} projDesc={o.projDesc}   {...o} isLogged={isLogged} />
+                        <ProjCard
+                          tools={defaultTools}
+                          projName={o.projName}
+                          orgName={orgName}
+                          projDesc={o.projDesc}
+                          projMinDesc={o.projMinDesc}
+                          {...o}
+                          isLogged={isLogged}
+                        />
                       </Col>
                     ) : (
                       <Col key={num++}></Col>
                     )
-                  )}{" "}
+                  )}{' '}
                 </Row>
               ))}
             </div>
