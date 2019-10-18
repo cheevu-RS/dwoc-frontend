@@ -53,6 +53,7 @@ export default function Projects(props) {
               id
               projName
               projSlug
+              projMinDesc
               projDesc
               githubUrl
               organization {
@@ -88,7 +89,6 @@ export default function Projects(props) {
           let n = props.projects.length;
           const allProjects = props.projects;
           let structuredProjects = [];
-
           for (let i = 0; i < n; i += 4) {
             let row = [];
             for (let j = i; j < i + 4; j++) {
@@ -119,6 +119,7 @@ export default function Projects(props) {
                           projName={o.projName}
                           orgName={orgName}
                           projDesc={o.projDesc}
+                          projMinDesc={o.projMinDesc}
                           {...o}
                           isLogged={isLogged}
                         />

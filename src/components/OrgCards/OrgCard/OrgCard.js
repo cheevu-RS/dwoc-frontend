@@ -143,16 +143,17 @@ export default function OrgCard(props) {
             </div>
           );
         }
-        console.log(props.mentors);
-        let mentorsLen = props.mentors.length;
-        let mentors = '';
-        for (let i = 0; i < mentorsLen; i++) {
-          mentors += props.mentors[i].user.firstName;
-          // console.log(props.mentors[i].user.firstName);
-          if (i != mentorsLen - 1) {
-            mentors += ',';
-          }
-        }
+        console.log(`${JSON.stringify(props.mentors)} <= props.mentors`);
+
+        //let mentorsLen = props.mentors.length;
+        let mentors = props.mentors.map(m => m.user.firstName).join(', ');
+        // for (let i = 0; i < mentorsLen; i++) {
+        //   mentors += props.mentors[i].user.firstName;
+        //   // console.log(props.mentors[i].user.firstName);
+        //   if (i != mentorsLen - 1) {
+        //     mentors += ', ';
+        //   }
+        // }
         console.log(mentors);
         return <b>{mentors}</b>;
       }}
