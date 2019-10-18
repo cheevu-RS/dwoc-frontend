@@ -1,13 +1,12 @@
 /* @flow */
-
 import React from "react";
-import "./ProjMinCard.css";
+
+// import "./ProjMinCard.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import ProjMaxCard from "../ProjMaxCard/ProjMaxCard";
-
 
 import { Link } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
@@ -119,10 +118,17 @@ export default function ProjMinCard(props) {
   const classes = useStyles();
 
   return (
+    <Grid
+      item
+      xs={12}
+      sm={6}
+      md={3}
+      xl={3}
+    >
     <Card className={classes.card}>
       <div className={classes.title}>{props.projName}</div>
 
-      <div className={classes.description}>{props.projDesc}</div>
+      <div className={classes.description}>{props.projMinDesc}</div>
       <div className={classes.stacks}>
         <span
           className={classes.stack}
@@ -159,5 +165,6 @@ export default function ProjMinCard(props) {
         <ProjMaxCard btnText="Read more" orgName={props.orgName} projName={props.projName} projDesc={props.projDesc} taken={props.taken} isLogged={props.isLogged} {...props} />
       </CardActions>
     </Card>
+    </Grid>
   );
 }

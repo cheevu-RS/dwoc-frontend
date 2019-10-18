@@ -180,7 +180,6 @@ export default function OrgCard(props) {
       sm={6}
       md={4}
       xl={3}
-      //style={{ border: '1px solid white', backgroundColor: '#ffffff' }}
     >
       <Card className={classes.card}>
         <div className={classes.title}>{props.orgName}</div>

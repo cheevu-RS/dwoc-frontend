@@ -99,21 +99,30 @@ function App() {
             exact
             path="/"
             render={props => (
+              <>
+              <Navbar isLogged={isLogged} role={role} showBtns={true} />
               <LandingPage role={role} {...props} isLogged={isLogged} />
+              </>
             )}
           ></Route>
           <Route
             exact
             path="/org/:id/:orgName"
             render={props => (
+              <>
+              <Navbar isLogged={isLogged} role={role} showBtns={false} />
               <ProjCards {...props} role={role} isLogged={isLogged} />
+              </>
             )}
           ></Route>
           <Route
             exact
             path="/apply"
             render={props => (
+              <>
+              <Navbar isLogged={isLogged} role={role} showBtns={false} />
               <ProposalForm {...props} role={role} isLogged={isLogged} />
+              </>
             )}
           ></Route>
         </Router>

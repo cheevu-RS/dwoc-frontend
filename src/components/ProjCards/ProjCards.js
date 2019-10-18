@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import ProjCard from "./ProjMinCard/ProjMinCard";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Grid } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import RingLoader from "react-spinners/RingLoader";
 import { QueryRenderer } from "react-relay";
@@ -62,7 +61,7 @@ export default function Projects(props) {
             return (
               <div>
                 <h2 style={{ textAlign: "center" }}>
-                  Projects under {orgName}
+                  {orgName}
                 </h2>
                 <div style={{ paddingTop: "20%" }}>
                   <RingLoader css={override} color={"#5CDB95"} />
@@ -89,10 +88,10 @@ export default function Projects(props) {
 
           return (
             <div>
-              <h2 style={{ textAlign: "center" }}>Projects under {orgName}</h2>
+              <h2 style={{ textAlign: "center", marginTop: "10px" }}>{orgName}</h2>
               {structuredProjects.map(proj => (
-                <Row key={num++}>
-                  {proj.map(o =>
+                // <Row key={num++}>
+                  /* {proj.map(o =>
                     o.id ? (
                       <Col key={num++}>
                         <ProjCard tools={defaultTools} projName={o.projName} orgName={orgName} projDesc={o.projDesc}   {...o} isLogged={isLogged} />
@@ -100,9 +99,18 @@ export default function Projects(props) {
                     ) : (
                       <Col key={num++}></Col>
                     )
-                  )}{" "}
-                </Row>
+                  )}{" "} */
+                  <Grid key={num++} container className={classes.gridContainer} spacing={3}>
+                    {structuredProjects.map(proj => (
+                      proj.map(o => 
+                        o.id ? (<ProjCard key={num++} tools={defaultTools} key={num++} projName={o.projName} orgName={orgName} projDesc={o.projDesc}   {...o} isLogged={isLogged} />) : (<div key={num++}></div>)
+                      )
+                    ))}
+                  </Grid>
+                // </Row>
               ))}
+
+              
             </div>
           );
         }}

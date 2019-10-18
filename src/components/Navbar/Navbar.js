@@ -51,7 +51,9 @@ export default function Navbar(props) {
       setWidth(innerWidth);
   };
 
-  let defaultBtns = [
+  let defaultBtns = [];
+  
+  if(props.showBtns) defaultBtns = [
     { name: "Timeline", to: "timeline" },
     { name: "Organizations", to: "orgs" },
   ];
@@ -94,7 +96,7 @@ export default function Navbar(props) {
         margin: 0
       }}
     >
-      <a href="https://delta.nitt.edu/">
+      <a href="/">
         <img alt="delta-logo" width="222px" src={dwocLogo} />
       </a>
     </div>
