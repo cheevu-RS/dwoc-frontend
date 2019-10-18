@@ -25,14 +25,6 @@ const useStyles = makeStyles(theme => ({
   button: {
     marginLeft: `auto`,
     paddingTop: "11px",
-    display: 'flex',
-    // flexWrap: 'wrap',
-    justifyContent: 'space-between'
-  },
-
-  githubBtn: {
-    fontSize: `2.5em`,
-    marginLeft: 16
   },
   drawerHeader: {
     display: "flex",
@@ -163,7 +155,7 @@ export default function Navbar(props) {
       <AppBar position="fixed" className={styles.navbar}>
         {navbarElems}
       </AppBar>
-      <div style={{ height: "80px" }}></div>
+      <div style={{ height: "50px" }}></div>
     </div>
   );
 }
