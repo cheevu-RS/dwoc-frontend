@@ -10,29 +10,30 @@ import {
   Divider,
   ListItemText,
   makeStyles,
-  Button
+  Button,
+  ListItem
 } from "@material-ui/core/";
 
-const drawerWidth = 200;
+const drawerWidth = `100%`;
 
 const useStyles = makeStyles(theme => ({
   drawer: {
     flexShrink: 0,
-    color: "#05386B"
+    color: "#05386B",
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: "#5CDB95"
+    backgroundColor: "#5CDB95",
+    top: 75,
+    height: 200,
+    backgroundImage: `linear-gradient(to right, #000f29, #5CDB95)`
   }
 }));
 
 export default function Sidebar({ open, handleToggle, tabs, drawerWidth, defaultBtns }) {
   const classes = useStyles();
 
-  // console.log(defaultBtns)
-
   const handleClick = () => {
-    // console.log("clicked")
     handleToggle();
   }
 
@@ -44,21 +45,25 @@ export default function Sidebar({ open, handleToggle, tabs, drawerWidth, default
       anchor="left"
       open={open}
       classes={{
-        paper: classes.drawerPaper
+        paper: classes.drawerPaper,
       }}
     >
       <Divider />
       <List>
         {defaultBtns.map((defaultBtn, index) => (
-          <Button 
-            key={index} 
-          >
-            <Link onClick={handleClick} smooth={true} to={defaultBtn.to}>
-              <ListItemText primary={defaultBtn.name} />
-            </Link>
-          </Button>
+          <ListItem>
+            <Button 
+              key={index} 
+            >
+              <Link onClick={handleClick} smooth={true} to={defaultBtn.to}>
+                <ListItemText style={{color: 'white'}} primary={defaultBtn.name} />
+              </Link>
+            </Button>
+          </ListItem>
         ))}
-        {(<Button onClick={handleToggle} href={tabs.link}><ListItemText primary={tabs.name}></ListItemText></Button>)}
+        <ListItem>
+          {(<Button onClick={handleToggle} href={tabs.link}><ListItemText style={{color: 'white'}} primary={tabs.name} /></Button>)}
+        </ListItem>
       </List>
       <Divider />
     </Drawer>

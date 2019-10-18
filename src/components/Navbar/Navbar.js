@@ -24,7 +24,6 @@ const useStyles = makeStyles(theme => ({
   title: { ...theme.typography.h6 },
   button: {
     marginLeft: `auto`
-    //paddingTop: "11px",
   },
   drawerHeader: {
     display: 'flex',
@@ -82,7 +81,7 @@ export default function Navbar(props) {
 
   const handleToggle = evt => {
     setOpen(prevState => !prevState);
-    open ? setDrawerWidth(0) : setDrawerWidth(200);
+    // open ? setDrawerWidth(0) : setDrawerWidth(200);
   };
   const handleClick = (evt, tabName) => {
     console.log(tabName);
@@ -108,7 +107,7 @@ export default function Navbar(props) {
           <div
             style={{
               display: 'flex',
-              justifyContent: 'space-between',
+              // justifyContent: 'space-between',
               width: '100%'
             }}
           >

@@ -44,7 +44,25 @@ const useStyles = makeStyles(theme => ({
   header2: header2,
   paragraph: paragraph,
   section: section,
-  about: about
+  about: about,
+  logo: {
+    position: 'relative',
+    margin: 'auto',
+    display: 'block',
+    transform: 'translateY(-50%, -50%)',
+    width: '50%',
+    top: `${0.5 * screenHeight -
+      0.5 * screenWidth * 0.296875 +
+      100}px`,
+    [theme.breakpoints.down('sm')]: {
+      width: '65%',
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: '80%',
+      top: `${0.5 * screenHeight -
+        0.5 * screenWidth * 0.296875}px`,
+    }
+  }
 }));
 
 function LandingPage() {
@@ -58,16 +76,7 @@ function LandingPage() {
               alt="dwocLogo"
               className={classes.landingImg}
               src={require('../../assets/images/dwocfull-transparentW.png')}
-              style={{
-                width: '50%',
-                position: 'absolute',
-                left: `25%`,
-                top: `${0.5 * screenHeight -
-                  0.5 * screenWidth * 0.296875 +
-                  100}px`,
-                margin: 'auto',
-                transform: 'translateY(-50%, -50%)'
-              }}
+              className={classes.logo}
             />
           </div>
         </Pulse>
@@ -100,7 +109,7 @@ function LandingPage() {
           <OrgCards />
         </Pulse>
       </Reveal>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 }

@@ -116,7 +116,7 @@ function App() {
           ></Route>
           <Route
             exact
-            path="/apply"
+            path="/org/:id/:orgName/apply"
             render={props => (
               <>
               <Navbar isLogged={isLogged} role={role} showBtns={false} />

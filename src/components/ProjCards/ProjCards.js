@@ -51,6 +51,7 @@ export default function Projects(props) {
   const orgID = props.match.params.id;
   //const role= props.match.params.role;
   const role="mentor";
+  console.log(props)
   const orgSlug=props.location.state.orgSlug;
   console.log("SLUG:"+orgSlug);
 
@@ -149,7 +150,7 @@ export default function Projects(props) {
                   />
                 ))}
               </Grid>
-            </>
+            </div>
 
           );
 
