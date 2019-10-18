@@ -12,8 +12,8 @@
   }
 });
 */
-let landingBackImg = require('./assets/images/rsz_landing.png');
-let aboutImg = require('./assets/images/rsz_landing.png')
+// let landingBackImg = require('./assets/images/rsz_landing.png');
+// let aboutImg = require('./assets/images/rsz_landing.png')
 
 const header1 = {
   color: 'pink',
@@ -47,7 +47,8 @@ const { innerWidth: screenWidth, innerHeight: screenHeight } = window;
 
 const section = {
   minHeight: screenHeight, // i.e. 80% of screen height
-  backgroundImage: `url(${landingBackImg})`,
+  // backgroundImage: `url(${landingBackImg})`,
+  // backgroundColor: "black",
   backgroundSize: 'cover',
   backgroundAttachment: 'fixed'
 };
@@ -62,13 +63,14 @@ const about = {
   display: 'block',
   textAlign: 'justify',
   textJustify: 'inter-character',
-  backgroundImage: `url(${aboutImg})`,
+  // backgroundImage: `url(${aboutImg})`,
   backgroundSize: 'cover',  
   backgroundAttachment: 'fixed'
 };
 
 const timeline = {
-  backgroundImage: `url(${aboutImg})`,
+  // backgroundImage: `url(${aboutImg})`,
+  // backgroundColor: 'gray',
   backgroundSize: 'cover',  
   backgroundAttachment: 'fixed'
 }
@@ -85,7 +87,7 @@ const orgs = {
   width: '100%',
   display: 'block',
   margin: 'auto',
-  backgroundImage: `url(${aboutImg})`,
+  // backgroundImage: `url(${aboutImg})`,
   backgroundSize: 'cover',  
   backgroundAttachment: 'fixed'
 };
@@ -112,7 +114,7 @@ const OrgProjCard = {
 };
 const footer = {
   width: '100%',
-  backgroundColor: "black"
+  // backgroundColor: "black"
 }
 
 module.exports = {

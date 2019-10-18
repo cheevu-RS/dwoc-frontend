@@ -14,7 +14,7 @@ export default function Footer(){
     return (
         <div className={classes.footer}>
             <div style={{display: 'block', margin: 'auto', textAlign: 'center', fontSize: '20px'}}>
-            Made with <span style={{color: 'red'}}>💙</span> by <a href="https://delta.nitt.edu" style={{ color: '#5CDB95' }}>
+            Made with <span style={{color: '#5b92e5'}}>💙</span> by <a href="https://delta.nitt.edu" style={{ color: '#5CDB95' }}>
                 Delta Force
               </a>
             </div>

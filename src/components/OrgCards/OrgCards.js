@@ -54,6 +54,7 @@ export default function OrgCards() {
             id
             orgDesc
             githubUrl
+            stack 
           }
         }
       `}
@@ -70,6 +71,7 @@ export default function OrgCards() {
             </div>
           );
         }
+        console.log(props.stack)
         return (
           <div className={classes.orgs} id="orgs">
             <h2 className={classes.header2}>Organizations</h2>

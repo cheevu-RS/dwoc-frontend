@@ -157,7 +157,7 @@ export default function Navbar(props) {
       <AppBar position="fixed" className={styles.navbar}>
         {navbarElems}
       </AppBar>
-      <div style={{ height: "50px" }}></div>
+      {/* <div style={{ height: "50px" }}></div> */}
     </div>
   );
 }

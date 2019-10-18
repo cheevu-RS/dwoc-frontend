@@ -129,34 +129,34 @@ export default function ProjMinCard(props) {
       <div className={classes.title}>{props.projName}</div>
 
       <div className={classes.description}>{props.projMinDesc}</div>
-      <div className={classes.stacks}>
+      <div className={classes.stacks} style={{display: 'flex', flexWrap: 'wrap'}}>
         <span
           className={classes.stack}
-          style={{ backgroundColor: colours.stack.TypeScript }}
+          style={{ backgroundColor: colours.stack.TypeScript, marginTop: '5px' }}
         >
           TypeScript
           </span>
         <span
           className={classes.stack}
-          style={{ backgroundColor: colours.stack.JavaScript }}
+          style={{ backgroundColor: colours.stack.JavaScript, marginTop: '5px' }}
         >
           JavaScript
           </span>
         <span
           className={classes.stack}
-          style={{ backgroundColor: colours.stack.python }}
+          style={{ backgroundColor: colours.stack.python, marginTop: '5px' }}
         >
           Python
           </span>
         <span
           className={classes.stack}
-          style={{ backgroundColor: colours.stack.React }}
+          style={{ backgroundColor: colours.stack.React, marginTop: '5px' }}
         >
           React
           </span>
         <span
           className={classes.stack}
-          style={{ backgroundColor: colours.stack.cpp }}
+          style={{ backgroundColor: colours.stack.cpp, marginTop: '5px' }}
         >
           C++
           </span>

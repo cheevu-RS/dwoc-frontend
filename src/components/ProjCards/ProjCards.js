@@ -5,7 +5,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import RingLoader from "react-spinners/RingLoader";
 import { QueryRenderer } from "react-relay";
 import graphql from "babel-plugin-relay/macro";
-
 import { css } from "@emotion/core";
 
 const environment= require( "../../Environment").environment;
@@ -88,29 +87,16 @@ export default function Projects(props) {
 
           return (
             <div>
-              <h2 style={{ textAlign: "center", marginTop: "10px" }}>{orgName}</h2>
-              {structuredProjects.map(proj => (
-                // <Row key={num++}>
-                  /* {proj.map(o =>
-                    o.id ? (
-                      <Col key={num++}>
-                        <ProjCard tools={defaultTools} projName={o.projName} orgName={orgName} projDesc={o.projDesc}   {...o} isLogged={isLogged} />
-                      </Col>
-                    ) : (
-                      <Col key={num++}></Col>
-                    )
-                  )}{" "} */
-                  <Grid key={num++} container className={classes.gridContainer} spacing={3}>
-                    {structuredProjects.map(proj => (
-                      proj.map(o => 
-                        o.id ? (<ProjCard key={num++} tools={defaultTools} key={num++} projName={o.projName} orgName={orgName} projDesc={o.projDesc}   {...o} isLogged={isLogged} />) : (<div key={num++}></div>)
-                      )
-                    ))}
-                  </Grid>
-                // </Row>
-              ))}
-
-              
+              <br />
+              <br />
+              <h2 style={{ textAlign: "center", marginTop: "5px" }}>{orgName}</h2>
+              <Grid key={num++} container className={classes.gridContainer} spacing={3}>
+                 {structuredProjects.map(proj => (
+                    proj.map(o => 
+                    o.id ? (<ProjCard key={num++} tools={defaultTools} key={num++} projName={o.projName} orgName={orgName} projDesc={o.projDesc}   {...o} isLogged={isLogged} />) : (<div key={num++}></div>)
+                  )
+                  ))}
+              </Grid>
             </div>
           );
         }}
