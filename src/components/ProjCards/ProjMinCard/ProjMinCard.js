@@ -37,6 +37,7 @@ const useStyles = makeStyles(theme => ({
     color: '#000000',
     ...OrgProjCard
   },
+
   //card: OrgProjCard,
   title: {
     textAlign: 'left',
@@ -101,6 +102,7 @@ const useStyles = makeStyles(theme => ({
 export default function ProjMinCard(props) {
   const classes = useStyles();
   return (
+
     <Grid
       item
       xs={12}
@@ -156,6 +158,7 @@ export default function ProjMinCard(props) {
         />
       </CardActions>
     </Card>
+
     </Grid>
   );
 }

@@ -9,7 +9,7 @@ import { css } from '@emotion/core';
 
 // Style imports
 import WebFont from 'webfontloader';
-import { header2, header3, orgs } from './../../DwocStyles';
+import { header2, header3, orgs, gridContainer } from './../../DwocStyles';
 
 // Material UI
 import { Grid } from '@material-ui/core';
@@ -27,9 +27,7 @@ WebFont.load({
 });
 
 const useStyles = makeStyles(theme => ({
-  gridContainer: {
-    padding: '4px'
-  },
+  gridContainer: gridContainer,
   header2: header2,
   header3: header3,
   orgs: orgs
@@ -80,7 +78,7 @@ export default function OrgCards() {
                 <OrgCard {...org} key={org.id} />
               ))}
             </Grid>
-            <div style={{height: "50px"}}></div>
+            <div style={{ height: '50px' }}></div>
           </div>
         );
       }}

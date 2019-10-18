@@ -109,9 +109,9 @@ const useStyles = makeStyles(theme => ({
     color: '#424242'
   },
   BtnViewProjects: {
-    flex: '0 1 auto',
-    backgroundColor: '#F6F6F6',
-    width: '100%'
+    flex: '0 1 auto'
+    //backgroundColor: '#F6F6F6'
+    //  width: '100%'
   }
 }));
 
@@ -170,6 +170,7 @@ export default function OrgCard(props) {
   console.log(props)
 
   return (
+
     <Grid
       item
       xs={12}
@@ -178,6 +179,7 @@ export default function OrgCard(props) {
       xl={3}
     >
       <Card className={classes.card} >
+
         <div className={classes.title}>{props.orgName}</div>
         {/* <p>{props.id}</p> */}
 
@@ -206,19 +208,16 @@ export default function OrgCard(props) {
         <div className={classes.CardRowTwo}>
           <div className={classes.CardRowTwoElements}>
             <div className={classes.CardRowTwoContent}>12</div>
-
             <span className={classes.CardRowTwoDetail}>Projects</span>
           </div>
-          <div className={classes.CardRowTwoElements}>
+          {/* <div className={classes.CardRowTwoElements}>
             <div className={classes.CardRowTwoContent}>32</div>
-
             <span className={classes.CardRowTwoDetail}> Coders</span>
           </div>{' '}
           <div className={classes.CardRowTwoElements}>
             <div className={classes.CardRowTwoContent}>2</div>
-
             <span className={classes.CardRowTwoDetail}>Name</span>
-          </div>
+          </div> */}
         </div>
 
         <Link
