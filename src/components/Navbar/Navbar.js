@@ -16,10 +16,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from "react-scroll";
 
 // DWOC logo import inside navbar
-import nightDwoc from "../../assets/images/dwocfull-transparentW.png"
-import dayDwoc from '../../assets/images/full-transparent.png'
-import nightDelta from '../../assets/images/deltaLogoGreen.png'
-import dayDelta from '../../assets/images/deltaLogoBlack.png'
+import dwoc from '../../assets/images/logo-only-transparent.png';
 
 const minWidth = 730;
 
@@ -100,66 +97,51 @@ export default function Navbar(props) {
   };
 
   // TODO make it look good on mobile devices
-  let dayDeltaLogo = (
-    <div
-      style={{
-        padding: "5px 15px",
-        margin: 0
-      }}
-    >
-      <a href="/">
-        <img alt="dayDelta" src={dayDelta} width="45px"/>
+
+  let dwocLogo = (
+    <div>
+      <a href='/'>
+        <img src={dwoc} width="50px" alt='dwoc'/>
       </a>
     </div>
-  );
+  )
 
-  let nightDeltaLogo = (
-    <div
-      style={{
-        padding: '5px 15px',
-        margin: 0
-      }}
-    >
-      <a href="/">
-        <img alt="nightDelta" src={nightDelta} width="45px"/>
-      </a>
-    </div>
-  );
-
-  let nightNavbar = (
+  let navbar = (
     <div>
       {width < minWidth && (
-        <Toolbar style={{ color: '#5CDB95' }}>
+        <Toolbar>
           <div
             style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              width: '100%'
+              display: "flex",
+              justifyContent: "space-between",
+              width: "100%",
+              color: '#5CDB95'
             }}
           >
             <div className={styles.drawerHeader}>
-              <Sidebar
-                open={open}
+              <Sidebar 
+                open={open} 
                 drawerWidth={drawerWidth}
                 defaultBtns={defaultBtns}
                 tabs={tabs}
                 handleToggle={handleToggle}
-              />
+               />
               <MenuIcon onClick={handleToggle} />
             </div>
-            {nightDeltaLogo}
+            {dwocLogo}
           </div>
         </Toolbar>
       )}
 
       {width > minWidth && (
         <Toolbar>
-          {nightDeltaLogo}
+          {dwocLogo}
           <div className={styles.nightButton} style={{marginBottom: '6px'}}>
             {defaultBtns.map((tab, index) => (
               <Button className={styles.nightButton} key={index}>
                 <Link smooth={true} to={tab.to} style={{color: '#fff'}}>
-                  <ListItemText primary={tab.name}/>
+                <ListItemText primary={tab.name}/>
+                  
                 </Link>
               </Button>
             ))}
@@ -174,58 +156,9 @@ export default function Navbar(props) {
     </div>
   );
 
-  let dayNavbar = (
-    <div>
-      {width < minWidth && (
-        <Toolbar style={{ color: "black" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "100%",
-              color: 'black'
-            }}
-          >
-            <div className={styles.drawerHeader}>
-              <Sidebar 
-                open={open} 
-                drawerWidth={drawerWidth}
-                defaultBtns={defaultBtns}
-                tabs={tabs}
-                handleToggle={handleToggle}
-               />
-              <MenuIcon onClick={handleToggle} />
-            </div>
-            {dayDeltaLogo}
-          </div>
-        </Toolbar>
-      )}
-
-      {width > minWidth && (
-        <Toolbar>
-          {dayDeltaLogo}
-          <div className={styles.dayButton} style={{marginBottom: '6px'}}>
-            {defaultBtns.map((tab, index) => (
-              <Button className={styles.dayButton} key={index}>
-                <Link smooth={true} to={tab.to}>
-                  <ListItemText primary={tab.name}/>
-                </Link>
-              </Button>
-            ))}
-            {(
-              <Button className={styles.dayButton} href={tabs.link}>
-                <ListItemText primary={tabs.name}/>
-              </Button>
-            )}
-          </div>
-        </Toolbar>
-      )}
-    </div>
-  );
-
   return (
     <div>
-        <AppBar position="fixed" className={styles.nightNavbar}><div>{nightNavbar}</div></AppBar>
+        <AppBar position="fixed" className={styles.nightNavbar}><div>{navbar}</div></AppBar>
     </div>
   );
 }

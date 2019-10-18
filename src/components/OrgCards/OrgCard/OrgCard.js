@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Grid, Card } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
 
 // React relay
 import { QueryRenderer } from 'react-relay';
@@ -119,8 +118,6 @@ const useStyles = makeStyles(theme => ({
   },
   BtnViewProjects: {
     flex: '0 1 auto'
-    //backgroundColor: '#F6F6F6'
-    //  width: '100%'
   }
 }));
 
@@ -133,7 +130,6 @@ export default function OrgCard(props) {
 
   const orgPath = '/org/' + props.id + '/' + props.orgName;
   const orgID = props.id;
-  console.log(props.stack);
 
   let mentorFetch = (
     <QueryRenderer
@@ -188,8 +184,8 @@ export default function OrgCard(props) {
         </div>
         <div className={classes.CardRowTwo}>
           <div className={classes.CardRowTwoElements}>
-            <div className={classes.CardRowTwoContent}>12</div>
-            <span className={classes.CardRowTwoDetail}>Projects</span>
+            {/* <div className={classes.CardRowTwoContent}>12</div> */}
+            <b className={classes.CardRowTwoDetail} style={{paddingTop: '8px'}}>Projects: Coming Soon!</b>
           </div>
         </div>
         <Link
@@ -197,13 +193,12 @@ export default function OrgCard(props) {
             pathname: orgPath,
             state: {
               orgSlug: props.orgSlug,
-              stack: props.stack,
               mentors: mentorsList
             }
           }}
           style={{ textAlign: 'center', textDecoration: 'none' }}
         >
-          <Button className={classes.BtnViewProjects}>VIEW PROJECTS</Button>
+          {/* <Button className={classes.BtnViewProjects}>VIEW PROJECTS</Button> */}
         </Link>
       </Card>
     </Grid>

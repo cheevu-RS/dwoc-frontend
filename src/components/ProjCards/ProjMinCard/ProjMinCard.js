@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { Grid } from '@material-ui/core';
 
@@ -16,7 +15,7 @@ import { Grid } from '@material-ui/core';
 import ProjMaxCard from '../ProjMaxCard/ProjMaxCard';
 
 // Style imports
-import { OrgProjCard, colours } from '../../../DwocStyles';
+import { OrgProjCard } from '../../../DwocStyles';
 import WebFont from 'webfontloader';
 
 WebFont.load({
@@ -34,7 +33,6 @@ WebFont.load({
 
 const useStyles = makeStyles(theme => ({
   card: {
-    //    marginTop: '30px',
     height: '100%',
     opacity: 100,
     position: 'relative',
@@ -44,7 +42,6 @@ const useStyles = makeStyles(theme => ({
     color: '#000000',
     ...OrgProjCard
   },
-
   title: {
     textAlign: 'left',
     fontSize: 26,

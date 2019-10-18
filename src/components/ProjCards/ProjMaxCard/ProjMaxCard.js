@@ -7,9 +7,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { makeStyles } from '@material-ui/core/';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+import {makeStyles} from '@material-ui/core/'
+import {useHistory} from 'react-router-dom'
 
 const styles = makeStyles(theme => ({
   readMore: {
@@ -22,8 +22,6 @@ const styles = makeStyles(theme => ({
       left: 0,
       width: 0,
       height: `100%`
-      // transition: `0.4s`,
-      //background: 'black'
     },
     '&:before': {
       borderRadius: `10px 0 0 10px`
