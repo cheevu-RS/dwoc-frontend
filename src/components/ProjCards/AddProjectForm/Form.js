@@ -8,42 +8,41 @@ import Button from '@material-ui/core/Button';
 import { commitMutation } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
 
-const environment= require( "../../../Environment.js").environment1;
+const environment = require('../../../Environment.js').environment1;
 
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
+    padding: 4
+  },
+  button: {
+    margin: theme.spacing(1)
   },
   textField: {
     marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
+    marginRight: theme.spacing(1)
   },
   dense: {
-    marginTop: 19,
+    marginTop: 19
   },
   menu: {
-    width: 200,
-  },
+    width: 200
+  }
 }));
-
 
 //form data
 
-
 //-error--
 
-
-
 export default function TextFields(props) {
-  console.log("OrgName:"+props.orgName);
+  console.log('OrgName:' + props.orgName);
   const classes = useStyles();
   const [values, setValues] = React.useState({
     name: '',
     project: '',
     desc: '',
-    url: '',
+    url: ''
   });
 
   const handleChange = name => event => {
@@ -52,90 +51,139 @@ export default function TextFields(props) {
   };
   const handleSubmit = event => {
     console.log(values.name + values.project + values.desc + values.url);
-    formAddProject(environment, values.name, values.project, values.desc, values.url);
+    formAddProject(
+      environment,
+      values.name,
+      values.project,
+      values.desc,
+      values.minDesc,
+      values.url
+    );
     //window.location.reload();
-   // (props.onClose)();;
+    // (props.onClose)();;
   };
   //form data
-  function formAddProject(environment, f_projname, f_slug, f_desc, f_url) {
+  function formAddProject(
+    environment,
+    f_projname,
+    f_slug,
+    f_desc,
+    f_minDesc,
+    f_url
+  ) {
     const mutation = graphql`
-    mutation FormMutation($input: ProjectCreateInput!) {
-      createProject(data: $input) {
-        organization {
-          orgSlug
+      mutation FormMutation($input: ProjectCreateInput!) {
+        createProject(data: $input) {
+          organization {
+            orgSlug
+          }
+          projName
         }
-        projName
       }
-    }
-  `;
-  
+    `;
+
     const variables = {
       input: {
         projName: f_projname,
         projSlug: f_slug,
         projDesc: f_desc,
+        projMinDesc: f_minDesc,
         githubUrl: f_url,
         organization: {
           connect: {
-            orgSlug: props.orgName,
+            orgSlug: props.orgName
           }
         }
-      },
+      }
     };
-  
-    commitMutation(
-      environment,
-      {
-        mutation,
-        variables,
-        onCompleted: (response, errors) => {
-          console.log('Response received from server.')
-          //props.onClose();
-          window.location.reload();
-        },
-        onError: err => {
-          console.error(err)
-          alert("Error!");
-        },
+
+    commitMutation(environment, {
+      mutation,
+      variables,
+      onCompleted: (response, errors) => {
+        console.log('Response received from server.');
+        //props.onClose();
+        window.location.reload();
       },
-    );
+      onError: err => {
+        console.error(err);
+        alert('Error!');
+      }
+    });
     //alert("Success!");
   }
 
   return (
     <form className={classes.container} autoComplete="off">
       <TextField
-        id="standard-name" label="Project Name"
-        className={classes.textField} value={values.name}
-        onChange={handleChange('name')} margin="normal"
+        id="standard-name"
+        label="Project Name"
+        className={classes.textField}
+        value={values.name}
+        required
+        onChange={handleChange('name')}
+        margin="normal"
         fullWidth
       />
       <br />
       <TextField
-        id="standard-project" label="Project Slug"
-        className={classes.textField} value={values.project}
-        onChange={handleChange('project')} margin="normal"
+        id="standard-project"
+        label="Project Slug"
+        className={classes.textField}
+        value={values.project}
+        required
+        onChange={handleChange('project')}
+        margin="normal"
         fullWidth
       />
       <br />
       <TextField
-        id="standard-desc" label="Project Description"
-        className={classes.textField} value={values.desc}
-        onChange={handleChange('desc')} margin="normal"
+        id="standard-desc"
+        label="Project Description"
+        className={classes.textField}
+        value={values.desc}
+        required
+        onChange={handleChange('desc')}
+        margin="normal"
         fullWidth
       />
       <br />
       <TextField
-        id="standard-url" label="Github Url"
-        className={classes.textField} value={values.url}
-        onChange={handleChange('url')} margin="normal"
+        id="standard-min-desc"
+        label="Short Description"
+        className={classes.textField}
+        value={values.minDesc}
+        required
+        onChange={handleChange('minDesc')}
+        margin="normal"
         fullWidth
       />
       <br />
-      <Button color="primary" className={classes.button} onClick={handleSubmit}>
+      <TextField
+        id="standard-url"
+        label="Github Url"
+        className={classes.textField}
+        value={values.url}
+        required
+        onChange={handleChange('url')}
+        margin="normal"
+        fullWidth
+      />
+      <br />
+      <Button
+        color="primary"
+        variant="outlined"
+        className={classes.button}
+        onClick={handleSubmit}
+      >
         Submit
       </Button>
-      <Button color="secondary" className={classes.button} onClick={props.onClose}>
+      <Button
+        color="secondary"
+        className={classes.button}
+        onClick={props.onClose}
+        variant="outlined"
+      >
         CLose
       </Button>
     </form>

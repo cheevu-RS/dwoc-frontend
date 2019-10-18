@@ -15,7 +15,11 @@
 
 const gridContainer = {
   padding: 4,
+<<<<<<< HEAD
   paddingRight: '0px'
+=======
+  marginTop: 5
+>>>>>>> projCards page layout
 };
 const header1 = {
   color: '#ffffff',
@@ -133,6 +137,12 @@ const OrgProjCard = {
     padding: '5px 15px 0px 15px'
   }
 };
+<<<<<<< HEAD
+=======
+const footer = {
+  width: '100%'
+};
+>>>>>>> projCards page layout
 
 module.exports = {
   header1,

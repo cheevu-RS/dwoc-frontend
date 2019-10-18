@@ -38,7 +38,7 @@ const override = css`
 
 const useStyles = makeStyles(theme => ({
   card: {
-    marginTop: '30px',
+    //marginTop: '30px',
     height: '100%',
     opacity: 100,
     position: 'relative',
@@ -252,7 +252,10 @@ export default function OrgCard(props) {
         </div>
 
         <Link
-          to={{ pathname: orgPath, state: { orgSlug: props.orgSlug} }}
+          to={{
+            pathname: orgPath,
+            state: { orgSlug: props.orgSlug, stack: props.stack }
+          }}
           style={{ textAlign: 'center', textDecoration: 'none' }}
         >
           <Button className={classes.BtnViewProjects}>VIEW PROJECTS</Button>

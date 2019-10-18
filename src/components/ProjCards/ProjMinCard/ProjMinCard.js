@@ -1,9 +1,18 @@
 /* @flow */
+<<<<<<< HEAD
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import ProjMaxCard from "../ProjMaxCard/ProjMaxCard";
+=======
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import Typography from '@material-ui/core/Typography';
+import ProjMaxCard from '../ProjMaxCard/ProjMaxCard';
+>>>>>>> projCards page layout
 import { Link } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 
@@ -25,7 +34,7 @@ WebFont.load({
 
 const useStyles = makeStyles(theme => ({
   card: {
-    marginTop: '30px',
+    //    marginTop: '30px',
     height: '100%',
     opacity: 100,
     position: 'relative',
@@ -99,34 +108,14 @@ const useStyles = makeStyles(theme => ({
 export default function ProjMinCard(props) {
   const classes = useStyles();
   return (
+    <Grid item xs={12} sm={6} md={3} xl={3}>
+      <Card className={classes.card}>
+        <div className={classes.title}>{props.projName}</div>
 
-    <Grid
-      item
-      xs={12}
-      sm={6}
-      md={3}
-      xl={3}
-    >
-    <Card className={classes.card}>
-      <div className={classes.title}>{props.projName}</div>
-
-      <div className={classes.description}>{props.projMinDesc}</div>
-      <div className={classes.stacks} style={{display: 'flex', flexWrap: 'wrap'}}>
-        <span
-          className={classes.stack}
-          style={{ backgroundColor: colours.stack.TypeScript, marginTop: '5px' }}
-        >
-          TypeScript
-        </span>
-        <span
-          className={classes.stack}
-          style={{ backgroundColor: colours.stack.JavaScript, marginTop: '5px' }}
-        >
-          JavaScript
-        </span>
-        <span
-          className={classes.stack}
-          style={{ backgroundColor: colours.stack.python, marginTop: '5px' }}
+        <div className={classes.description}>{props.projMinDesc}</div>
+        <div
+          className={classes.stacks}
+          style={{ display: 'flex', flexWrap: 'wrap' }}
         >
           Python
         </span>
