@@ -111,7 +111,7 @@ function App() {
           ></Route>
           <Route
             exact
-            path="/org/:id/:orgName/proposal"
+            path="/org/:id/:orgName/apply"
             render={props => (
               <ProposalForm {...props} role={role} isLogged={isLogged} />
             )}
