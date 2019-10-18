@@ -15,7 +15,7 @@
 
 const gridContainer = {
   padding: 4,
-  paddingRight: '30px'
+  paddingRight: '0px'
 };
 const header1 = {
   color: '#ffffff',
