@@ -77,12 +77,7 @@ export default function Projects(props) {
             return (
               <div>
                 <br />
-                <h2
-                  //style={{ textAlign: 'center' }}
-                  className={classes.header1}
-                >
-                  Projects under {orgName}
-                </h2>
+                <h2 className={classes.header1}>Projects under {orgName}</h2>
                 <div style={{ paddingTop: '20%' }}>
                   <RingLoader css={override} color={'#5CDB95'} />
                 </div>
@@ -97,20 +92,24 @@ export default function Projects(props) {
           );
 
           return (
-            <Grid container className={classes.gridContainer} spacing={3}>
-              {props.projects.map(project => (
-                <ProjCard
-                  tools={defaultTools}
-                  projName={project.projName}
-                  orgName={orgName}
-                  projDesc={project.projDesc}
-                  projMinDesc={project.projMinDesc}
-                  {...project}
-                  isLogged={isLogged}
-                  key={project.id}
-                />
-              ))}
-            </Grid>
+            <>
+              <br />
+              <h2 className={classes.header1}>Projects under {orgName}</h2>
+              <Grid container className={classes.gridContainer} spacing={3}>
+                {props.projects.map(project => (
+                  <ProjCard
+                    tools={defaultTools}
+                    projName={project.projName}
+                    orgName={orgName}
+                    projDesc={project.projDesc}
+                    projMinDesc={project.projMinDesc}
+                    {...project}
+                    isLogged={isLogged}
+                    key={project.id}
+                  />
+                ))}
+              </Grid>
+            </>
           );
 
           // let n = props.projects.length;

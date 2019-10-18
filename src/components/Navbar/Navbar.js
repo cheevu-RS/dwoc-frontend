@@ -18,7 +18,7 @@ import { Link, animateScroll as scroll } from 'react-scroll';
 // DWOC logo import inside navbar
 import dwocLogo from '../../assets/images/dwoc_logo_white.png';
 
-const minWidth = 550;
+const minWidth = 730;
 
 const useStyles = makeStyles(theme => ({
   title: { ...theme.typography.h6 },
