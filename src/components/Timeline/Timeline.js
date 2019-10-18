@@ -43,14 +43,14 @@ function formatDate(date) {
 }
 
 
-export default function HorizontalNonLinearAlternativeLabelStepper() {
+export default function HorizontalNonLinearAlternativeLabelStepper(props) {
   
   const classes = useStyles();
   let i = 0;
 
   return (
-    <div className={classes.timeline}>
-    <div style={{ paddingTop: "120px" }} id="timeline">
+    <div className={classes.timeline} style={{width: props.width}}>
+    <div style={{ paddingTop: "60px" }} id="timeline">
       <h2 className={classes.header2}>Timeline </h2>
       <VerticalTimeline>
       <QueryRenderer

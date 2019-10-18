@@ -14,7 +14,8 @@
 */
 
 const gridContainer = {
-  padding: 4
+  padding: 4,
+  paddingRight: '30px'
 };
 const header1 = {
   color: '#ffffff',
@@ -51,41 +52,38 @@ const paragraph = {
 const { innerWidth: screenWidth, innerHeight: screenHeight } = window;
 
 const section = {
-  minHeight: screenHeight, // i.e. 80% of screen height
-  backgroundSize: 'cover',
-  backgroundAttachment: 'fixed'
+  minHeight: screenHeight*0.75, // i.e. 80% of screen height
+  // backgroundImage: `url(${landingBackImg})`,
+  // backgroundColor: "black",
+  display: 'block',
+  margin: 'auto',
+  width: '100%',
+  maxHeight: screenHeight*0.75
 };
 
 const about = {
   width: '100%',
   margin: 'auto',
-  padding: '0% 10%',
-  paddingTop: screenHeight / 4,
+  padding: "0% 10%",
   height: '100%',
-  minHeight: screenHeight / 1.5,
+  minHeight: screenHeight / 3.5,
   display: 'block',
   textAlign: 'justify',
   textJustify: 'inter-character',
-  backgroundAttachment: 'fixed'
 };
 
 const timeline = {
-  backgroundAttachment: 'fixed'
-};
-
-// const orgCards = {
-//   backgroundImage: `url(${aboutImg})`,
-//   backgroundSize: 'cover',
-//   backgroundAttachment: 'fixed'
-// }
+  display: 'block', 
+  margin: 'auto',
+  paddingTop: '100px'
+}
 
 const orgs = {
-  padding: '0% 5%',
-  paddingTop: screenHeight / 4,
+  padding: "0% 5%",
+  paddingTop: screenHeight / 10,
   width: '100%',
   display: 'block',
   margin: 'auto',
-  backgroundAttachment: 'fixed'
 };
 
 const colours = {
@@ -96,6 +94,10 @@ const colours = {
     cpp: 'black',
     React: 'goldenrod'
   }
+};
+
+const footer = {
+  width: '100%',
 };
 
 const OrgProjCard = {
@@ -131,9 +133,6 @@ const OrgProjCard = {
     padding: '5px 15px 0px 15px'
   }
 };
-const footer = {
-  width: '100%',
-};
 
 module.exports = {
   header1,
@@ -145,9 +144,9 @@ module.exports = {
   screenWidth,
   about,
   orgs,
-  OrgProjCard,
   colours,
   timeline,
   footer,
+  OrgProjCard,
   gridContainer
 };

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 41aec86fec2bd3279731586af6da0d4f
+ * @relayHash c0eb4aacd37975772d51879f7e91429b
  */
 
 /* eslint-disable */
@@ -14,7 +14,7 @@ export type ProposalFormMutationVariables = {|
 |};
 export type ProposalFormMutationResponse = {|
   +uploadFile: {|
-    +fileName: ?string
+    +fileName: string
   |}
 |};
 export type ProposalFormMutation = {|

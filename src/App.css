@@ -8,6 +8,13 @@
   color: #61dafb;
 }
 
+.switch{
+  padding-top: 45px; 
+  padding-left: 15px; 
+  display: flex; 
+  flex-wrap: wrap;
+}
+
 .back {
   position: absolute;
   background-color: #e7eeeb;
