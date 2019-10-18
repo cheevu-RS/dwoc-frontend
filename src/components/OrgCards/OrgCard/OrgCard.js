@@ -72,7 +72,12 @@ const useStyles = makeStyles(theme => ({
   viewProjectsBtn: {
     color: '#05386B'
   },
-  stacks: { padding: '0px 15px', fontFamily: 'Roboto Mono', display: 'flex', flexWrap: 'wrap' },
+  stacks: {
+    padding: '0px 15px',
+    fontFamily: 'Roboto Mono',
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
   stack: {
     fontSize: 13,
     borderRadius: 5,
@@ -122,7 +127,7 @@ export default function OrgCard(props) {
 
   const orgPath = '/org/' + props.id + '/' + props.orgName;
   const orgID = props.id;
-  console.log(props.stack)
+  console.log(props.stack);
 
   let mentorFetch = (
     <QueryRenderer
@@ -152,7 +157,7 @@ export default function OrgCard(props) {
         }
         console.log(`${JSON.stringify(props.mentors)} <= props.mentors`);
 
-        //let mentorsLen = props.mentors.length;
+        let mentorsLen = props.mentors.length;
         let mentors = props.mentors.map(m => m.user.firstName).join(', ');
         for (let i = 0; i < mentorsLen; i++) {
           mentors += props.mentors[i].user.firstName;
@@ -167,19 +172,11 @@ export default function OrgCard(props) {
     />
   );
 
-  console.log(props)
+  console.log(props);
 
   return (
-
-    <Grid
-      item
-      xs={12}
-      sm={6}
-      md={4}
-      xl={3}
-    >
-      <Card className={classes.card} >
-
+    <Grid item xs={12} sm={6} md={4} xl={3}>
+      <Card className={classes.card}>
         <div className={classes.title}>{props.orgName}</div>
         {/* <p>{props.id}</p> */}
 
@@ -187,22 +184,58 @@ export default function OrgCard(props) {
         <div className={classes.description}>{props.orgDesc}</div>
         <div className={classes.stacks}>
           {props.stack.map(tool => {
-            if(tool.toLowerCase() === "c++"){
-              return (<span className={classes.stack} style={{ backgroundColor: colours.stack.cpp }}> C++ </span>);
+            if (tool.toLowerCase() === 'c++') {
+              return (
+                <span
+                  className={classes.stack}
+                  style={{ backgroundColor: colours.stack.cpp }}
+                >
+                  {' '}
+                  C++{' '}
+                </span>
+              );
+            } else if (tool.toLowerCase() === 'python') {
+              return (
+                <span
+                  className={classes.stack}
+                  style={{ backgroundColor: colours.stack.python }}
+                >
+                  {' '}
+                  Python{' '}
+                </span>
+              );
+            } else if (tool.toLowerCase() === 'react') {
+              return (
+                <span
+                  className={classes.stack}
+                  style={{ backgroundColor: colours.stack.React }}
+                >
+                  {' '}
+                  React{' '}
+                </span>
+              );
+            } else if (tool.toLowerCase() === 'typescript') {
+              return (
+                <span
+                  className={classes.stack}
+                  style={{ backgroundColor: colours.stack.TypeScript }}
+                >
+                  {' '}
+                  TypeScript{' '}
+                </span>
+              );
+            } else if (tool.toLowerCase() === 'javascript') {
+              return (
+                <span
+                  className={classes.stack}
+                  style={{ backgroundColor: colours.stack.JavaScript }}
+                >
+                  {' '}
+                  JavaScript{' '}
+                </span>
+              );
             }
-            else if(tool.toLowerCase() === "python"){
-              return (<span className={classes.stack} style={{ backgroundColor: colours.stack.python }}> Python </span>);
-            }
-            else if(tool.toLowerCase() === "react"){
-              return (<span className={classes.stack} style={{ backgroundColor: colours.stack.React }}> React </span>);
-            }
-            else if(tool.toLowerCase() === "typescript"){
-              return (<span className={classes.stack} style={{ backgroundColor: colours.stack.TypeScript }}> TypeScript </span>)
-            }
-            else if(tool.toLowerCase()  === "javascript"){
-              return (<span className={classes.stack} style={{ backgroundColor: colours.stack.JavaScript }}> JavaScript </span>)
-            }
-            return (<></>);
+            return <></>;
           })}
         </div>
         <div className={classes.CardRowTwo}>
