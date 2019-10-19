@@ -1,18 +1,10 @@
 /* @flow */
-<<<<<<< HEAD
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import ProjMaxCard from "../ProjMaxCard/ProjMaxCard";
-=======
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import ProjMaxCard from '../ProjMaxCard/ProjMaxCard';
->>>>>>> projCards page layout
 import { Link } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 
@@ -117,33 +109,37 @@ export default function ProjMinCard(props) {
           className={classes.stacks}
           style={{ display: 'flex', flexWrap: 'wrap' }}
         >
-          Python
-        </span>
-        <span
-          className={classes.stack}
-          style={{ backgroundColor: colours.stack.React, marginTop: '5px' }}
-        >
-          React
-        </span>
-        <span
-          className={classes.stack}
-          style={{ backgroundColor: colours.stack.cpp, marginTop: '5px' }}
-        >
-          C++
-        </span>
-      </div>
-      <CardActions>
-        <ProjMaxCard
-          btnText="Read more"
-          orgName={props.orgName}
-          projName={props.projName}
-          projDesc={props.projDesc}
-          taken={props.taken}
-          isLogged={props.isLogged}
-          {...props}
-        />
-      </CardActions>
-    </Card>
+          <span
+            className={classes.stack}
+            style={{ backgroundColor: colours.stack.React, marginTop: '5px' }}
+          >
+            Python
+          </span>
+          <span
+            className={classes.stack}
+            style={{ backgroundColor: colours.stack.React, marginTop: '5px' }}
+          >
+            React
+          </span>
+          <span
+            className={classes.stack}
+            style={{ backgroundColor: colours.stack.cpp, marginTop: '5px' }}
+          >
+            C++
+          </span>
+        </div>
+        <CardActions>
+          <ProjMaxCard
+            btnText="Read more"
+            orgName={props.orgName}
+            projName={props.projName}
+            projDesc={props.projDesc}
+            taken={props.taken}
+            isLogged={props.isLogged}
+            {...props}
+          />
+        </CardActions>
+      </Card>
     </Grid>
   );
 }
