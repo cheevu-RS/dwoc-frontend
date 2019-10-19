@@ -31,6 +31,7 @@ const rows = [];
 export default function SimpleTable(props) {
   const classes = useStyles();
   const projSlug=props.projSlug;
+  const renderTable=true;
 
   return (
     <div>
@@ -54,9 +55,11 @@ export default function SimpleTable(props) {
       render={({ error, prop }) => {
         if (error) {
           console.log(`${error} <= error Relay OrgCards`);
+          renderTable=false;
           return <div>Error!</div>;
         }
         if (!prop) {
+          renderTable=false;
           return (
             <div>
               <p>Table empty!!!</p>
@@ -75,8 +78,8 @@ export default function SimpleTable(props) {
     />
 
 
-
-    <Paper className={classes.root}>
+  {
+    renderTable&&(<Paper className={classes.root}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -100,7 +103,8 @@ export default function SimpleTable(props) {
           ))}
         </TableBody>
       </Table>
-    </Paper>
+    </Paper>)
+  }
     </div>
   );
 }
