@@ -162,9 +162,7 @@ export default function OrgCard(props) {
         for (let i = 0; i < mentorsLen; i++) {
           mentors += props.mentors[i].user.firstName;
           // console.log(props.mentors[i].user.firstName);
-          if (i != mentorsLen - 1) {
-            mentors += ', ';
-          }
+          if(i!==mentorsLen-1){mentors += ",";}
         }
         console.log(mentors);
         return <b>{mentors}</b>;

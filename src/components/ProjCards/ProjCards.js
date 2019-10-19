@@ -34,7 +34,39 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: '2%'
   },
   header1: header1,
-  gridContainer: gridContainer
+  gridContainer: gridContainer,
+  addProjBtn: {
+    color: 'white',
+    borderRadius: `10px`,
+    transition: `0.2s`,
+    '&:before, &:after': {
+      content: "''",
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: 0,
+      height: `100%`,
+      transition: `0.4s`,
+      background: 'black'
+    },
+    '&:before': {
+      borderRadius: `10px 0 0 10px`,
+    },
+    '&:after': {
+      borderRadius: `0 10px 10px 0`,
+      left: 'auto',
+      right: 0
+    },
+    '&:hover': {
+      '&:after, &:before': {
+        width: `50%`,
+      },
+      '& .textClass': {
+        color: `#5CDB95`,
+        zIndex: 100,
+      }
+    },
+  }
 }));
 
 const override = css`
@@ -93,9 +125,8 @@ export default function Projects(props) {
           if (!props) {
             return (
               <div>
-
                 <br />
-                <h2 className={classes.header1}>Projects under {orgName}</h2>
+                <h2 className={classes.header1}> {orgName}</h2>
                 <div style={{ paddingTop: '20%' }}>
                   <RingLoader css={override} color={'#5CDB95'} />
                 </div>
@@ -104,25 +135,13 @@ export default function Projects(props) {
           }
           // console.log(`${JSON.stringify(props)} <= props in ProjCards  `);
 
-          let n = props.projects.length;
-          const allProjects = props.projects;
-          let structuredProjects = [];
-          for (let i = 0; i < n; i += 4) {
-            let row = [];
-            for (let j = i; j < i + 4; j++) {
-              if (j >= n) break;
-              row.push(allProjects[j]);
-            }
-            while (row.length < 4) row.push([]);
-            structuredProjects.push(row);
-          }
           let num = 1;
           let extra;
           console.log("SLUG:"+orgSlug);
-          if (role==="mentor")
+          if (role.toLowerCase()==="mentor")
            extra = (<div>
-                      <Button color="secondary" variant="outlined" onClick={handleClickOpen}>
-                       Add Project
+                      <Button variant="outlined" onClick={handleClickOpen} className={classes.addProjBtn}>
+                       <span className='textClass'> Add Project </span>
                       </Button>
                       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                         <DialogTitle id="form-dialog-title">New Project</DialogTitle>
@@ -131,11 +150,10 @@ export default function Projects(props) {
                     </div>);
           return (
             <div>
-              {extra}
-
+              
               <br />
-
-              <h2 className={classes.header1}>Projects under {orgName}</h2>
+              <h2 className={classes.header1}>{orgName}</h2>
+              {extra}
               <Grid container className={classes.gridContainer} spacing={3}>
                 {props.projects.map(project => (
                   <ProjCard
@@ -151,59 +169,7 @@ export default function Projects(props) {
                 ))}
               </Grid>
             </div>
-
           );
-
-          // let n = props.projects.length;
-          // const allProjects = props.projects;
-          // let structuredProjects = [];
-          // for (let i = 0; i < n; i += 4) {
-          //   let row = [];
-          //   for (let j = i; j < i + 4; j++) {
-          //     if (j >= n) break;
-          //     row.push(allProjects[j]);
-          //   }
-          //   while (row.length < 4) row.push([]);
-          //   structuredProjects.push(row);
-          // }
-          // let num = 1;
-
-          // return (
-          //   <div>
-          //     <br />
-          //     <h2
-          //       //style={{ textAlign: 'center' }}
-          //       className={classes.header1}
-          //     >
-          //       Projects under {orgName}
-          //     </h2>
-          //     {/* {structuredProjects.map(proj => (
-          //       <Row key={num++}>
-          //         {proj.map(o =>
-          //           o.id ? (
-          //             <Col key={num++}>
-          //               <ProjCard
-          //                 tools={defaultTools}
-          //                 projName={o.projName}
-          //                 orgName={orgName}
-          //                 projDesc={o.projDesc}
-          //                 projMinDesc={o.projMinDesc}
-          //                 {...o}
-          //                 isLogged={isLogged}
-          //               />
-          //             </Col>
-          //           ) : (
-          //             <Col key={num++}></Col>
-          //           )
-          //         )}{' '}
-          //       </Row>
-          //     ))} */}
-
-          //     {structuredProjects.map(proj => ({
-          //       console.log(`${proj} <= proj`);
-          //     }))}
-          //   </div>
-          //);
         }}
       />
     </div>

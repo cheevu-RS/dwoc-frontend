@@ -3,11 +3,9 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
-import Typography from "@material-ui/core/Typography";
 import ProjMaxCard from "../ProjMaxCard/ProjMaxCard";
 import { Link } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
 
 // Style imports
 import { OrgProjCard, colours } from '../../../DwocStyles';
@@ -38,7 +36,6 @@ const useStyles = makeStyles(theme => ({
     ...OrgProjCard
   },
 
-  //card: OrgProjCard,
   title: {
     textAlign: 'left',
     fontSize: 26,
@@ -158,7 +155,6 @@ export default function ProjMinCard(props) {
         />
       </CardActions>
     </Card>
-
     </Grid>
   );
 }

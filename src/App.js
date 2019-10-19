@@ -47,13 +47,36 @@ const useStyles = makeStyles(theme => ({
   },
   header2: header2,
   header3: header3,
-  orgs: orgs
+  orgs: orgs,
+  switch:{
+    display: 'flex',
+    flexWrap: 'flex'
+  }
 }));
 
 function App() {
-  let [isLogged, toggleIsLogged] = useState(true);
+  let [isLogged, toggleIsLogged] = useState(false);
   let role;
   const classes = useStyles();
+
+  // const [state, setState] = React.useState({
+  //   checked: true // night
+  // });
+  // const handleChange = name => event => {
+  //   setState({ ...state, [name]: event.target.checked });
+  // };
+
+  // let switcher = (
+  //   <div>
+  //     <Switch
+  //       checked={state.checked}
+  //       onChange={handleChange("checked")}
+  //       value="checked"
+  //       color="primary"
+  //       inputProps={{ "aria-label": "primary checkbox" }}
+  //     />{state.checked ? (<div>Night</div>) : (<div style={{color: 'black'}}>Day</div>)}
+  //   </div>
+  // );
 
   return (
     <div className="App">
@@ -92,15 +115,19 @@ function App() {
         <Router basename="/dwocf">
           <Route
             path="/"
-            render={props => <Navbar isLogged={isLogged} role={role} />}
+            render={props => (
+              <div>
+                <Navbar isLogged={isLogged} role={role} showBtns={true} night={true}/>
+                <div style={{opacity: '0', height: '40px'}}></div>
+              </div>
+            )}
           ></Route>
           <Route
             exact
             path="/"
             render={props => (
               <>
-              <Navbar isLogged={isLogged} role={role} showBtns={true} />
-              <LandingPage role={role} {...props} isLogged={isLogged} />
+              <LandingPage role={role} {...props} isLogged={isLogged}/>
               </>
             )}
           ></Route>
