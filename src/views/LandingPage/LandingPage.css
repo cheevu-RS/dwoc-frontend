@@ -1,0 +1,35 @@
+.landingimg{
+  width: 48px;
+  cursor: pointer;
+  margin-right: 20px;
+  display: block;
+  margin: auto;
+  width: 60%;
+  padding-top: 50px;
+  /* 
+  left: 21%; */
+  transform: translateY(-50%, -50%);
+  -webkit-transition: width 0.5s; /* For Safari 3.1 to 6.0 */
+  transition: width 0.5s;
+  z-index: 100;
+}
+
+.landingimg:hover{
+    /* -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 255, 0, 0.67);
+    -moz-box-shadow:    0px 0px 30px 0px rgba(0, 255, 0, 0.67);
+    box-shadow:         0px 0px 30px 0px rgba(0, 255, 0, 0.67); */
+    /* width: 62%; */
+    z-index: 100;
+    
+}
+.landingimg:last-of-type:hover{
+    /* -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 30px 0px #5CDB95;
+    -moz-box-shadow:    0px 0px 30px 0px #5CDB95;
+    box-shadow:         0px 0px 30px 0px #5CDB95; */
+}

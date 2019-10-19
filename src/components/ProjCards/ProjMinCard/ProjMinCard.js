@@ -1,13 +1,12 @@
 /* @flow */
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import Typography from "@material-ui/core/Typography";
-import ProjMaxCard from "../ProjMaxCard/ProjMaxCard";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import Typography from '@material-ui/core/Typography';
+import ProjMaxCard from '../ProjMaxCard/ProjMaxCard';
 import { Link } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
 
 // Style imports
 import { OrgProjCard, colours } from '../../../DwocStyles';
@@ -27,7 +26,7 @@ WebFont.load({
 
 const useStyles = makeStyles(theme => ({
   card: {
-    marginTop: '30px',
+    //    marginTop: '30px',
     height: '100%',
     opacity: 100,
     position: 'relative',
@@ -38,7 +37,6 @@ const useStyles = makeStyles(theme => ({
     ...OrgProjCard
   },
 
-  //card: OrgProjCard,
   title: {
     textAlign: 'left',
     fontSize: 26,
@@ -102,50 +100,11 @@ const useStyles = makeStyles(theme => ({
 export default function ProjMinCard(props) {
   const classes = useStyles();
   return (
+    <Grid item xs={12} sm={6} md={3} xl={3}>
+      <Card className={classes.card}>
+        <div className={classes.title}>{props.projName}</div>
 
-    <Grid
-      item
-      xs={12}
-      sm={6}
-      md={3}
-      xl={3}
-    >
-    <Card className={classes.card}>
-      <div className={classes.title}>{props.projName}</div>
-
-      <div className={classes.description}>{props.projMinDesc}</div>
-      <div className={classes.stacks} style={{display: 'flex', flexWrap: 'wrap'}}>
-        <span
-          className={classes.stack}
-          style={{ backgroundColor: colours.stack.TypeScript, marginTop: '5px' }}
-        >
-          TypeScript
-        </span>
-        <span
-          className={classes.stack}
-          style={{ backgroundColor: colours.stack.JavaScript, marginTop: '5px' }}
-        >
-          JavaScript
-        </span>
-        <span
-          className={classes.stack}
-          style={{ backgroundColor: colours.stack.python, marginTop: '5px' }}
-        >
-          Python
-        </span>
-        <span
-          className={classes.stack}
-          style={{ backgroundColor: colours.stack.React, marginTop: '5px' }}
-        >
-          React
-        </span>
-        <span
-          className={classes.stack}
-          style={{ backgroundColor: colours.stack.cpp, marginTop: '5px' }}
-        >
-          C++
-        </span>
-      </div>
+        <div className={classes.description}>{props.projMinDesc}</div>
       <CardActions>
         <ProjMaxCard
           btnText="Read more"
@@ -169,7 +128,6 @@ export default function ProjMinCard(props) {
      </Button>
       </CardActions>
     </Card>
-
     </Grid>
   );
 }

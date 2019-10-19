@@ -14,7 +14,8 @@
 */
 
 const gridContainer = {
-  padding: 4
+  padding: 4,
+  marginTop: 5
 };
 const header1 = {
   color: '#ffffff',
@@ -51,41 +52,38 @@ const paragraph = {
 const { innerWidth: screenWidth, innerHeight: screenHeight } = window;
 
 const section = {
-  minHeight: screenHeight, // i.e. 80% of screen height
-  backgroundSize: 'cover',
-  backgroundAttachment: 'fixed'
+  minHeight: screenHeight * 0.75, // i.e. 80% of screen height
+  // backgroundImage: `url(${landingBackImg})`,
+  // backgroundColor: "black",
+  display: 'block',
+  margin: 'auto',
+  width: '100%',
+  maxHeight: screenHeight * 0.75
 };
 
 const about = {
   width: '100%',
   margin: 'auto',
   padding: '0% 10%',
-  paddingTop: screenHeight / 4,
   height: '100%',
-  minHeight: screenHeight / 1.5,
+  minHeight: screenHeight / 3.5,
   display: 'block',
   textAlign: 'justify',
-  textJustify: 'inter-character',
-  backgroundAttachment: 'fixed'
+  textJustify: 'inter-character'
 };
 
 const timeline = {
-  backgroundAttachment: 'fixed'
+  display: 'block',
+  margin: 'auto',
+  paddingTop: '100px'
 };
-
-// const orgCards = {
-//   backgroundImage: `url(${aboutImg})`,
-//   backgroundSize: 'cover',
-//   backgroundAttachment: 'fixed'
-// }
 
 const orgs = {
   padding: '0% 5%',
-  paddingTop: screenHeight / 4,
+  paddingTop: screenHeight / 10,
   width: '100%',
   display: 'block',
-  margin: 'auto',
-  backgroundAttachment: 'fixed'
+  margin: 'auto'
 };
 
 const colours = {
@@ -132,7 +130,7 @@ const OrgProjCard = {
   }
 };
 const footer = {
-  width: '100%',
+  width: '100%'
 };
 
 module.exports = {
@@ -145,9 +143,9 @@ module.exports = {
   screenWidth,
   about,
   orgs,
-  OrgProjCard,
   colours,
   timeline,
   footer,
+  OrgProjCard,
   gridContainer
 };

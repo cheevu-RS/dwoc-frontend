@@ -13,18 +13,27 @@ import Sidebar from '../Sidebar/Sidebar';
 import MenuIcon from '@material-ui/icons/Menu';
 
 // Smooth scroll
-import { Link, animateScroll as scroll } from 'react-scroll';
+import { Link } from "react-scroll";
 
 // DWOC logo import inside navbar
-import dwocLogo from '../../assets/images/dwoc_logo_white.png';
+import nightDwoc from "../../assets/images/dwocfull-transparentW.png"
+import dayDwoc from '../../assets/images/full-transparent.png'
+import nightDelta from '../../assets/images/deltaLogoGreen.png'
+import dayDelta from '../../assets/images/deltaLogoBlack.png'
 
 const minWidth = 730;
 
 const useStyles = makeStyles(theme => ({
   title: { ...theme.typography.h6 },
-  button: {
-    marginLeft: `auto`
-    //paddingTop: "11px",
+  nightButton: {
+    marginLeft: `auto`,
+    paddingTop: "11px",
+    color: 'white !important' 
+  },
+  dayButton: {
+    marginLeft: `auto`,
+    paddingTop: "11px",
+    color: '#282c34 !important'
   },
   drawerHeader: {
     display: 'flex',
@@ -33,9 +42,13 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-end',
     ...theme.mixins.toolbar
   },
-  navbar: {
-    backgroundImage: 'linear-gradient(to right, #000f29, #5CDB95)',
-    color: '#05386B'
+  nightNavbar: {
+    backgroundColor: '#282c34',
+    color: '#fff'
+  },
+  dayNavbar: {
+    backgroundColor: 'white',
+    color: '#282c34'
   }
 }));
 
@@ -67,8 +80,6 @@ export default function Navbar(props) {
 
   useEffect(() => {
     // Update the document title using the browser API
-    console.log('toggle');
-    console.log(props.isLogged, 'isLogged');
 
     if (props.isLogged) {
       setTabs({ name: 'Logout', link: 'https://delta.nitt.edu/dwocb/logout' });
@@ -82,13 +93,27 @@ export default function Navbar(props) {
 
   const handleToggle = evt => {
     setOpen(prevState => !prevState);
-    open ? setDrawerWidth(0) : setDrawerWidth(200);
+    // open ? setDrawerWidth(0) : setDrawerWidth(200);
   };
   const handleClick = (evt, tabName) => {
     console.log(tabName);
   };
 
-  let deltaLogo = (
+  // TODO make it look good on mobile devices
+  let dayDeltaLogo = (
+    <div
+      style={{
+        padding: "5px 15px",
+        margin: 0
+      }}
+    >
+      <a href="/">
+        <img alt="dayDelta" src={dayDelta} width="45px"/>
+      </a>
+    </div>
+  );
+
+  let nightDeltaLogo = (
     <div
       style={{
         padding: '5px 15px',
@@ -96,12 +121,12 @@ export default function Navbar(props) {
       }}
     >
       <a href="/">
-        <img alt="delta-logo" width="222px" src={dwocLogo} />
+        <img alt="nightDelta" src={nightDelta} width="45px"/>
       </a>
     </div>
   );
 
-  let navbarElems = (
+  let nightNavbar = (
     <div>
       {width < minWidth && (
         <Toolbar style={{ color: '#5CDB95' }}>
@@ -122,27 +147,76 @@ export default function Navbar(props) {
               />
               <MenuIcon onClick={handleToggle} />
             </div>
-            {deltaLogo}
+            {nightDeltaLogo}
           </div>
         </Toolbar>
       )}
 
       {width > minWidth && (
         <Toolbar>
-          {deltaLogo}
-          <div className={styles.button} style={{ marginBottom: '6px' }}>
+          {nightDeltaLogo}
+          <div className={styles.nightButton} style={{marginBottom: '6px'}}>
             {defaultBtns.map((tab, index) => (
-              <Button className={styles.button} key={index}>
-                <Link smooth={true} to={tab.to}>
-                  <ListItemText primary={tab.name} />
+              <Button className={styles.nightButton} key={index}>
+                <Link smooth={true} to={tab.to} style={{color: '#fff'}}>
+                  <ListItemText primary={tab.name}/>
                 </Link>
               </Button>
             ))}
-            {
-              <Button className={styles.button} href={tabs.link}>
-                <ListItemText primary={tabs.name} />
+            {(
+              <Button className={styles.nightButton} href={tabs.link} >
+                <ListItemText primary={tabs.name} style={{color: '#fff'}}/>
               </Button>
-            }
+            )}
+          </div>
+        </Toolbar>
+      )}
+    </div>
+  );
+
+  let dayNavbar = (
+    <div>
+      {width < minWidth && (
+        <Toolbar style={{ color: "black" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              width: "100%",
+              color: 'black'
+            }}
+          >
+            <div className={styles.drawerHeader}>
+              <Sidebar 
+                open={open} 
+                drawerWidth={drawerWidth}
+                defaultBtns={defaultBtns}
+                tabs={tabs}
+                handleToggle={handleToggle}
+               />
+              <MenuIcon onClick={handleToggle} />
+            </div>
+            {dayDeltaLogo}
+          </div>
+        </Toolbar>
+      )}
+
+      {width > minWidth && (
+        <Toolbar>
+          {dayDeltaLogo}
+          <div className={styles.dayButton} style={{marginBottom: '6px'}}>
+            {defaultBtns.map((tab, index) => (
+              <Button className={styles.dayButton} key={index}>
+                <Link smooth={true} to={tab.to}>
+                  <ListItemText primary={tab.name}/>
+                </Link>
+              </Button>
+            ))}
+            {(
+              <Button className={styles.dayButton} href={tabs.link}>
+                <ListItemText primary={tabs.name}/>
+              </Button>
+            )}
           </div>
         </Toolbar>
       )}
@@ -151,11 +225,7 @@ export default function Navbar(props) {
 
   return (
     <div>
-      <AppBar position="fixed" className={styles.navbar}>
-        {navbarElems}
-      </AppBar>
-      {/* <div style={{ height: "50px" }}></div> */}
-
+        <AppBar position="fixed" className={styles.nightNavbar}><div>{nightNavbar}</div></AppBar>
     </div>
   );
 }
