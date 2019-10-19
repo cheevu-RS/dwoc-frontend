@@ -23,7 +23,7 @@ const environment = require('../../Environment').environment;
 
 WebFont.load({
   google: {
-    families: [header1.fontFamily]
+    families: [header1.fontFamily, header2.fontFamily]
   }
 });
 
@@ -33,6 +33,7 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: '2%'
   },
   header1: header1,
+  header2: { ...header2 },
   gridContainer: gridContainer,
   addProjBtn: {
     color: 'white',
