@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import ProjMaxCard from '../ProjMaxCard/ProjMaxCard';
 import { Link } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
-
+import Button from '@material-ui/core/Button';
 // Style imports
 import { OrgProjCard, colours } from '../../../DwocStyles';
 import WebFont from 'webfontloader';

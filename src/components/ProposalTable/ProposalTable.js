@@ -37,7 +37,7 @@ export default function SimpleTable(props) {
     <QueryRenderer
       environment={environment}
       query={graphql`
-            query ViewProposalQuery($cond: ProposalWhereInput) {
+            query ProposalTableQuery($cond: ProposalWhereInput) {
               proposals(where: $cond){
                   id
                   propUrl
