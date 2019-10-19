@@ -31,7 +31,7 @@ const rows = [];
 export default function SimpleTable(props) {
   const classes = useStyles();
   const projSlug=props.projSlug;
-  const renderTable=true;
+  let renderTable=true;
 
   return (
     <div>
@@ -80,11 +80,11 @@ export default function SimpleTable(props) {
 
   {
     renderTable&&(<Paper className={classes.root}>
-      <Table className={classes.table} aria-label="simple table">
+      <Table className={classes.table} aria-label="simple table" >
         <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Proposal URL</TableCell>
+          <TableRow >
+            <TableCell >Name</TableCell>
+            <TableCell align="center" >Proposal URL</TableCell>
             <TableCell align="right">Github URL</TableCell>
 
 
