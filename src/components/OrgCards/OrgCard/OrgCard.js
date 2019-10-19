@@ -38,7 +38,7 @@ const override = css`
 
 const useStyles = makeStyles(theme => ({
   card: {
-    marginTop: '30px',
+    //marginTop: '30px',
     height: '100%',
     opacity: 100,
     position: 'relative',
@@ -122,7 +122,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function OrgCard(props) {
   const classes = useStyles();
-
+  let mentorsList;
   console.log(`${JSON.stringify(props)} <= props OrgCars props`);
 
   const orgPath = '/org/' + props.id + '/' + props.orgName;
@@ -155,29 +155,28 @@ export default function OrgCard(props) {
             </div>
           );
         }
-        console.log(`${JSON.stringify(props.mentors)} <= props.mentors`);
 
         let mentorsLen = props.mentors.length;
+        mentorsList = props.mentors;
         let mentors = props.mentors.map(m => m.user.firstName).join(', ');
         for (let i = 0; i < mentorsLen; i++) {
           mentors += props.mentors[i].user.firstName;
           // console.log(props.mentors[i].user.firstName);
-          if(i!==mentorsLen-1){mentors += ",";}
+          if (i !== mentorsLen - 1) {
+            mentors += ',';
+          }
         }
         console.log(mentors);
+        console.log(`${JSON.stringify(mentorsList)} <= mentorsList`);
         return <b>{mentors}</b>;
       }}
     />
   );
 
-  console.log(props);
-
   return (
     <Grid item xs={12} sm={6} md={4} xl={3}>
       <Card className={classes.card}>
         <div className={classes.title}>{props.orgName}</div>
-        {/* <p>{props.id}</p> */}
-
         <span className={classes.mentorName}>by {mentorFetch}</span>
         <div className={classes.description}>{props.orgDesc}</div>
         <div className={classes.stacks}>
@@ -250,9 +249,16 @@ export default function OrgCard(props) {
             <span className={classes.CardRowTwoDetail}>Name</span>
           </div> */}
         </div>
-
+        {console.log(`${mentorsList} <= props.mentors`)}
         <Link
-          to={{ pathname: orgPath, state: { orgSlug: props.orgSlug} }}
+          to={{
+            pathname: orgPath,
+            state: {
+              orgSlug: props.orgSlug,
+              stack: props.stack,
+              mentors: mentorsList
+            }
+          }}
           style={{ textAlign: 'center', textDecoration: 'none' }}
         >
           <Button className={classes.BtnViewProjects}>VIEW PROJECTS</Button>

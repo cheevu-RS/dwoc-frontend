@@ -76,11 +76,7 @@ export default function OrgCards() {
             <h2 className={classes.header2}>Organizations</h2>
             <Grid container className={classes.gridContainer} spacing={3}>
               {props.organizations.map(org => (
-                <OrgCard
-                  {...org}
-                  key={org.id}
-                  stack={['Python', 'TypeScript']}
-                />
+                <OrgCard {...org} key={org.id} />
               ))}
             </Grid>
             <div style={{ height: '50px' }}></div>

@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import ProjCard from './ProjMinCard/ProjMinCard';
 import Row from 'react-bootstrap/Row';
@@ -17,14 +16,14 @@ import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Form from './AddProjectForm/Form';
-import { header1, gridContainer } from '../../DwocStyles';
+import { header1, header2, gridContainer } from '../../DwocStyles';
 
-
+import MentorTags from '../../components/MentorTags/MentorTags';
 const environment = require('../../Environment').environment;
 
 WebFont.load({
   google: {
-    families: [header1.fontFamily]
+    families: [header1.fontFamily, header2.fontFamily]
   }
 });
 
@@ -34,6 +33,7 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: '2%'
   },
   header1: header1,
+  header2: { ...header2 },
   gridContainer: gridContainer,
   addProjBtn: {
     color: 'white',
@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
       background: 'black'
     },
     '&:before': {
-      borderRadius: `10px 0 0 10px`,
+      borderRadius: `10px 0 0 10px`
     },
     '&:after': {
       borderRadius: `0 10px 10px 0`,
@@ -59,13 +59,13 @@ const useStyles = makeStyles(theme => ({
     },
     '&:hover': {
       '&:after, &:before': {
-        width: `50%`,
+        width: `50%`
       },
       '& .textClass': {
         color: `#5CDB95`,
-        zIndex: 100,
+        zIndex: 100
       }
-    },
+    }
   }
 }));
 
@@ -82,10 +82,9 @@ export default function Projects(props) {
   const isLogged = props.isLogged;
   const orgID = props.match.params.id;
   //const role= props.match.params.role;
-  const role="mentor";
-  console.log(props)
-  const orgSlug=props.location.state.orgSlug;
-  console.log("SLUG:"+orgSlug);
+  const role = 'mentor';
+  const orgSlug = props.location.state.orgSlug;
+  console.log(`${JSON.stringify(props)} <= props in ProjCards`);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -99,6 +98,13 @@ export default function Projects(props) {
   };
   return (
     <div className={classes.container}>
+      <br />
+      <br />
+      <h1 className={classes.header1}>{orgName}</h1>
+      <br />
+      <h2 className={classes.header2}>Stack</h2>
+      {props.location.state.stack.join(', ')}
+      <h2 className={classes.header2}>Projects</h2>
       <QueryRenderer
         environment={environment}
         query={graphql`
@@ -124,36 +130,41 @@ export default function Projects(props) {
           }
           if (!props) {
             return (
-              <div>
+              <>
                 <br />
-                <h2 className={classes.header1}> {orgName}</h2>
+                {/* <h2 className={classes.header1}>Projects under {orgName}</h2> */}
                 <div style={{ paddingTop: '20%' }}>
                   <RingLoader css={override} color={'#5CDB95'} />
                 </div>
-              </div>
+              </>
             );
           }
-          // console.log(`${JSON.stringify(props)} <= props in ProjCards  `);
 
-          let num = 1;
-          let extra;
-          console.log("SLUG:"+orgSlug);
-          if (role.toLowerCase()==="mentor")
-           extra = (<div>
-                      <Button variant="outlined" onClick={handleClickOpen} className={classes.addProjBtn}>
-                       <span className='textClass'> Add Project </span>
-                      </Button>
-                      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                        <DialogTitle id="form-dialog-title">New Project</DialogTitle>
-                        <Form onClose={handleClose} orgName={orgSlug}/>
-                      </Dialog>
-                    </div>);
+          let addProjectMenu;
+          if (role === 'mentor')
+            addProjectMenu = (
+              <div>
+                <Button
+                  color="secondary"
+                  variant="outlined"
+                  onClick={handleClickOpen}
+                >
+                  Add Project
+                </Button>
+                <Dialog
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="form-dialog-title"
+                >
+                  <DialogTitle id="form-dialog-title">
+                    Add New Project
+                  </DialogTitle>
+                  <Form onClose={handleClose} orgName={orgSlug} />
+                </Dialog>
+              </div>
+            );
           return (
-            <div>
-              
-              <br />
-              <h2 className={classes.header1}>{orgName}</h2>
-              {extra}
+            <>
               <Grid container className={classes.gridContainer} spacing={3}>
                 {props.projects.map(project => (
                   <ProjCard
@@ -168,7 +179,11 @@ export default function Projects(props) {
                   />
                 ))}
               </Grid>
-            </div>
+              <br />
+              <br />
+              <MentorTags mentors={['NNNNN', 'NNNNN', 'NNNNN']} />
+              {addProjectMenu}
+            </>
           );
         }}
       />
