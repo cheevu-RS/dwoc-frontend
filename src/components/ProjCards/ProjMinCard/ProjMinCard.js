@@ -105,41 +105,29 @@ export default function ProjMinCard(props) {
         <div className={classes.title}>{props.projName}</div>
 
         <div className={classes.description}>{props.projMinDesc}</div>
-        <div
-          className={classes.stacks}
-          style={{ display: 'flex', flexWrap: 'wrap' }}
-        >
-          <span
-            className={classes.stack}
-            style={{ backgroundColor: colours.stack.React, marginTop: '5px' }}
-          >
-            Python
-          </span>
-          <span
-            className={classes.stack}
-            style={{ backgroundColor: colours.stack.React, marginTop: '5px' }}
-          >
-            React
-          </span>
-          <span
-            className={classes.stack}
-            style={{ backgroundColor: colours.stack.cpp, marginTop: '5px' }}
-          >
-            C++
-          </span>
-        </div>
-        <CardActions>
-          <ProjMaxCard
-            btnText="Read more"
-            orgName={props.orgName}
-            projName={props.projName}
-            projDesc={props.projDesc}
-            taken={props.taken}
-            isLogged={props.isLogged}
-            {...props}
-          />
-        </CardActions>
-      </Card>
+      <CardActions>
+        <ProjMaxCard
+          btnText="Read more"
+          orgName={props.orgName}
+          projName={props.projName}
+          projDesc={props.projDesc}
+          taken={props.taken}
+          isLogged={props.isLogged}
+          {...props}
+        />
+        <Button variant="contained" className={classes.button}>
+        <Link
+        to={{
+          pathname: '/proposal',
+          data: {
+            projSlug:props.projSlug
+          }
+        }}>
+        View Projects
+        </Link>
+     </Button>
+      </CardActions>
+    </Card>
     </Grid>
   );
 }

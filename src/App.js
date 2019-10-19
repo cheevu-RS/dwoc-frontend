@@ -23,6 +23,7 @@ import LandingPage from "./views/LandingPage/LandingPage";
 import Navbar from "./components/Navbar/Navbar";
 import ProposalForm from "./components/ProposalForm/ProposalForm";
 import ProjCards from "./components/ProjCards/ProjCards";
+import ViewProposal from "./components/ViewProposal/ViewProposal"
 import SnowStorm from "react-snowstorm";
 
 //Spinner
@@ -148,6 +149,16 @@ function App() {
               <>
               <Navbar isLogged={isLogged} role={role} showBtns={false} />
               <ProposalForm {...props} role={role} isLogged={isLogged} />
+              </>
+            )}
+          ></Route>
+          <Route
+            exact
+            path="/proposal"
+            render={props => (
+              <>
+              <Navbar isLogged={isLogged} role={role} showBtns={false} />
+              <ViewProposal {...props} role={role} isLogged={isLogged} />
               </>
             )}
           ></Route>
