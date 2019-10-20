@@ -11,6 +11,8 @@ import graphql from 'babel-plugin-relay/macro';
 import RingLoader from 'react-spinners/RingLoader';
 import { css } from '@emotion/core';
 
+import { Stack } from "../../StackCard/StackCard"
+
 // Style imports
 import { makeStyles } from '@material-ui/core/styles';
 import { OrgProjCard, colours } from '../../../DwocStyles';
@@ -180,7 +182,8 @@ export default function OrgCard(props) {
         <span className={classes.mentorName}>by {mentorFetch}</span>
         <div className={classes.description}>{props.orgDesc}</div>
         <div className={classes.stacks}>
-          {props.stack.map(tool => {
+          {props.stack.map(tool => <>)}
+          {/* {props.stack.map(tool => {
             if (tool.toLowerCase() === 'c++') {
               return (
                 <span
@@ -233,21 +236,13 @@ export default function OrgCard(props) {
               );
             }
             return <></>;
-          })}
+          })} */}
         </div>
         <div className={classes.CardRowTwo}>
           <div className={classes.CardRowTwoElements}>
             <div className={classes.CardRowTwoContent}>12</div>
             <span className={classes.CardRowTwoDetail}>Projects</span>
           </div>
-          {/* <div className={classes.CardRowTwoElements}>
-            <div className={classes.CardRowTwoContent}>32</div>
-            <span className={classes.CardRowTwoDetail}> Coders</span>
-          </div>{' '}
-          <div className={classes.CardRowTwoElements}>
-            <div className={classes.CardRowTwoContent}>2</div>
-            <span className={classes.CardRowTwoDetail}>Name</span>
-          </div> */}
         </div>
         {console.log(`${mentorsList} <= props.mentors`)}
         <Link
