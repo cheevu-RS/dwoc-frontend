@@ -1,16 +1,24 @@
 /* @flow */
+
+//React
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+// Material
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
-import ProjMaxCard from '../ProjMaxCard/ProjMaxCard';
-import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 import { Grid } from '@material-ui/core';
+
+//Components
+import ProjMaxCard from '../ProjMaxCard/ProjMaxCard';
 
 // Style imports
 import { OrgProjCard, colours } from '../../../DwocStyles';
 import WebFont from 'webfontloader';
+
 WebFont.load({
   google: {
     families: [
