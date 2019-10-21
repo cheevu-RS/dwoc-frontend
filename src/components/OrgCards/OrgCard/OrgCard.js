@@ -11,9 +11,13 @@ import graphql from 'babel-plugin-relay/macro';
 import RingLoader from 'react-spinners/RingLoader';
 import { css } from '@emotion/core';
 
+import StackCard from '../../../components/StackCard/StackCard';
+
 // Style imports
 import { makeStyles } from '@material-ui/core/styles';
-import { OrgProjCard, colours } from '../../../DwocStyles';
+//import { OrgProjCard, colours } from '../../../../src/DwocStyles';
+import { OrgProjCard } from '../../../DwocStyles';
+
 import WebFont from 'webfontloader';
 WebFont.load({
   google: {
@@ -180,76 +184,17 @@ export default function OrgCard(props) {
         <span className={classes.mentorName}>by {mentorFetch}</span>
         <div className={classes.description}>{props.orgDesc}</div>
         <div className={classes.stacks}>
-          {props.stack.map(tool => {
-            if (tool.toLowerCase() === 'c++') {
-              return (
-                <span
-                  className={classes.stack}
-                  style={{ backgroundColor: colours.stack.cpp }}
-                >
-                  {' '}
-                  C++{' '}
-                </span>
-              );
-            } else if (tool.toLowerCase() === 'python') {
-              return (
-                <span
-                  className={classes.stack}
-                  style={{ backgroundColor: colours.stack.python }}
-                >
-                  {' '}
-                  Python{' '}
-                </span>
-              );
-            } else if (tool.toLowerCase() === 'react') {
-              return (
-                <span
-                  className={classes.stack}
-                  style={{ backgroundColor: colours.stack.React }}
-                >
-                  {' '}
-                  React{' '}
-                </span>
-              );
-            } else if (tool.toLowerCase() === 'typescript') {
-              return (
-                <span
-                  className={classes.stack}
-                  style={{ backgroundColor: colours.stack.TypeScript }}
-                >
-                  {' '}
-                  TypeScript{' '}
-                </span>
-              );
-            } else if (tool.toLowerCase() === 'javascript') {
-              return (
-                <span
-                  className={classes.stack}
-                  style={{ backgroundColor: colours.stack.JavaScript }}
-                >
-                  {' '}
-                  JavaScript{' '}
-                </span>
-              );
-            }
-            return <></>;
-          })}
+          {props.stack.map(tool => (
+            <StackCard tool={tool} key={tool} />
+          ))}
         </div>
         <div className={classes.CardRowTwo}>
           <div className={classes.CardRowTwoElements}>
             <div className={classes.CardRowTwoContent}>12</div>
             <span className={classes.CardRowTwoDetail}>Projects</span>
           </div>
-          {/* <div className={classes.CardRowTwoElements}>
-            <div className={classes.CardRowTwoContent}>32</div>
-            <span className={classes.CardRowTwoDetail}> Coders</span>
-          </div>{' '}
-          <div className={classes.CardRowTwoElements}>
-            <div className={classes.CardRowTwoContent}>2</div>
-            <span className={classes.CardRowTwoDetail}>Name</span>
-          </div> */}
         </div>
-        {console.log(`${mentorsList} <= props.mentors`)}
+        {/* {console.log(`${mentorsList} <= props.mentors`)} */}
         <Link
           to={{
             pathname: orgPath,
