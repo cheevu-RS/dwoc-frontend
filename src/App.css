@@ -8,10 +8,10 @@
   color: #61dafb;
 }
 
-.switch{
-  padding-top: 45px; 
-  padding-left: 15px; 
-  display: flex; 
+.switch {
+  padding-top: 45px;
+  padding-left: 15px;
+  display: flex;
   flex-wrap: wrap;
 }
 
@@ -25,9 +25,9 @@
   border-radius: 50%;
 }
 
-.vertical-timeline ::before {
+/* .vertical-timeline ::before {
   border-radius: 555px;
-}
+} */
 
 /* 
 Website color theme - Don't delete

@@ -7,9 +7,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import {makeStyles} from '@material-ui/core/'
+import { makeStyles } from '@material-ui/core/';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 
 const styles = makeStyles(theme => ({
   readMore: {
@@ -21,12 +21,12 @@ const styles = makeStyles(theme => ({
       top: 0,
       left: 0,
       width: 0,
-      height: `100%`,
-      transition: `0.4s`,
-      background: 'black'
+      height: `100%`
+      // transition: `0.4s`,
+      //background: 'black'
     },
     '&:before': {
-      borderRadius: `10px 0 0 10px`,
+      borderRadius: `10px 0 0 10px`
     },
     '&:after': {
       borderRadius: `0 10px 10px 0`,
@@ -38,12 +38,12 @@ const styles = makeStyles(theme => ({
         width: `50%`
       },
       '& .textClass': {
-        color: `#5CDB95`,
-        zIndex: 100,
+        //   color: `#5CDB95`,
+        zIndex: 100
       }
-    },
+    }
   }
-}))
+}));
 
 export default function DraggableDialog(props) {
   const [open, setOpen] = React.useState(false);
@@ -58,12 +58,16 @@ export default function DraggableDialog(props) {
     setOpen(false);
   };
   const submitProposal = evt => {
-    history.push(`/org/${props.organization.id}/${props.orgName}/apply`, props)
-  }
+    history.push(`/org/${props.organization.id}/${props.orgName}/apply`, props);
+  };
   return (
     <div>
-      <Button className={classes.readMore} onClick={handleClickOpen} variant="outlined">
-        <span className='textClass'>{props.btnText}</span>
+      <Button
+        className={classes.readMore}
+        onClick={handleClickOpen}
+        variant="outlined"
+      >
+        <span className="textClass">{props.btnText}</span>
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="dialog-title">
         <DialogTitle id="dialog-title">{props.projName}</DialogTitle>
@@ -81,10 +85,7 @@ export default function DraggableDialog(props) {
               ) : (
                 <div>
                   <Button onClick={handleClose}>Cancel</Button>
-                  <Button onClick={submitProposal}>
-                    {' '}
-                      Apply
-                  </Button>
+                  <Button onClick={submitProposal}> Apply</Button>
                 </div>
               )}
             </DialogActions>
