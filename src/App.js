@@ -108,6 +108,7 @@ function App() {
             }
             if (props && !isLogged) {
               toggleIsLogged(!isLogged);
+              role=props.userProfile.role
             }
             return <div></div>;
           }}

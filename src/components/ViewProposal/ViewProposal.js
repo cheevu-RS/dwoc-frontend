@@ -86,9 +86,13 @@ const jsondata={"proposals": [
 
 export default function ViewProposal(props){
    let data = props.location.data;
-   if(!data&&props.role!="Mentor"){
+   if(!data){
         return(<Redirect to="/"/>)
    }
+   console.log(props.role);
+   if(props.role!="Mentor")
+   return(<Redirect to="/"/>)
+
    let projSlug;
    if(data)
    projSlug=data.projSlug;
