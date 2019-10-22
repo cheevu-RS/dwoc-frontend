@@ -80,30 +80,27 @@ export default function HorizontalNonLinearAlternativeLabelStepper(props) {
             return <div>Error!</div>;
           }
           if(props && props.events){
+            
             return (
               <div>
 
                {props.events.map(element=>{
-
-                 let timelineElement = (
-                  <VerticalTimelineElement
+                 return <VerticalTimelineElement
                       key={element.id}
                       className="vertical-timeline-element--education"
                       contentStyle={{ color: "#fff", backgroundImage: colors[i%len] }}
                       contentArrowStyle={{ borderRight: `7px solid ${color[i%len]}` }}
                       date={formatDate(element.date)}
-                      iconStyle={{ background: color[i%len], color: "#fff" }}
+                      iconStyle={{ background: color[i++%len], color: "#fff" }}
                     >
                       <h3 className="vertical-timeline-element-title">{element.eventDesc}</h3>
                     </VerticalTimelineElement>
-                  );
-                  return (timelineElement)
                })}
                 </div>
             );
 
           }else{
-            return(<h1>Hello</h1>)
+            return(<></>)
           }
 
         }}

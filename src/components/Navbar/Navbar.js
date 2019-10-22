@@ -65,7 +65,7 @@ export default function Navbar(props) {
   
   if(props.showBtns) defaultBtns = [
     { name: "Timeline", to: "timeline" },
-    { name: "Organizations", to: "orgs" },
+    // { name: "Organizations", to: "orgs" },
   ];
 
   let [tabs, setTabs] = useState({

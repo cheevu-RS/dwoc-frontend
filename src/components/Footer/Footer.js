@@ -72,13 +72,13 @@ export default function Footer() {
 			<CssBaseline />
 			<footer className={classes.footer}>
 				<div className={classes.footerLinksWrapper}>
-					<a className={classes.footerLinks} href={'https://facebook.com'}>
+					<a className={classes.footerLinks} href={'https://www.facebook.com/delta.nit.trichy/'}>
 						<FacebookIcon style={{ color: '#3b5998' }} className={classes.footerLinkIcon} />
 					</a>
 				</div>
 			</footer>
 			<div style={{ display: 'block', margin: 'auto', textAlign: 'center', fontSize: '20px' }}>
-				Made with <span style={{ color: 'red' }} role='img' aria-label='ily'>💙</span> by
+				Made with <span style={{ color: 'blue' }} role='img' aria-label='ily'>💙</span> by
 				<a href="https://delta.nitt.edu" style={{ color: '#5CDB95' }}>
 					{' '}
 					Delta Force{' '}
