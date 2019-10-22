@@ -29,42 +29,63 @@ const rows = [];
 
 export default function SimpleTable(props) {
   const classes = useStyles();
-  const projSlug = props.projSlug;
+  const projSlug=props.projSlug;
+  let renderTable=true;
 
   return (
     <div>
-      <QueryRenderer
-        environment={environment}
-        query={graphql`
-          query ProposalTableQuery($cond: ProposalWhereInput) {
-            proposals(where: $cond) {
-              id
-              propUrl
-              user {
-                id
-                firstName
-                lastName
-                githubHandle
+    <QueryRenderer
+      environment={environment}
+      query={graphql`
+            query ProposalTableQuery($cond: ProposalWhereInput) {
+              proposals(where: $cond){
+                  id
+                  propUrl
+                  user{
+                    id
+                    firstName
+                    lastName
+                    githubHandle
+                  }
               }
             }
-          }
-        `}
-        variables={{ cond: { project: { projSlug: projSlug } } }}
-        render={({ error, prop }) => {
-          if (error) {
-            console.log(`${error} <= error Relay OrgCards`);
-            return <div>Error!</div>;
-          }
-          if (!prop) {
-            return (
-              <div>
-                <p>Table empty!!!</p>
-              </div>
-            );
-          }
-          prop.proposals.forEach(function(e) {
-            rows.push(createData(e.user.firstName, e.propUrl, e.githubHandle));
-          });
+          `}
+          variables={{cond: {project: {projSlug: projSlug}}}}
+      render={({ error, prop }) => {
+        if (error) {
+          console.log(`${error} <= error Relay OrgCards`);
+          renderTable=false;
+          return <div>Error!</div>;
+        }
+        if (!prop) {
+          renderTable=false;
+          return (
+            <div>
+              <p>Table empty!!!</p>
+            </div>
+          );
+        }
+        prop.proposals.forEach(function(e){
+          rows.push(createData(e.user.firstName,e.propUrl,e.githubHandle))
+        });
+
+        return (
+            <div/>
+
+        );
+      }}
+    />
+
+
+  {
+    renderTable&&(<Paper className={classes.root}>
+      <Table className={classes.table} aria-label="simple table" >
+        <TableHead>
+          <TableRow >
+            <TableCell >Name</TableCell>
+            <TableCell align="center" >Proposal URL</TableCell>
+            <TableCell align="right">Github URL</TableCell>
+
 
           return <div />;
         }}
