@@ -60,25 +60,6 @@ function App() {
   let role;
   const classes = useStyles();
 
-  // const [state, setState] = React.useState({
-  //   checked: true // night
-  // });
-  // const handleChange = name => event => {
-  //   setState({ ...state, [name]: event.target.checked });
-  // };
-
-  // let switcher = (
-  //   <div>
-  //     <Switch
-  //       checked={state.checked}
-  //       onChange={handleChange("checked")}
-  //       value="checked"
-  //       color="primary"
-  //       inputProps={{ "aria-label": "primary checkbox" }}
-  //     />{state.checked ? (<div>Night</div>) : (<div style={{color: 'black'}}>Day</div>)}
-  //   </div>
-  // );
-
   return (
     <div className="App">
       <div className="App-header">
