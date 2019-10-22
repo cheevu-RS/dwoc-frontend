@@ -79,6 +79,7 @@ export default function Projects(props) {
   const classes = useStyles();
   const orgName = props.match.params.orgName;
   const defaultTools = ['C++', 'Python'];
+  let tools = props.location.state.stack;
   const isLogged = props.isLogged;
   const orgID = props.match.params.id;
   //const role= props.match.params.role;
@@ -102,8 +103,8 @@ export default function Projects(props) {
       <br />
       <h1 className={classes.header1}>{orgName}</h1>
       <br />
-      <h2 className={classes.header2}>Stack</h2>
-      {props.location.state.stack.join(', ')}
+      {/* <h2 className={classes.header2}>Stack</h2>
+      {props.location.state.stack.join(', ')} */}
       <h2 className={classes.header2}>Projects</h2>
       <QueryRenderer
         environment={environment}
@@ -168,7 +169,7 @@ export default function Projects(props) {
               <Grid container className={classes.gridContainer} spacing={3}>
                 {props.projects.map(project => (
                   <ProjCard
-                    tools={defaultTools}
+                    tools={tools}
                     projName={project.projName}
                     orgName={orgName}
                     projDesc={project.projDesc}

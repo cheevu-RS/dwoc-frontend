@@ -1,16 +1,24 @@
 /* @flow */
+
+//React
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+// Material
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
-import ProjMaxCard from '../ProjMaxCard/ProjMaxCard';
-import { Link } from 'react-router-dom';
-import { Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import { Grid } from '@material-ui/core';
+
+//Components
+import ProjMaxCard from '../ProjMaxCard/ProjMaxCard';
+
 // Style imports
 import { OrgProjCard, colours } from '../../../DwocStyles';
 import WebFont from 'webfontloader';
+
 WebFont.load({
   google: {
     families: [
@@ -60,8 +68,6 @@ const useStyles = makeStyles(theme => ({
   viewProjectsBtn: {
     color: '#05386B'
   },
-  stacks: OrgProjCard.stacks,
-  stack: OrgProjCard.stack,
 
   CardRowTwo: {
     flex: '0 1 auto',
@@ -105,29 +111,30 @@ export default function ProjMinCard(props) {
         <div className={classes.title}>{props.projName}</div>
 
         <div className={classes.description}>{props.projMinDesc}</div>
-      <CardActions>
-        <ProjMaxCard
-          btnText="Read more"
-          orgName={props.orgName}
-          projName={props.projName}
-          projDesc={props.projDesc}
-          taken={props.taken}
-          isLogged={props.isLogged}
-          {...props}
-        />
-        <Button variant="contained" className={classes.button}>
-        <Link
-        to={{
-          pathname: '/proposal',
-          data: {
-            projSlug:props.projSlug
-          }
-        }}>
-        View Projects
-        </Link>
-     </Button>
-      </CardActions>
-    </Card>
+        <CardActions>
+          <ProjMaxCard
+            btnText="Read more"
+            orgName={props.orgName}
+            projName={props.projName}
+            projDesc={props.projDesc}
+            taken={props.taken}
+            isLogged={props.isLogged}
+            {...props}
+          />
+          <Button variant="contained" className={classes.button}>
+            <Link
+              to={{
+                pathname: '/proposal',
+                data: {
+                  projSlug: props.projSlug
+                }
+              }}
+            >
+              View Projects
+            </Link>
+          </Button>
+        </CardActions>
+      </Card>
     </Grid>
   );
 }

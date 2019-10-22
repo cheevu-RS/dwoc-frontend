@@ -35,9 +35,11 @@ const header2 = {
 };
 
 const header3 = {
-  color: 'pink',
-  fontSize: '29px',
-  fontFamily: 'Mansalva'
+  color: '#ffffff',
+  fontSize: 30,
+  textAlign: 'center',
+  fontFamily: 'Poppins',
+  fontWeight: 500
 };
 
 const paragraph = {
@@ -93,7 +95,9 @@ const colours = {
     python: '#1A237E',
     cpp: 'black',
     React: 'goldenrod'
-  }
+  },
+  deltaLogoGreen: '#5bdb95',
+  navBarBlue: '#282b33'
 };
 
 const OrgProjCard = {
@@ -103,14 +107,14 @@ const OrgProjCard = {
     display: 'flex',
     flexWrap: 'wrap'
   },
-  stack: {
-    fontSize: 13,
-    borderRadius: 5,
-    padding: '4px 7px',
-    margin: '0px 8px 4px 0',
-    backgroundColor: 'purple',
-    color: '#ffffff'
-  },
+  // stack: {
+  //   fontSize: 13,
+  //   borderRadius: 5,
+  //   padding: '4px 7px',
+  //   margin: '0px 8px 4px 0',
+  //   backgroundColor: 'purple',
+  //   color: '#ffffff'
+  // },
   title: {
     textAlign: 'left',
     fontSize: 26,
