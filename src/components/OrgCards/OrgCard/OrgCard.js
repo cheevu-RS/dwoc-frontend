@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Grid, Card } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
@@ -126,7 +126,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function OrgCard(props) {
   const classes = useStyles();
-  let mentorsList;
+  //let mentorsList;
+
+  let [mentorsList, setMentorsList] = useState([]);
   console.log(`${JSON.stringify(props)} <= props OrgCars props`);
 
   const orgPath = '/org/' + props.id + '/' + props.orgName;
@@ -142,6 +144,10 @@ export default function OrgCard(props) {
             id
             user {
               firstName
+              lastName
+              mobileNumber
+              email
+              githubHandle
             }
           }
         }
@@ -160,18 +166,10 @@ export default function OrgCard(props) {
           );
         }
 
-        // let mentorsLen = props.mentors.length;
-        mentorsList = props.mentors;
+        setMentorsList(props.mentors);
+        //mentorsList = props.mentors;
+        console.log(`${JSON.stringify(mentorsList)} <= mentorsList # ${orgPath}#`);
         let mentors = props.mentors.map(m => m.user.firstName).join(', ');
-        // for (let i = 0; i < mentorsLen; i++) {
-        //   mentors += props.mentors[i].user.firstName;
-        //   // console.log(props.mentors[i].user.firstName);
-        //   if (i !== mentorsLen - 1) {
-        //     mentors += ',';
-        //   }
-        // }
-        // console.log(mentors);
-        // console.log(`${JSON.stringify(mentorsList)} <= mentorsList`);
         return <b>{mentors}</b>;
       }}
     />
@@ -194,7 +192,6 @@ export default function OrgCard(props) {
             <span className={classes.CardRowTwoDetail}>Projects</span>
           </div>
         </div>
-        {/* {console.log(`${mentorsList} <= props.mentors`)} */}
         <Link
           to={{
             pathname: orgPath,

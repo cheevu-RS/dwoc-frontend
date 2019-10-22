@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import ProjCard from './ProjMinCard/ProjMinCard';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 // Material UI
 import { Grid } from '@material-ui/core';
@@ -78,13 +76,13 @@ const override = css`
 export default function Projects(props) {
   const classes = useStyles();
   const orgName = props.match.params.orgName;
-  const defaultTools = ['C++', 'Python'];
+  //const defaultTools = ['C++', 'Python'];
   let tools = props.location.state.stack;
   const isLogged = props.isLogged;
   const orgID = props.match.params.id;
-  const role=props.role;
+  const role = props.role;
   //const role= props.match.params.role;
-  
+  let mentorsList = props.location.state.mentors;
   const orgSlug = props.location.state.orgSlug;
   console.log(`${JSON.stringify(props)} <= props in ProjCards`);
 
@@ -104,8 +102,6 @@ export default function Projects(props) {
       <br />
       <h1 className={classes.header1}>{orgName}</h1>
       <br />
-      {/* <h2 className={classes.header2}>Stack</h2>
-      {props.location.state.stack.join(', ')} */}
       <h2 className={classes.header2}>Projects</h2>
       <QueryRenderer
         environment={environment}
@@ -146,11 +142,7 @@ export default function Projects(props) {
           if (role === 'mentor')
             addProjectMenu = (
               <div>
-                <Button
-                  color="secondary"
-                  variant="outlined"
-                  onClick={handleClickOpen}
-                >
+                <Button color="secondary" variant="outlined" onClick={handleClickOpen}>
                   Add Project
                 </Button>
                 <Dialog
@@ -158,9 +150,7 @@ export default function Projects(props) {
                   onClose={handleClose}
                   aria-labelledby="form-dialog-title"
                 >
-                  <DialogTitle id="form-dialog-title">
-                    Add New Project
-                  </DialogTitle>
+                  <DialogTitle id="form-dialog-title">Add New Project</DialogTitle>
                   <Form onClose={handleClose} orgName={orgSlug} />
                 </Dialog>
               </div>
@@ -184,7 +174,8 @@ export default function Projects(props) {
               </Grid>
               <br />
               <br />
-              <MentorTags mentors={['NNNNN', 'NNNNN', 'NNNNN']} />
+              <h2 className={classes.header2}>Mentors</h2>
+              <MentorTags mentors={mentorsList} />
               {addProjectMenu}
             </>
           );
