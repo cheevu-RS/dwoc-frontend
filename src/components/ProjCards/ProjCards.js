@@ -27,8 +27,8 @@ WebFont.load({
 
 const useStyles = makeStyles(theme => ({
   container: {
-    minWidth: '93%',
-    paddingLeft: '2%'
+    //minWidth: '93%',
+    //paddingLeft: '2%'
   },
   header1: header1,
   header2: { ...header2 },

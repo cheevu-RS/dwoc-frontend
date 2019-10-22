@@ -33,6 +33,11 @@ const stacks = [
     display: 'React',
     color: 'goldenrod'
   },
+  {
+    lowerCase: 'node.js',
+    display: 'Node.JS',
+    color: '#004D40'
+  },
   { lowerCase: 'c++', display: 'C++', color: '#000' }
 ];
 function StackCard(props) {
@@ -42,13 +47,16 @@ function StackCard(props) {
     stack => stack.lowerCase === props.tool.toLowerCase()
   )[0];
 
+  if (!toolDisplay) {
+    toolDisplay = {
+      display: props.tool.toLowerCase(),
+      color: 'maroon'
+    };
+  }
   console.log(`${JSON.stringify(toolDisplay)} <= toolDisplay`);
   return (
     <div style={{ display: 'inline-block' }}>
-      <span
-        className={classes.stack}
-        style={{ backgroundColor: toolDisplay.color }}
-      >
+      <span className={classes.stack} style={{ backgroundColor: toolDisplay.color }}>
         {toolDisplay.display}
       </span>
     </div>
