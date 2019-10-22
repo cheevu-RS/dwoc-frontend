@@ -121,6 +121,7 @@ export default function ProjMinCard(props) {
             isLogged={props.isLogged}
             {...props}
           />
+          {props.role&&
           <Button variant="contained" className={classes.button}>
             <Link
               to={{
@@ -130,9 +131,11 @@ export default function ProjMinCard(props) {
                 }
               }}
             >
-              View Projects
+              View Proposal
             </Link>
+
           </Button>
+        }
         </CardActions>
       </Card>
     </Grid>

@@ -14,14 +14,15 @@ const useStyles = makeStyles({
   root: {
     width: '100%',
     overflowX: 'auto',
-    marginTop: 50
+   marginTop:50
   },
   table: {
-    minWidth: 650
-  }
+    minWidth: 650,
+  },
+
 });
 
-function createData(name, propsalURL, githubUrl) {
+function createData(name,propsalURL,githubUrl) {
   return { name, propsalURL, githubUrl };
 }
 
@@ -54,11 +55,11 @@ export default function SimpleTable(props) {
       render={({ error, prop }) => {
         if (error) {
           console.log(`${error} <= error Relay OrgCards`);
-          renderTable=false;
           return <div>Error!</div>;
+            renderTable=false;
         }
         if (!prop) {
-          renderTable=false;
+            renderTable=false;
           return (
             <div>
               <p>Table empty!!!</p>
@@ -77,42 +78,33 @@ export default function SimpleTable(props) {
     />
 
 
-  {
-    renderTable&&(<Paper className={classes.root}>
-      <Table className={classes.table} aria-label="simple table" >
+{renderTable&&
+    (<Paper className={classes.root}>
+      <Table className={classes.table} aria-label="simple table">
         <TableHead>
-          <TableRow >
-            <TableCell >Name</TableCell>
-            <TableCell align="center" >Proposal URL</TableCell>
+          <TableRow>
+            <TableCell>Name</TableCell>
+            <TableCell align="center">Proposal URL</TableCell>
             <TableCell align="right">Github URL</TableCell>
 
 
-          return <div />;
-        }}
-      />
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map(row => (
+            <TableRow key={row.name}>
+              <TableCell component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell align="right">{row.propsalURL}</TableCell>
+              <TableCell align="right">{row.githubUrl}</TableCell>
 
-      <Paper className={classes.root}>
-        <Table className={classes.table} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell align="right">Proposal URL</TableCell>
-              <TableCell align="right">Github URL</TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map(row => (
-              <TableRow key={row.name}>
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{row.propsalURL}</TableCell>
-                <TableCell align="right">{row.githubUrl}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
+          ))}
+        </TableBody>
+      </Table>
+    </Paper>)
+  }
     </div>
   );
 }

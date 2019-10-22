@@ -82,8 +82,9 @@ export default function Projects(props) {
   let tools = props.location.state.stack;
   const isLogged = props.isLogged;
   const orgID = props.match.params.id;
+  const role=props.role;
   //const role= props.match.params.role;
-  const role = 'mentor';
+  
   const orgSlug = props.location.state.orgSlug;
   console.log(`${JSON.stringify(props)} <= props in ProjCards`);
 
@@ -177,6 +178,7 @@ export default function Projects(props) {
                     {...project}
                     isLogged={isLogged}
                     key={project.id}
+                    role={role}
                   />
                 ))}
               </Grid>
