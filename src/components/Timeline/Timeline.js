@@ -58,66 +58,59 @@ export default function HorizontalNonLinearAlternativeLabelStepper(props) {
   let i = 0;
 
   return (
-    <div className={classes.timeline}>
-      <div style={{ paddingTop: '120px' }} id="timeline">
-        <h2 className={classes.header2}>Timeline </h2>
-        <VerticalTimeline>
-          <QueryRenderer
-            environment={environment}
-            query={graphql`
-              query TimelineQuery {
-                events {
-                  id
-                  date
-                  eventDesc
-                }
-              }
-            `}
-            variables={{}}
-            render={({ error, props }) => {
-              if (error) {
-                console.log(`${error} <= error Relay OrgCards`);
-                return <div>Error!</div>;
-              }
-              if (props && props.events) {
-                return (
-                  <div>
-                    {props.events.map(element => {
-                      let timelineElement = (
-                        <VerticalTimelineElement
-                          key={element.id}
-                          className="vertical-timeline-element--education"
-                          contentStyle={{
-                            color: '#fff',
-                            backgroundImage: colors[i % len]
-                          }}
-                          contentArrowStyle={{
-                            borderRight: `7px solid ${color[i % len]}`
-                          }}
-                          date={formatDate(element.date)}
-                          iconStyle={{
-                            background: color[i++ % len],
-                            color: '#fff'
-                          }}
-                        >
-                          <h3 className="vertical-timeline-element-title">
-                            {element.eventDesc}
-                          </h3>
-                          <p>Para 2</p>
-                        </VerticalTimelineElement>
-                      );
-                      return timelineElement;
-                    })}
-                  </div>
-                );
-              } else {
-                return <h1>...</h1>;
-              }
-            }}
-          />
-        </VerticalTimeline>
-        <div style={{ height: '20px' }}></div>
-      </div>
+    <div className={classes.timeline} style={{width: props.width}}>
+    <div style={{ paddingTop: "60px" }} id="timeline">
+      <h2 className={classes.header2}>Timeline </h2>
+      <VerticalTimeline>
+      <QueryRenderer
+        environment={environment}
+        query={graphql`
+          query TimelineQuery {
+            events {
+              id
+              date
+              eventDesc
+            }
+          }
+        `}
+        variables={{}}
+        render={({ error, props }) => {
+          if (error) {
+            console.log(`${error} <= error Relay OrgCards`);
+            return <div>Error!</div>;
+          }
+          if(props && props.events){
+            return (
+              <div>
+
+               {props.events.map(element=>{
+
+                 let timelineElement = (
+                  <VerticalTimelineElement
+                      key={element.id}
+                      className="vertical-timeline-element--education"
+                      contentStyle={{ color: "#fff", backgroundImage: colors[i%len] }}
+                      contentArrowStyle={{ borderRight: `7px solid ${color[i%len]}` }}
+                      date={formatDate(element.date)}
+                      iconStyle={{ background: color[i%len], color: "#fff" }}
+                    >
+                      <h3 className="vertical-timeline-element-title">{element.eventDesc}</h3>
+                    </VerticalTimelineElement>
+                  );
+                  return (timelineElement)
+               })}
+                </div>
+            );
+
+          }else{
+            return(<h1>Hello</h1>)
+          }
+
+        }}
+      />
+      </VerticalTimeline>
+      <div style={{ height: "20px" }}></div>
+    </div>
     </div>
   );
 }

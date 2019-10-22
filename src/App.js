@@ -19,12 +19,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { header2, header3, orgs } from './DwocStyles';
 
 // Subcomponent imports
-import LandingPage from './views/LandingPage/LandingPage';
-import Navbar from './components/Navbar/Navbar';
-import ProposalForm from './components/ProposalForm/ProposalForm';
-import ProjCards from './components/ProjCards/ProjCards';
-import ViewProposal from './components/ViewProposal/ViewProposal';
-import SnowStorm from 'react-snowstorm';
+import LandingPage from "./views/LandingPage/LandingPage";
+import Navbar from "./components/Navbar/Navbar";
+import ProposalForm from "./components/ProposalForm/ProposalForm";
+import ProjCards from "./components/ProjCards/ProjCards";
+import ViewProposal from "./components/ViewProposal/ViewProposal"
+import SnowStorm from "react-snowstorm";
 
 //Spinner
 import RingLoader from 'react-spinners/RingLoader';
@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App() {
-  let [isLogged, toggleIsLogged] = useState(false);
+  let [isLogged, toggleIsLogged] = useState(true);
   let role;
   const classes = useStyles();
 
