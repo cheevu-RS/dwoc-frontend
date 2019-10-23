@@ -69,31 +69,28 @@ export default function Navbar(props) {
   ];
 
   let [tabs, setTabs] = useState({
-    name: 'Login with Github',
-    link: 'https://delta.nitt.edu/dwocb/login'
+    // name: 'Login with Github',
+    // link: 'https://delta.nitt.edu/dwocb/login'
   });
 
   console.log(props);
 
-  useEffect(() => {
-    // Update the document title using the browser API
+  // useEffect(() => {
+  //   // Update the document title using the browser API
 
-    if (props.isLogged) {
-      setTabs({ name: 'Logout', link: 'https://delta.nitt.edu/dwocb/logout' });
-    } else {
-      setTabs({
-        name: 'Login with Github',
-        link: 'https://delta.nitt.edu/dwocb/login'
-      });
-    }
-  }, [props.isLogged]);
+  //   if (props.isLogged) {
+  //     setTabs({ name: 'Logout', link: 'https://delta.nitt.edu/dwocb/logout' });
+  //   } else {
+  //     setTabs({
+  //       name: 'Login with Github',
+  //       link: 'https://delta.nitt.edu/dwocb/login'
+  //     });
+  //   }
+  // }, [props.isLogged]);
 
   const handleToggle = evt => {
     setOpen(prevState => !prevState);
     // open ? setDrawerWidth(0) : setDrawerWidth(200);
-  };
-  const handleClick = (evt, tabName) => {
-    console.log(tabName);
   };
 
   // TODO make it look good on mobile devices
@@ -145,11 +142,11 @@ export default function Navbar(props) {
                 </Link>
               </Button>
             ))}
-            {(
+            {/* {(
               <Button className={styles.nightButton} href={tabs.link} >
                 <ListItemText primary={tabs.name} style={{color: '#fff'}}/>
               </Button>
-            )}
+            )} */}
           </div>
         </Toolbar>
       )}

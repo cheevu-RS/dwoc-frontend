@@ -80,11 +80,14 @@ export default function HorizontalNonLinearAlternativeLabelStepper(props) {
             return <div>Error!</div>;
           }
           if(props && props.events){
+
+            // console.log(props.events);
+            let events = JSON.parse(JSON.stringify(props.events));
+            events.sort((a, b) => {return new Date(a.date) - new Date(b.date)})
             
             return (
               <div>
-
-               {props.events.map(element=>{
+               {events.map(element=>{
                  return <VerticalTimelineElement
                       key={element.id}
                       className="vertical-timeline-element--education"

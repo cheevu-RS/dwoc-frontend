@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App() {
-  let [isLogged, toggleIsLogged] = useState(true);
+  let [isLogged, toggleIsLogged] = useState(false);
   let role;
   const classes = useStyles();
 
@@ -103,7 +103,7 @@ function App() {
           usePositionFixed={true}
           useTwinkleEffect={true}
         />
-        <Router basename="/dwocf">
+        <Router>
           <Route
             path="/"
             render={props => (

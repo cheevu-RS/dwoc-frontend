@@ -48,7 +48,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexFlow: 'column',
     padding: 0,
-
     color: '#000000'
     //...OrgProjCard
   },
