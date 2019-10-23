@@ -75,9 +75,9 @@ export default function Sidebar({
         ))}
         <ListItem>
           {
-            <Button onClick={handleToggle} href={tabs.link}>
-              <ListItemText style={{ color: 'white' }} primary={tabs.name} />
-            </Button>
+            // <Button onClick={handleToggle} href={tabs.link}>
+            //   <ListItemText style={{ color: 'white' }} primary={tabs.name} />
+            // </Button>
           }
         </ListItem>
       </List>
