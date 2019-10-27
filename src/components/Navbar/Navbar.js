@@ -65,28 +65,28 @@ export default function Navbar(props) {
   
   if(props.showBtns) defaultBtns = [
     { name: "Timeline", to: "timeline" },
-    // { name: "Organizations", to: "orgs" },
+    { name: "Organizations", to: "orgs" },
   ];
 
   let [tabs, setTabs] = useState({
-    // name: 'Login with Github',
-    // link: 'https://delta.nitt.edu/dwocb/login'
+    name: 'Login with Github',
+    link: 'https://delta.nitt.edu/dwocb/login'
   });
 
   console.log(props);
 
-  // useEffect(() => {
-  //   // Update the document title using the browser API
+  useEffect(() => {
+    // Update the document title using the browser API
 
-  //   if (props.isLogged) {
-  //     setTabs({ name: 'Logout', link: 'https://delta.nitt.edu/dwocb/logout' });
-  //   } else {
-  //     setTabs({
-  //       name: 'Login with Github',
-  //       link: 'https://delta.nitt.edu/dwocb/login'
-  //     });
-  //   }
-  // }, [props.isLogged]);
+    if (props.isLogged) {
+      setTabs({ name: 'Logout', link: 'https://delta.nitt.edu/dwocb/logout' });
+    } else {
+      setTabs({
+        name: 'Login with Github',
+        link: 'https://delta.nitt.edu/dwocb/login'
+      });
+    }
+  }, [props.isLogged]);
 
   const handleToggle = evt => {
     setOpen(prevState => !prevState);
@@ -142,11 +142,11 @@ export default function Navbar(props) {
                 </Link>
               </Button>
             ))}
-            {/* {(
+            {(
               <Button className={styles.nightButton} href={tabs.link} >
                 <ListItemText primary={tabs.name} style={{color: '#fff'}}/>
               </Button>
-            )} */}
+            )}
           </div>
         </Toolbar>
       )}
