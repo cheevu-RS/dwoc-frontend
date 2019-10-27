@@ -15,8 +15,18 @@ const useStyles = makeStyles(theme => ({
 const stacks = [
   {
     lowerCase: 'python',
-    display: 'Pyhon',
+    display: 'Python',
     color: '#1A237E'
+  },
+  {
+    lowerCase: 'django',
+    display: 'Django',
+    color: '#117214'
+  },
+  {
+    lowerCase: 'android',
+    display: 'Android',
+    color: '#86755E'
   },
   {
     lowerCase: 'typescript',
@@ -26,19 +36,43 @@ const stacks = [
   {
     lowerCase: 'javascript',
     display: 'JavaScript',
+    color: '#077689'
+  },
+  {
+    lowerCase: 'java',
+    display: 'Java',
     color: '#263238'
+  },
+  {
+    lowerCase: 'node',
+    display: 'NodeJS',
+    color: '#004D40'
+  },
+  {
+    lowerCase: 'mongodb',
+    display: 'MongoDB',
+    color: '#75216F'
+  },
+  {
+    lowerCase: 'go-graphql',
+    display: 'Go/GraphQL',
+    color: '#473F8C'
   },
   {
     lowerCase: 'react',
     display: 'React',
     color: 'goldenrod'
   },
-  {
-    lowerCase: 'node.js',
-    display: 'Node.JS',
-    color: '#004D40'
+  { lowerCase: 'c++', 
+    display: 'C++', 
+    color: '#000' 
   },
-  { lowerCase: 'c++', display: 'C++', color: '#000' }
+  {
+    lowerCase: 'semantic ui',
+    display: 'Semantic UI',
+    color: '#C11958'
+  },
+  
 ];
 function StackCard(props) {
   const classes = useStyles();

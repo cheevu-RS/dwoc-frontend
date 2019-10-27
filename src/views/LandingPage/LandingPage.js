@@ -119,7 +119,7 @@ function LandingPage(props) {
       <Reveal>
         {timeline}
       </Reveal>
-      {/* <Reveal><Pulse><OrgCards /></Pulse></Reveal> */}
+      <Reveal><Pulse><OrgCards /></Pulse></Reveal>
       <Footer></Footer> 
     </div>
   );
