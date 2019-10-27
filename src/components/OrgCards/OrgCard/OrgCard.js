@@ -170,6 +170,10 @@ export default function OrgCard(props) {
     />
   );
 
+  let stacks = JSON.parse(JSON.stringify(props.stack));
+  stacks.sort();
+
+
   return (
     <Grid item xs={12} sm={6} md={4} xl={3}>
       <Card className={classes.card}>
@@ -177,7 +181,7 @@ export default function OrgCard(props) {
         <span className={classes.mentorName}>by {mentorFetch}</span>
         <div className={classes.description}>{props.orgDesc}</div>
         <div className={classes.stacks}>
-          {props.stack.map(tool => (
+          {stacks.map(tool => (
             <StackCard tool={tool} key={tool} />
           ))}
         </div>
