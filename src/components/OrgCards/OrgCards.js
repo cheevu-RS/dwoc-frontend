@@ -39,9 +39,9 @@ const override = css`
   border-color: red;
 `;
 
-export default function OrgCards() {
+export default function OrgCards(prop) {
   const classes = useStyles();
-
+  const role=prop.role;
   return (
     <QueryRenderer
       environment={environment}
@@ -76,7 +76,7 @@ export default function OrgCards() {
             <h2 className={classes.header2}>Organizations</h2>
             <Grid container className={classes.gridContainer} spacing={3}>
               {props.organizations.map(org => (
-                <OrgCard {...org} key={org.id} />
+                <OrgCard {...org} key={org.id} role={role}  />
               ))}
             </Grid>
             <div style={{ height: '50px' }}></div>
