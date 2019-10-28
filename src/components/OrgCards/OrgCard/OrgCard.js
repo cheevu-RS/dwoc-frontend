@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Grid, Card } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 // React relay
 import { QueryRenderer } from 'react-relay';
@@ -129,6 +130,7 @@ export default function OrgCard(props) {
 
   const orgPath = '/org/' + props.id + '/' + props.orgName;
   const orgID = props.id;
+  const role=props.role;
 
   let mentorFetch = (
     <QueryRenderer
@@ -185,12 +187,14 @@ export default function OrgCard(props) {
             <StackCard tool={tool} key={tool} />
           ))}
         </div>
-        <div className={classes.CardRowTwo}>
+        {role!="Mentor"&&
+        (<div className={classes.CardRowTwo}>
           <div className={classes.CardRowTwoElements}>
             {/* <div className={classes.CardRowTwoContent}>12</div> */}
             <b className={classes.CardRowTwoDetail} style={{paddingTop: '8px'}}>Projects: Coming Soon!</b>
           </div>
-        </div>
+        </div>)
+      }{role=="Mentor"&&(
         <Link
           to={{
             pathname: orgPath,
@@ -201,8 +205,9 @@ export default function OrgCard(props) {
           }}
           style={{ textAlign: 'center', textDecoration: 'none' }}
         >
-          {/* <Button className={classes.BtnViewProjects}>VIEW PROJECTS</Button> */}
-        </Link>
+          <Button className={classes.BtnViewProjects}>VIEW PROJECTS</Button>
+        </Link>)
+      }
       </Card>
     </Grid>
   );

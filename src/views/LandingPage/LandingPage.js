@@ -47,7 +47,8 @@ function LandingPage(props) {
 
   const classes = useStyles();
   const [width, setWidth] = useState(window.innerWidth);
-  
+  const role=props.role;
+
   let timeline = (
     <div>
       {width < minWidth&& (<Timeline width={"85%"}/>)}
@@ -76,9 +77,9 @@ function LandingPage(props) {
             />
             </div>
           </Tilt>
-          
+
           </div>
-          
+
         </Pulse>
       </Reveal>
       <Reveal>
@@ -109,8 +110,8 @@ function LandingPage(props) {
             <h2 className={classes.header2}>Why Delta Winter of Code?</h2>
             </Flip>
             <p className={classes.paragraph}>
-            Delta, the coding club of NIT Trichy, with 25 years of history and quality projects under its belt opens the door for the very 
-            first time and invites you to spend your winter working on one of a kind projects alongside experienced mentors to 
+            Delta, the coding club of NIT Trichy, with 25 years of history and quality projects under its belt opens the door for the very
+            first time and invites you to spend your winter working on one of a kind projects alongside experienced mentors to
             create technology that is impactful and meaningful.
             </p>
           </div>
@@ -119,8 +120,8 @@ function LandingPage(props) {
       <Reveal>
         {timeline}
       </Reveal>
-      <Reveal><Pulse><OrgCards /></Pulse></Reveal>
-      <Footer></Footer> 
+      <Reveal><Pulse><OrgCards role={role} /></Pulse></Reveal>
+      <Footer></Footer>
     </div>
   );
 }
