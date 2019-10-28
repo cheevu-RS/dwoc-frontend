@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 74f10d65354ddf9409a8e0444dd063bd
+ * @relayHash 50d899e26def090a406684cf07b009d0
  */
 
 /* eslint-disable */
@@ -41,7 +41,11 @@ export type OrgCardQueryResponse = {|
   +mentors: $ReadOnlyArray<?{|
     +id: string,
     +user: {|
-      +firstName: string
+      +firstName: string,
+      +lastName: string,
+      +mobileNumber: ?string,
+      +email: ?string,
+      +githubHandle: string,
     |},
   |}>
 |};
@@ -60,6 +64,10 @@ query OrgCardQuery(
     id
     user {
       firstName
+      lastName
+      mobileNumber
+      email
+      githubHandle
       id
     }
   }
@@ -95,6 +103,34 @@ v3 = {
   "name": "firstName",
   "args": null,
   "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "lastName",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "mobileNumber",
+  "args": null,
+  "storageKey": null
+},
+v6 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "email",
+  "args": null,
+  "storageKey": null
+},
+v7 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "githubHandle",
+  "args": null,
+  "storageKey": null
 };
 return {
   "kind": "Request",
@@ -124,7 +160,11 @@ return {
             "concreteType": "User",
             "plural": false,
             "selections": [
-              (v3/*: any*/)
+              (v3/*: any*/),
+              (v4/*: any*/),
+              (v5/*: any*/),
+              (v6/*: any*/),
+              (v7/*: any*/)
             ]
           }
         ]
@@ -156,6 +196,10 @@ return {
             "plural": false,
             "selections": [
               (v3/*: any*/),
+              (v4/*: any*/),
+              (v5/*: any*/),
+              (v6/*: any*/),
+              (v7/*: any*/),
               (v2/*: any*/)
             ]
           }
@@ -167,11 +211,11 @@ return {
     "operationKind": "query",
     "name": "OrgCardQuery",
     "id": null,
-    "text": "query OrgCardQuery(\n  $orgid: MentorWhereInput\n) {\n  mentors(where: $orgid) {\n    id\n    user {\n      firstName\n      id\n    }\n  }\n}\n",
+    "text": "query OrgCardQuery(\n  $orgid: MentorWhereInput\n) {\n  mentors(where: $orgid) {\n    id\n    user {\n      firstName\n      lastName\n      mobileNumber\n      email\n      githubHandle\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '9d874e19895d7402ffb94d288288b07f';
+(node/*: any*/).hash = '4e3db44392cff0dd98e6c34b9d2b8431';
 module.exports = node;

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 
 // Subcomponent imports
 import Timeline from '../../components/Timeline/Timeline';
@@ -56,11 +56,19 @@ function LandingPage(props) {
   );
 
   return (
-    <div style={{ paddingBottom: '0px', marginBottom: '0px' }}>
+    <div style={{ paddingBottom: '0px', marginBottom: '0px', paddingTop: '10px', paddingLeft: '10px' }}>
       <Reveal>
         <Pulse>
+          <div>
+            <div>
+              <img
+                alt="1+"
+                src={require('../../assets/images/OPN_WoT.png')}
+                width="70"
+              />
+            </div>
           <Tilt className="Tilt" options={{ max : 25 }} >
-            <div className={classes.section} style={{marginTop: screenHeight/4}}>
+            <div className={classes.section} style={{marginTop: (screenHeight/4) - 100}}>
             <img
               alt="dwocLogo"
               className="landingimg"
@@ -68,6 +76,9 @@ function LandingPage(props) {
             />
             </div>
           </Tilt>
+          
+          </div>
+          
         </Pulse>
       </Reveal>
       <Reveal>
@@ -76,7 +87,7 @@ function LandingPage(props) {
             <h2 className={classes.header2} >About</h2>
             </Flip>
             <p className={classes.paragraph}>
-              This is a winter long program organised by{' '}
+              DWoC is a winter long program organised by{' '}
               <a href="https://delta.nitt.edu" style={{ color: '#5CDB95' }}>
                 Delta Force
               </a>
@@ -90,6 +101,21 @@ function LandingPage(props) {
             </p>
           </div>
       </Reveal>
+      <br />
+      <br />
+      <Reveal>
+          <div id="about" className={classes.about}>
+            <Flip left>
+            <h2 className={classes.header2}>Why Delta Winter of Code?</h2>
+            </Flip>
+            <p className={classes.paragraph}>
+            Delta, the coding club of NIT Trichy, with 25 years of history and quality projects under its belt opens the door for the very 
+            first time and invites you to spend your winter working on one of a kind projects alongside experienced mentors to 
+            create technology that is impactful and meaningful.
+            </p>
+          </div>
+      </Reveal>
+
       <Reveal>
         {timeline}
       </Reveal>

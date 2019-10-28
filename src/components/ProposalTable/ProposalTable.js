@@ -19,7 +19,6 @@ const useStyles = makeStyles({
   table: {
     minWidth: 650,
   },
-
 });
 
 function createData(name,propsalURL,githubUrl) {

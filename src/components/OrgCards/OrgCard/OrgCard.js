@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Grid, Card } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
 
 // React relay
 import { QueryRenderer } from 'react-relay';
@@ -49,7 +48,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexFlow: 'column',
     padding: 0,
-
     color: '#000000'
     //...OrgProjCard
   },
@@ -119,19 +117,18 @@ const useStyles = makeStyles(theme => ({
   },
   BtnViewProjects: {
     flex: '0 1 auto'
-    //backgroundColor: '#F6F6F6'
-    //  width: '100%'
   }
 }));
 
 export default function OrgCard(props) {
   const classes = useStyles();
-  let mentorsList;
+  //let mentorsList;
+
+  let [mentorsList, setMentorsList] = useState([]);
   console.log(`${JSON.stringify(props)} <= props OrgCars props`);
 
   const orgPath = '/org/' + props.id + '/' + props.orgName;
   const orgID = props.id;
-  console.log(props.stack);
 
   let mentorFetch = (
     <QueryRenderer
@@ -142,6 +139,10 @@ export default function OrgCard(props) {
             id
             user {
               firstName
+              lastName
+              mobileNumber
+              email
+              githubHandle
             }
           }
         }
@@ -160,22 +161,18 @@ export default function OrgCard(props) {
           );
         }
 
-        // let mentorsLen = props.mentors.length;
-        mentorsList = props.mentors;
+        setMentorsList(props.mentors);
+        //mentorsList = props.mentors;
+        console.log(`${JSON.stringify(mentorsList)} <= mentorsList # ${orgPath}#`);
         let mentors = props.mentors.map(m => m.user.firstName).join(', ');
-        // for (let i = 0; i < mentorsLen; i++) {
-        //   mentors += props.mentors[i].user.firstName;
-        //   // console.log(props.mentors[i].user.firstName);
-        //   if (i !== mentorsLen - 1) {
-        //     mentors += ',';
-        //   }
-        // }
-        // console.log(mentors);
-        // console.log(`${JSON.stringify(mentorsList)} <= mentorsList`);
         return <b>{mentors}</b>;
       }}
     />
   );
+
+  let stacks = JSON.parse(JSON.stringify(props.stack));
+  stacks.sort();
+
 
   return (
     <Grid item xs={12} sm={6} md={4} xl={3}>
@@ -184,29 +181,27 @@ export default function OrgCard(props) {
         <span className={classes.mentorName}>by {mentorFetch}</span>
         <div className={classes.description}>{props.orgDesc}</div>
         <div className={classes.stacks}>
-          {props.stack.map(tool => (
+          {stacks.map(tool => (
             <StackCard tool={tool} key={tool} />
           ))}
         </div>
         <div className={classes.CardRowTwo}>
           <div className={classes.CardRowTwoElements}>
-            <div className={classes.CardRowTwoContent}>12</div>
-            <span className={classes.CardRowTwoDetail}>Projects</span>
+            {/* <div className={classes.CardRowTwoContent}>12</div> */}
+            <b className={classes.CardRowTwoDetail} style={{paddingTop: '8px'}}>Projects: Coming Soon!</b>
           </div>
         </div>
-        {/* {console.log(`${mentorsList} <= props.mentors`)} */}
         <Link
           to={{
             pathname: orgPath,
             state: {
               orgSlug: props.orgSlug,
-              stack: props.stack,
               mentors: mentorsList
             }
           }}
           style={{ textAlign: 'center', textDecoration: 'none' }}
         >
-          <Button className={classes.BtnViewProjects}>VIEW PROJECTS</Button>
+          {/* <Button className={classes.BtnViewProjects}>VIEW PROJECTS</Button> */}
         </Link>
       </Card>
     </Grid>

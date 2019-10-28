@@ -19,12 +19,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { header2, header3, orgs } from './DwocStyles';
 
 // Subcomponent imports
-import LandingPage from './views/LandingPage/LandingPage';
-import Navbar from './components/Navbar/Navbar';
-import ProposalForm from './components/ProposalForm/ProposalForm';
-import ProjCards from './components/ProjCards/ProjCards';
-import ViewProposal from './components/ViewProposal/ViewProposal';
-import SnowStorm from 'react-snowstorm';
+import LandingPage from "./views/LandingPage/LandingPage";
+import Navbar from "./components/Navbar/Navbar";
+import ProposalForm from "./components/ProposalForm/ProposalForm";
+import ProjCards from "./components/ProjCards/ProjCards";
+import ViewProposal from "./components/ViewProposal/ViewProposal"
+import SnowStorm from "react-snowstorm";
 
 //Spinner
 import RingLoader from 'react-spinners/RingLoader';
@@ -59,25 +59,6 @@ function App() {
   let [isLogged, toggleIsLogged] = useState(false);
   let role;
   const classes = useStyles();
-
-  // const [state, setState] = React.useState({
-  //   checked: true // night
-  // });
-  // const handleChange = name => event => {
-  //   setState({ ...state, [name]: event.target.checked });
-  // };
-
-  // let switcher = (
-  //   <div>
-  //     <Switch
-  //       checked={state.checked}
-  //       onChange={handleChange("checked")}
-  //       value="checked"
-  //       color="primary"
-  //       inputProps={{ "aria-label": "primary checkbox" }}
-  //     />{state.checked ? (<div>Night</div>) : (<div style={{color: 'black'}}>Day</div>)}
-  //   </div>
-  // );
 
   return (
     <div className="App">
@@ -122,7 +103,7 @@ function App() {
           usePositionFixed={true}
           useTwinkleEffect={true}
         />
-        <Router basename="/dwocf">
+        <Router>
           <Route
             path="/"
             render={props => (

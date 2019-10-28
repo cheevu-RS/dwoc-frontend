@@ -62,8 +62,8 @@ export default function Sidebar({
       <Divider />
       <List>
         {defaultBtns.map((defaultBtn, index) => (
-          <ListItem>
-            <Button key={index}>
+          <ListItem key={index}>
+            <Button >
               <Link onClick={handleClick} smooth={true} to={defaultBtn.to}>
                 <ListItemText
                   style={{ color: 'white' }}

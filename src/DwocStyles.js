@@ -55,8 +55,6 @@ const { innerWidth: screenWidth, innerHeight: screenHeight } = window;
 
 const section = {
   minHeight: screenHeight * 0.75, // i.e. 80% of screen height
-  // backgroundImage: `url(${landingBackImg})`,
-  // backgroundColor: "black",
   display: 'block',
   margin: 'auto',
   width: '100%',
