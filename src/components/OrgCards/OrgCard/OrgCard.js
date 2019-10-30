@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Grid, Card } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import ForumIcon from '@material-ui/icons/Forum';
 
 // React relay
 import { QueryRenderer } from 'react-relay';
@@ -118,6 +120,21 @@ const useStyles = makeStyles(theme => ({
   },
   BtnViewProjects: {
     flex: '0 1 auto'
+  },
+  urlContainer: {
+    display: 'flex',
+    margin: 10
+  },
+  url: {
+    display: 'inline-block',
+    margin: 'auto',
+    color: '#282c34',
+    transform: 'scale(1.3)',
+    transition: '0.3s',
+    '&:hover': {
+      color: 'inherit',
+      transform: 'scale(1.7)'
+    }
   }
 }));
 
@@ -186,6 +203,10 @@ export default function OrgCard(props) {
           {stacks.map(tool => (
             <StackCard tool={tool} key={tool} />
           ))}
+        </div>
+        <div className={classes.urlContainer}>
+          <a className={classes.url} href={props.githubUrl} target="_blank"><GitHubIcon />  </a>
+          <a className={classes.url} href={props.communicationChannel} target="_blank"><ForumIcon />  </a>
         </div>
         {role!="Mentor"&&
         (<div className={classes.CardRowTwo}>

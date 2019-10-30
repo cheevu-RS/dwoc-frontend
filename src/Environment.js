@@ -2,7 +2,7 @@ const { Environment, Network, RecordSource, Store } = require("relay-runtime");
 const Cookie = require("js-cookie");
 
 function fetchQuery(operation, variables) {
-  return fetch("https://delta.nitt.edu/dwocb", {
+  return fetch("https://dwoc.io/dwocb", {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
@@ -16,7 +16,7 @@ function fetchQuery(operation, variables) {
   });
 }
 function fetchQuery1(operation, variables) {
-  return fetch("https://delta.nitt.edu/dwocb", {
+  return fetch("https://dwoc.io/dwocb", {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',

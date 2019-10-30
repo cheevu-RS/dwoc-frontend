@@ -74,6 +74,7 @@ type Organization {
   orgDesc: String
   githubUrl: String
   stack: [String]
+  communicationChannel: String!
 }
 
 input OrganizationCreateInput {
