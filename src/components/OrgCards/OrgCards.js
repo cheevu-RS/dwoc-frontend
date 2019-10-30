@@ -54,6 +54,7 @@ export default function OrgCards(prop) {
             orgDesc
             githubUrl
             stack
+            communicationChannel
           }
         }
       `}
