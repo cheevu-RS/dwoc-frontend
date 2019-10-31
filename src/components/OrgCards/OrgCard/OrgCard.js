@@ -143,7 +143,7 @@ export default function OrgCard(props) {
   //let mentorsList;
 
   let [mentorsList, setMentorsList] = useState([]);
-  console.log(`${JSON.stringify(props)} <= props OrgCars props`);
+  // console.log(`${JSON.stringify(props)} <= props OrgCars props`);
 
   const orgPath = '/org/' + props.id + '/' + props.orgName;
   const orgID = props.id;
@@ -169,7 +169,7 @@ export default function OrgCard(props) {
       variables={{ orgid: { organization: { id: orgID } } }}
       render={({ error, props }) => {
         if (error) {
-          console.log(`${error} <= error Relay orgCard.js ${orgPath}`);
+          // console.log(`${error} <= error Relay orgCard.js ${orgPath}`);
           return <div>Error!</div>;
         }
         if (!props) {
@@ -182,7 +182,7 @@ export default function OrgCard(props) {
 
         setMentorsList(props.mentors);
         //mentorsList = props.mentors;
-        console.log(`${JSON.stringify(mentorsList)} <= mentorsList # ${orgPath}#`);
+        // console.log(`${JSON.stringify(mentorsList)} <= mentorsList # ${orgPath}#`);
         let mentors = props.mentors.map(m => m.user.firstName).join(', ');
         return <b>{mentors}</b>;
       }}

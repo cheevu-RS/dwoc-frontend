@@ -66,6 +66,7 @@ export default function Navbar(props) {
   if(props.showBtns) defaultBtns = [
     { name: "Timeline", to: "timeline" },
     { name: "Organizations", to: "orgs" },
+    { name: "Help", to: "help" }
   ];
 
   let [tabs, setTabs] = useState({
@@ -73,7 +74,7 @@ export default function Navbar(props) {
     link: 'https://delta.nitt.edu/dwocb/login'
   });
 
-  console.log(props);
+  // console.log(props);
 
   useEffect(() => {
     // Update the document title using the browser API
