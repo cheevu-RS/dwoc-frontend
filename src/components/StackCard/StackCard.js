@@ -87,7 +87,7 @@ function StackCard(props) {
       color: 'maroon'
     };
   }
-  console.log(`${JSON.stringify(toolDisplay)} <= toolDisplay`);
+  // console.log(`${JSON.stringify(toolDisplay)} <= toolDisplay`);
   return (
     <div style={{ display: 'inline-block' }}>
       <span className={classes.stack} style={{ backgroundColor: toolDisplay.color }}>

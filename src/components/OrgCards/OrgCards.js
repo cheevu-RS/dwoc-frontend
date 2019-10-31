@@ -71,7 +71,7 @@ export default function OrgCards(prop) {
             </div>
           );
         }
-        console.log(props.stack);
+        // console.log(props.stack);
         return (
           <div className={classes.orgs} id="orgs">
             <h2 className={classes.header2}>Organizations</h2>
