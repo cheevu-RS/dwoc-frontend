@@ -157,6 +157,7 @@ export default function Projects(props) {
             );
           return (
             <>
+              <div style={{paddingLeft: '50px', paddingRight: '50px'}}>
               <Grid container className={classes.gridContainer} spacing={3}>
                 {props.projects.map(project => (
                   <ProjCard
@@ -172,6 +173,7 @@ export default function Projects(props) {
                   />
                 ))}
               </Grid>
+              </div>
               <br />
               <br />
               <h2 className={classes.header2}>Mentors</h2>
