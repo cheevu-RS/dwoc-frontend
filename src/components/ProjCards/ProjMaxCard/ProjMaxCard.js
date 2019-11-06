@@ -1,6 +1,7 @@
 /* @flow */
 
 import React from 'react';
+import ReactMarkdown from 'react-markdown/with-html';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -70,9 +71,11 @@ export default function DraggableDialog(props) {
       <Dialog open={open} onClose={handleClose} aria-labelledby="dialog-title">
         <DialogTitle id="dialog-title">{props.projName}</DialogTitle>
         <DialogContent>
-          <DialogContentText>Description: {props.projDesc}</DialogContentText>
-          <a href={'https://' + props.githubUrl}>
-            Checkout the project on GitHub{' '}
+          <DialogContentText>
+            <ReactMarkdown source={props.projDesc} escapeHtml={false} />
+          </DialogContentText>
+          <a href={ props.githubUrl}>
+            Check it out on GitHub{' '}
           </a>
         </DialogContent>
         {props.isLogged && (
