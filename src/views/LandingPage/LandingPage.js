@@ -32,7 +32,10 @@ const useStyles = makeStyles((theme) => ({
 	paragraph: paragraph,
 	section: section,
 	about: about,
-	help: help
+	help: help,
+	onePlusLogo:{
+		marginTop: 33
+	}
 	// help: {
 	// 	'&:hover': {
 	//   webkitBorderRadius: "10px",
@@ -66,7 +69,7 @@ function LandingPage(props) {
 				<Pulse>
 					<div>
 						<div>
-							<img alt="1+" src={require('../../assets/images/OPN_WoT.png')} width="70" />
+							<img alt="1+" src={require('../../assets/images/OPN_WoT.png')} width="70" className={classes.onePlusLogo}/>
 						</div>
 						<Tilt className="Tilt" options={{ max: 25 }}>
 							<div className={classes.section} style={{ marginTop: screenHeight / 4 - 100 }}>
