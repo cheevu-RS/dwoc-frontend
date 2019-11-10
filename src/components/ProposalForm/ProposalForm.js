@@ -1,19 +1,20 @@
 //React, Relay
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { commitMutation } from 'react-relay';
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 import graphql from 'babel-plugin-relay/macro';
 
 //Material
-import { Button, CssBaseline, makeStyles, Container } from '@material-ui/core';
+import { Button, CssBaseline, makeStyles, Input, Container } from '@material-ui/core';
 
 import { header1, header2, header3, colours } from '../../DwocStyles';
 
 //Components
 //import Tag from '../Tags/Tag';
-import StackCard from '../StackCard/StackCard';
+//import StackCard from '../StackCard/StackCard';
 
+const Cookie = require("js-cookie");
 /*
 curl https://delta.nitt.edu/dwocb \
   -F operations='{ "query": "mutation ($file: Upload!) { uploadFile(file: $file) { fileName } }", "variables": { "file": null } }' \
@@ -29,26 +30,32 @@ function fetchQuery(operation, variables) {
   data.append('map', '{ "0": ["variables.file"] }');
   data.append('0', variables.file);
 
-  return fetch('https://delta.nitt.edu/dwocb', {
+// console.log(`${data} <= data in ProposalForm`);
+// console.log(`${JSON.stringify(data)} <= data in ProposalForm`);
+  return fetch('https://dwoc.io/dwocb', {
     method: 'POST',
     headers: {
-      session: 'af0daa02d75b03d25a22f2a7c2aafa6643eeaecc',
-      id: 'ck1utqsnp02p608474ggeyzbj',
+      // session: '5cf4c780e60aa1269f164f6d7cc352c8bf19ba13',
+      // id: 'ck2c19k11015n0847iyx85wnj',
+      'session': JSON.parse(Cookie.get("dwoc_user_session")).session,
+      'id': JSON.parse(Cookie.get("dwoc_user_session")).id,
       ContentType:
         'multipart/form-data; boundary=--------------------------493219481310761479495526'
     },
     body: data
   })
     .then(response => {
+      console.log(`${JSON.stringify(response)} <= response in fetchQuery`);
       return response.json();
     })
-    .catch(err => console.log(err));
+    .catch(err => console.error(`${err} <== error in ProposalForm fetch query`));
 }
 
 const environment = new Environment({
   network: Network.create(fetchQuery),
   store: new Store(new RecordSource())
 });
+
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -94,8 +101,9 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(1.5)
   },
   projectDescription: {
-    fontSize: 16,
-    textAlign: 'center'
+    fontSize: 18,
+    textAlign: 'center',
+    fontFamily: 'Lato',
   },
   projectMentors: {
     marginBottom: theme.spacing(1),
@@ -103,7 +111,8 @@ const useStyles = makeStyles(theme => ({
   },
   projectProposalInput: {
     width: 95,
-    fontSize: 16
+    fontSize: 16,
+    borderRadius:5,
   }
 }));
 
@@ -117,6 +126,18 @@ const mutation = graphql`
 
 const ProposalForm = props => {
   const classes = useStyles();
+let [uploadedFile, setUploadedFile] = useState("");
+
+  useEffect(() => {
+  var input = document.getElementById( 'proposalFile' );
+
+input.addEventListener( 'change', (event) => {
+  var input = event.srcElement;
+  
+  var fileName = input.files[0].name;
+  setUploadedFile(fileName)
+} );
+}, [])
   if (props.location.state === undefined)
     return (
       <Redirect
@@ -129,15 +150,22 @@ const ProposalForm = props => {
   const getFile = evt => {
     evt.preventDefault();
     let file = document.getElementById('proposalFile').files[0];
+    console.log(`${JSON.stringify(file)} <= file`);
+    console.log(`${JSON.stringify(file.value)} <= file name`);
     commitMutation(environment, {
       mutation,
       variables: { file },
       onCompleted: (response, errors) => {
+        console.log(JSON.stringify(response));
         console.log('Response received from server.');
       },
-      onError: err => console.error(err)
+      onError: err => {
+        console.error(err)
+        console.log(`${err} <= err in getFile`);
+      }
     });
   };
+
   const dataURItoBlob = dataURI => {
     var byteString = atob(dataURI.split(',')[1]);
     var mimeString = dataURI
@@ -162,11 +190,11 @@ const ProposalForm = props => {
           <p className={`${classes.projectOrg} ${classes.projectTitle}`}>
             {projName}
           </p>
-          <div className={classes.projectTags}>
+          {/* <div className={classes.projectTags}>
             {tools.map((lang, index) => (
               <StackCard tool={lang} key={index} />
             ))}
-          </div>
+          </div> */}
           <p className={classes.projectDescription}>{projDesc}</p>
         </div>
         <form className={classes.form} onSubmit={getFile}>
@@ -181,14 +209,17 @@ const ProposalForm = props => {
               className={classes.projectProposalInput}
               required
             />
+
+
+          <span className={classes.projectDescription}>{uploadedFile}</span>
           </div>
+          
           <Button
             type="submit"
             variant="contained"
             color="primary"
             className={classes.submit}
           >
-            {' '}
             Apply
           </Button>
         </form>
