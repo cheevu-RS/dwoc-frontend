@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App() {
-  let [isLogged, toggleIsLogged] = useState(false);
+  let [isLogged, toggleIsLogged] = useState(true);
   let role;
   const classes = useStyles();
 

@@ -29,20 +29,25 @@ function fetchQuery(operation, variables) {
   data.append('map', '{ "0": ["variables.file"] }');
   data.append('0', variables.file);
 
-  return fetch('https://delta.nitt.edu/dwocb', {
+// console.log(`${data} <= data in ProposalForm`);
+// console.log(`${JSON.stringify(data)} <= data in ProposalForm`);
+  return fetch('https://dwoc.io/dwocb', {
     method: 'POST',
     headers: {
-      session: 'af0daa02d75b03d25a22f2a7c2aafa6643eeaecc',
-      id: 'ck1utqsnp02p608474ggeyzbj',
+      session: '5cf4c780e60aa1269f164f6d7cc352c8bf19ba13',
+      id: 'ck2c19k11015n0847iyx85wnj',
+      // 'id':'ck1w00spe0exm08471h6ehprz',
+      // 'session':'a91376c1f3cc381258ed6670251c119ea37884be',
       ContentType:
         'multipart/form-data; boundary=--------------------------493219481310761479495526'
     },
     body: data
   })
     .then(response => {
+      console.log(`${JSON.stringify(response)} <= response in fetchQuery`);
       return response.json();
     })
-    .catch(err => console.log(err));
+    .catch(err => console.error(`${err} <== error in ProposalForm fetch query`));
 }
 
 const environment = new Environment({
@@ -129,15 +134,19 @@ const ProposalForm = props => {
   const getFile = evt => {
     evt.preventDefault();
     let file = document.getElementById('proposalFile').files[0];
+    console.log(`${JSON.stringify(file)} <= file`);
     commitMutation(environment, {
       mutation,
       variables: { file },
       onCompleted: (response, errors) => {
         console.log('Response received from server.');
       },
-      onError: err => console.error(err)
+      onError: err => {console.error(err)
+      console.log(`${err} <= err in getFile`);
+      }
     });
   };
+
   const dataURItoBlob = dataURI => {
     var byteString = atob(dataURI.split(',')[1]);
     var mimeString = dataURI
@@ -162,11 +171,11 @@ const ProposalForm = props => {
           <p className={`${classes.projectOrg} ${classes.projectTitle}`}>
             {projName}
           </p>
-          <div className={classes.projectTags}>
+          {/* <div className={classes.projectTags}>
             {tools.map((lang, index) => (
               <StackCard tool={lang} key={index} />
             ))}
-          </div>
+          </div> */}
           <p className={classes.projectDescription}>{projDesc}</p>
         </div>
         <form className={classes.form} onSubmit={getFile}>
