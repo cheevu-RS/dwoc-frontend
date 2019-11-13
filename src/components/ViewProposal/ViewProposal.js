@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import SimpleTable from '../ProposalTable/ProposalTable';
 
-const environment = require('../../Environment').environment;
+// const environment = require('../../Environment').environment;
 
 const jsondata = {
 	proposals: [
@@ -68,7 +68,7 @@ const jsondata = {
 		}
 	]
 };
-console.log('hello');
+// console.log('hello');
 const prop = JSON.parse(JSON.stringify(jsondata));
 const columns = [
 	{

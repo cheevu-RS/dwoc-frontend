@@ -1,6 +1,5 @@
 import React from 'react';
-import { makeStyles, Grid, Card } from '@material-ui/core';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { makeStyles, Grid } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   mentorGridContainer: {
@@ -59,11 +58,11 @@ const MentorTags = ({ mentors }) => {
         {mentors.map(mentor => (
           //<div key={mentor.id} className={classes.mentorElement}>
           //     <Grid item key={mentor.id} xs={12} sm={6} md={4} xl={3}>
-          <div className={classes.mentorTag}>
+          <div className={classes.mentorTag} key={mentor.user.firstName}>
             {/* <AccountCircleIcon /> */}
 
             <span className={classes.mentorName}>
-              {`${mentor.user.firstName} ${mentor.user.LastName}`}
+              {`${mentor.user.firstName}`}
             </span>
             <br />
             <a href={`https://github.com/${mentor.user.githubHandle}`}>
@@ -79,9 +78,8 @@ const MentorTags = ({ mentors }) => {
               </span>
             ) : null}
 
-            <br />
             {mentor.user.email ? (
-              <span className={classes.mentorEmail}>Email: {mentor.user.email}</span>
+              <span className={classes.mentorEmail}>{mentor.user.email}</span>
             ) : null}
           </div>
           // </Grid>

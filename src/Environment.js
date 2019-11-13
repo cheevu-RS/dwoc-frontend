@@ -2,7 +2,7 @@ const { Environment, Network, RecordSource, Store } = require("relay-runtime");
 const Cookie = require("js-cookie");
 
 function fetchQuery(operation, variables) {
-  return fetch("https://delta.nitt.edu/dwocb", {
+  return fetch("https://dwoc.io/dwocb", {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
@@ -16,14 +16,14 @@ function fetchQuery(operation, variables) {
   });
 }
 function fetchQuery1(operation, variables) {
-  return fetch("https://delta.nitt.edu/dwocb", {
+  return fetch("https://dwoc.io/dwocb", {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
       'session': JSON.parse(Cookie.get("dwoc_user_session")).session,
       'id': JSON.parse(Cookie.get("dwoc_user_session")).id
-      // 'id':'ck1w00spe0exm08471h6ehprz',
-      // 'session':'a91376c1f3cc381258ed6670251c119ea37884be'
+      // 'session': '5cf4c780e60aa1269f164f6d7cc352c8bf19ba13',
+      // 'id': 'ck2c19k11015n0847iyx85wnj',
     },
     body: JSON.stringify({
       query: operation.text,

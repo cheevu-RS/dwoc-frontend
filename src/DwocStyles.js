@@ -72,6 +72,18 @@ const about = {
   textJustify: 'inter-character'
 };
 
+const help = {
+  width: '100%',
+  margin: 'auto',
+  padding: '0% 10%',
+  height: '100%',
+  minHeight: screenHeight / 3.5,
+  display: 'block',
+  textAlign: 'justify',
+  textJustify: 'inter-character',
+  
+};
+
 const timeline = {
   display: 'block',
   margin: 'auto',
@@ -149,5 +161,6 @@ module.exports = {
   timeline,
   footer,
   OrgProjCard,
-  gridContainer
+  gridContainer,
+  help
 };
