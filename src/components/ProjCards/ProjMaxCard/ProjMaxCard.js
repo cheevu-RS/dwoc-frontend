@@ -56,9 +56,7 @@ export default function DraggableDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  const submitProposal = evt => {
-    history.push(`/org/${props.organization.id}/${props.orgName}/apply`, props);
-  };
+  
   return (
     <div>
       <Button
@@ -86,7 +84,7 @@ export default function DraggableDialog(props) {
               ) : (
                 <div>
                   <Button onClick={handleClose}>Cancel</Button>
-                  <Button onClick={submitProposal}> Apply</Button>
+
                 </div>
               )}
             </DialogActions>
@@ -102,7 +100,7 @@ export default function DraggableDialog(props) {
                   <Button onClick={handleClose}>Cancel</Button>
                   <Button>
                     {' '}
-                    <a href="https://delta.nitt.edu/dwocb/login">
+                    <a href="https://dwoc.io/dwocb/login">
                       Login to apply
                     </a>
                   </Button>
