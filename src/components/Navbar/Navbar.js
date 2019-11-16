@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   nightButton: {
     marginLeft: `auto`,
     paddingTop: "11px",
-    color: 'white !important' 
+    color: 'white !important'
   },
   dayButton: {
     marginLeft: `auto`,
@@ -62,7 +62,7 @@ export default function Navbar(props) {
   };
 
   let defaultBtns = [];
-  
+
   if(props.showBtns) defaultBtns = [
     { name: "Timeline", to: "timeline" },
     { name: "Organizations", to: "orgs" },
@@ -71,7 +71,7 @@ export default function Navbar(props) {
 
   let [tabs, setTabs] = useState({
     name: 'Login with Github',
-    link: 'https://delta.nitt.edu/dwocb/login'
+    link: 'https://dwoc.io/dwocb/login'
   });
 
   // console.log(props);
@@ -80,11 +80,11 @@ export default function Navbar(props) {
     // Update the document title using the browser API
 
     if (props.isLogged) {
-      setTabs({ name: 'Logout', link: 'https://delta.nitt.edu/dwocb/logout' });
+      setTabs({ name: 'Logout', link: 'https://dwoc.io/dwocb/logout' });
     } else {
       setTabs({
         name: 'Login with Github',
-        link: 'https://delta.nitt.edu/dwocb/login'
+        link: 'https://dwoc.io/dwocb/login'
       });
     }
   }, [props.isLogged]);
@@ -117,8 +117,8 @@ export default function Navbar(props) {
             }}
           >
             <div className={styles.drawerHeader}>
-              <Sidebar 
-                open={open} 
+              <Sidebar
+                open={open}
                 drawerWidth={drawerWidth}
                 defaultBtns={defaultBtns}
                 tabs={tabs}
@@ -139,7 +139,7 @@ export default function Navbar(props) {
               <Button className={styles.nightButton} key={index}>
                 <Link smooth={true} to={tab.to} style={{color: '#fff'}}>
                 <ListItemText primary={tab.name}/>
-                  
+
                 </Link>
               </Button>
             ))}

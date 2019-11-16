@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import ProjCard from './ProjMinCard/ProjMinCard';
+import {Link} from 'react-router-dom';
 
 // Material UI
 import { Grid } from '@material-ui/core';
@@ -9,6 +10,7 @@ import RingLoader from 'react-spinners/RingLoader';
 import { QueryRenderer } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
 import WebFont from 'webfontloader';
+import Icon from '@material-ui/core/Icon';
 import { css } from '@emotion/core';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
@@ -81,11 +83,13 @@ export default function Projects(props) {
   const isLogged = props.isLogged;
   const orgID = props.match.params.id;
   const role = props.role;
+  const applyRoute=`/org/${orgID}/${orgName}/apply`;
   //const role= props.match.params.role;
-  let mentorsList = props.location.state.mentors;
+  const mentorsList = props.location.state.mentors;
+  const orgDesc=props.location.state.orgDesc;
   const orgSlug = props.location.state.orgSlug;
   console.log(`${JSON.stringify(props)} <= props in ProjCards`);
-
+  console.log(props.location.state);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -174,6 +178,28 @@ export default function Projects(props) {
                 ))}
               </Grid>
               </div>
+
+                <Link to={{
+                  pathname:applyRoute,
+                  state:{
+                    projDesc:orgDesc,
+                    projName:orgName,
+                    tools:tools
+                  }
+                }}>
+            {
+                isLogged&&(<Button
+                   variant="contained"
+                   color="secondary"
+                   className={classes.button}
+                   size="large"
+
+                >
+                Apply
+               </Button>)
+        }
+                </Link>
+
               <br />
               <br />
               <h2 className={classes.header2}>Mentors</h2>

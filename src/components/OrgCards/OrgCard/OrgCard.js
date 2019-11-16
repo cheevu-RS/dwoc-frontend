@@ -213,6 +213,9 @@ export default function OrgCard(props) {
           to={{
             pathname: orgPath,
             state: {
+              orgName:props.orgName,
+              orgDesc:props.orgDesc,
+              stack:stacks,
               orgSlug: props.orgSlug,
               mentors: mentorsList
             }
