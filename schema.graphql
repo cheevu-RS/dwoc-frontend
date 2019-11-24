@@ -12,6 +12,7 @@ type Event {
 
 type File {
   fileName: String!
+  filePath: String!
 }
 
 type Mentor {
