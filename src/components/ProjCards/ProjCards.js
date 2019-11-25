@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import ProjCard from './ProjMinCard/ProjMinCard';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Material UI
 import { Grid } from '@material-ui/core';
@@ -83,10 +83,10 @@ export default function Projects(props) {
   const isLogged = props.isLogged;
   const orgID = props.match.params.id;
   const role = props.role;
-  const applyRoute=`/org/${orgID}/${orgName}/apply`;
+  const applyRoute = `/org/${orgID}/${orgName}/apply`;
   //const role= props.match.params.role;
   const mentorsList = props.location.state.mentors;
-  const orgDesc=props.location.state.orgDesc;
+  const orgDesc = props.location.state.orgDesc;
   const orgSlug = props.location.state.orgSlug;
   console.log(`${JSON.stringify(props)} <= props in ProjCards`);
   console.log(props.location.state);
@@ -161,44 +161,44 @@ export default function Projects(props) {
             );
           return (
             <>
-              <div style={{paddingLeft: '50px', paddingRight: '50px'}}>
-              <Grid container className={classes.gridContainer} spacing={3}>
-                {props.projects.map(project => (
-                  <ProjCard
-                    tools={tools}
-                    projName={project.projName}
-                    orgName={orgName}
-                    projDesc={project.projDesc}
-                    projMinDesc={project.projMinDesc}
-                    {...project}
-                    isLogged={isLogged}
-                    key={project.id}
-                    role={role}
-                  />
-                ))}
-              </Grid>
+              <div style={{ paddingLeft: '50px', paddingRight: '50px' }}>
+                <Grid container className={classes.gridContainer} spacing={3}>
+                  {props.projects.map(project => (
+                    <ProjCard
+                      tools={tools}
+                      projName={project.projName}
+                      orgName={orgName}
+                      projDesc={project.projDesc}
+                      projMinDesc={project.projMinDesc}
+                      {...project}
+                      isLogged={isLogged}
+                      key={project.id}
+                      role={role}
+                    />
+                  ))}
+                </Grid>
               </div>
 
-                <Link to={{
-                  pathname:applyRoute,
-                  state:{
-                    projDesc:orgDesc,
-                    projName:orgName,
-                    tools:tools
-                  }
-                }}>
-            {
-                isLogged&&(<Button
-                   variant="contained"
-                   color="secondary"
-                   className={classes.button}
-                   size="large"
+              <Link to={{
+                pathname: applyRoute,
+                state: {
+                  projDesc: orgDesc,
+                  projName: orgName,
+                  tools: tools
+                }
+              }}>
+                {
+                  isLogged && (<div style={{ display: "flex", justifyContent: "center" }}><Button
+                    variant="contained"
+                    color="secondary"
+                    className={classes.button}
+                    size="large"
 
-                >
-                Apply
-               </Button>)
-        }
-                </Link>
+                  >
+                    Apply
+               </Button></div>)
+                }
+              </Link>
 
               <br />
               <br />

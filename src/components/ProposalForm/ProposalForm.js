@@ -4,15 +4,11 @@ import { Redirect } from 'react-router-dom';
 import { commitMutation } from 'react-relay';
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 import graphql from 'babel-plugin-relay/macro';
+import MutationRenderer from './MutationRenderer';
 
 //Material
 import { Button, CssBaseline, makeStyles, Input, Container } from '@material-ui/core';
-
 import { header1, header2, header3, colours } from '../../DwocStyles';
-
-//Components
-//import Tag from '../Tags/Tag';
-//import StackCard from '../StackCard/StackCard';
 
 const Cookie = require("js-cookie");
 /*
@@ -25,18 +21,16 @@ function fetchQuery(operation, variables) {
   var data = new FormData();
   data.append(
     'operations',
-    '{ "query": "mutation ($file: Upload!) { uploadFile(file: $file) { fileName } }", "variables": { "file": null } }'
+    '{ "query": "mutation ($file: Upload!) { uploadFile(file: $file) { fileName, filePath } }", "variables": { "file": null } }'
   );
   data.append('map', '{ "0": ["variables.file"] }');
   data.append('0', variables.file);
 
-// console.log(`${data} <= data in ProposalForm`);
-// console.log(`${JSON.stringify(data)} <= data in ProposalForm`);
-  return fetch('https://dwoc.io/dwocb', {
+  // console.log(`${data} <= data in ProposalForm`);
+  // console.log(`${JSON.stringify(data)} <= data in ProposalForm`);
+  return fetch('http://localhost:6969', {
     method: 'POST',
     headers: {
-      // session: '5cf4c780e60aa1269f164f6d7cc352c8bf19ba13',
-      // id: 'ck2c19k11015n0847iyx85wnj',
       'session': JSON.parse(Cookie.get("dwoc_user_session")).session,
       'id': JSON.parse(Cookie.get("dwoc_user_session")).id,
       ContentType:
@@ -45,7 +39,7 @@ function fetchQuery(operation, variables) {
     body: data
   })
     .then(response => {
-      console.log(`${JSON.stringify(response)} <= response in fetchQuery`);
+      // console.log(`${JSON.stringify(response)} <= response in fetchQuery`);
       return response.json();
     })
     .catch(err => console.error(`${err} <== error in ProposalForm fetch query`));
@@ -112,7 +106,7 @@ const useStyles = makeStyles(theme => ({
   projectProposalInput: {
     width: 95,
     fontSize: 16,
-    borderRadius:5,
+    borderRadius: 5,
   }
 }));
 
@@ -120,24 +114,27 @@ const mutation = graphql`
   mutation ProposalFormMutation($file: Upload!) {
     uploadFile(file: $file) {
       fileName
+      filePath
     }
   }
 `;
 
 const ProposalForm = props => {
   const classes = useStyles();
-let [uploadedFile, setUploadedFile] = useState("");
+  let [uploadedFile, setUploadedFile] = useState("");
+  // mutationStatus(Object) tells if mutation should be done(true/false), and has items for the mutation 
+  let [mutationStatus, setMutationStatus] = useState({ mutStatus: false, propUrl: "", userID: "", orgID: "" });
 
   useEffect(() => {
-  var input = document.getElementById( 'proposalFile' );
+    var input = document.getElementById('proposalFile');
 
-input.addEventListener( 'change', (event) => {
-  var input = event.srcElement;
-  
-  var fileName = input.files[0].name;
-  setUploadedFile(fileName)
-} );
-}, [])
+    input.addEventListener('change', (event) => {
+      var input = event.srcElement;
+
+      var fileName = input.files[0].name;
+      setUploadedFile(fileName)
+    });
+  }, [])
   if (props.location.state === undefined)
     return (
       <Redirect
@@ -147,21 +144,32 @@ input.addEventListener( 'change', (event) => {
   const { projDesc, projName, tools } = props.location.state;
   const { orgName } = props.match.params;
   const mentors = ['Mentor1', 'Mentor2'];
+  let propUrl = "";
+  let mutationRenderer = (
+    <div>
+      <MutationRenderer propUrl={mutationStatus.propUrl} userID={mutationStatus.userID} orgID={mutationStatus.orgID} />
+    </div>
+  );
   const getFile = evt => {
     evt.preventDefault();
     let file = document.getElementById('proposalFile').files[0];
-    console.log(`${JSON.stringify(file)} <= file`);
-    console.log(`${JSON.stringify(file.value)} <= file name`);
+    // console.log(`${JSON.stringify(file)} <= file`);
+    // console.log(`${JSON.stringify(file.value)} <= file name`);
     commitMutation(environment, {
       mutation,
       variables: { file },
       onCompleted: (response, errors) => {
-        console.log(JSON.stringify(response));
-        console.log('Response received from server.');
+        // console.log(JSON.stringify(response));
+        propUrl = response.uploadFile.filePath;
+        // console.log('Response received from server.');
+        // console.log("mutStatus: ", mutationStatus.mutStatus)
+        let orgID = props.match.params.id;
+        let userID = JSON.parse(Cookie.get("dwoc_user_session")).id;
+        setMutationStatus({ mutStatus: true, propUrl, userID, orgID });
       },
       onError: err => {
         console.error(err)
-        console.log(`${err} <= err in getFile`);
+        // console.log(`${err} <= err in getFile`);
       }
     });
   };
@@ -211,9 +219,9 @@ input.addEventListener( 'change', (event) => {
             />
 
 
-          <span className={classes.projectDescription}>{uploadedFile}</span>
+            <span className={classes.projectDescription}>{uploadedFile}</span>
           </div>
-          
+
           <Button
             type="submit"
             variant="contained"
@@ -223,6 +231,7 @@ input.addEventListener( 'change', (event) => {
             Apply
           </Button>
         </form>
+        {mutationStatus.mutStatus ? mutationRenderer : null}
       </div>
     </Container>
   );
