@@ -118,7 +118,7 @@ export default function ProjMinCard(props) {
             isLogged={props.isLogged}
             {...props}
           />
-          {props.role&&
+          {props.role=="Mentor"&&
           <Button variant="contained" className={classes.button}>
             <Link
               to={{
