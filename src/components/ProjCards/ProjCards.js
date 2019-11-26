@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import ProjCard from './ProjMinCard/ProjMinCard';
+import ProposalMessage from './ProposalMessage/ProposalMessage';
 import { Link } from 'react-router-dom';
 
 // Material UI
@@ -83,6 +84,7 @@ export default function Projects(props) {
   const isLogged = props.isLogged;
   const orgID = props.match.params.id;
   const role = props.role;
+  const userId = props.userId;
   const applyRoute = `/org/${orgID}/${orgName}/apply`;
   //const role= props.match.params.role;
   const mentorsList = props.location.state.mentors;
@@ -107,6 +109,11 @@ export default function Projects(props) {
       <h1 className={classes.header1}>{orgName}</h1>
       <br />
       <h2 className={classes.header2}>Projects</h2>
+
+
+
+
+
       <QueryRenderer
         environment={environment}
         query={graphql`
@@ -174,11 +181,12 @@ export default function Projects(props) {
                       isLogged={isLogged}
                       key={project.id}
                       role={role}
+                      userId={userId}
                     />
                   ))}
                 </Grid>
               </div>
-
+              <ProposalMessage userId={userId} />
               <Link to={{
                 pathname: applyRoute,
                 state: {
@@ -212,3 +220,4 @@ export default function Projects(props) {
     </div>
   );
 }
+

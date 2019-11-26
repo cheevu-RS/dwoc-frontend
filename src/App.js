@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
   let [isLogged, toggleIsLogged] = useState(false);
-  let role;
+  let role, id;
   const classes = useStyles();
 
   return (
@@ -75,7 +75,7 @@ function App() {
           `}
           variables={{}}
           render={({ error, props }) => {
-            console.log(props);
+
             if (error) {
               console.log(`${error} <= Relay error Appjs(query userProfile)`);
               return;
@@ -87,9 +87,11 @@ function App() {
                 </div>
               );
             }
+            
             if (props && !isLogged) {
+              id = props.userProfile.id;
               toggleIsLogged(!isLogged);
-              role=props.userProfile.role
+              role = props.userProfile.role;
             }
             return <div></div>;
           }}
@@ -123,7 +125,7 @@ function App() {
             path="/"
             render={props => (
               <>
-                <LandingPage role={role} {...props} isLogged={isLogged} />
+                <LandingPage role={role} userId={id}  {...props} isLogged={isLogged} />
               </>
             )}
           ></Route>
@@ -133,7 +135,7 @@ function App() {
             render={props => (
               <>
                 <Navbar isLogged={isLogged} role={role} showBtns={false} />
-                <ProjCards {...props} role={role} isLogged={isLogged} />
+                <ProjCards {...props} userId={id} role={role} isLogged={isLogged} />
               </>
             )}
           ></Route>

@@ -231,7 +231,7 @@ type Query {
   projects(where: ProjectWhereInput): [Project]!
   organizations(where: OrganizationWhereInput): [Organization]!
   mentors(where: MentorWhereInput): [Mentor]!
-  userProposals: [Proposal]!
+  userProposals(where: ProposalWhereInput): [Proposal]!
   proposals(where: ProposalWhereInput): [Proposal]!
   events: [Event]!
   projectsConnection(where: ProjectWhereUniqueInput): ProjectConnection!
