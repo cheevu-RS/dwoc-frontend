@@ -9,7 +9,7 @@ const environment = require("../../../Environment").environment1;
 export default function ProposalMessage(props) {
     const userId = props.userId;
     let length = 0, message;
-
+    const canApply = props.canApply;
     return (
         <div>
             <QueryRenderer
@@ -36,12 +36,17 @@ export default function ProposalMessage(props) {
                     else {
                         if (length < 3)
                             message = `You can submit ${3 - length} more proposals`;
-                        else
-                            message = "Sorry! You've reached the maximum submission limit!";
+                        else if (length === 2)
+                            message = `You can submit ${3 - length} more proposal`;
+                        else {
+                            message = "Sorry! You can't submit any more proposals!";
+                            canApply(false);
+                            console.log("yeet", canApply)
+                        }
                     }
                     return <div style={{ display: "flex", justifyContent: "center" }}>{message}</div>;
                 }}
             />
-        </div>
+        </div >
     )
 }

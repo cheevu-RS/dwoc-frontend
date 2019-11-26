@@ -96,12 +96,16 @@ export default function Projects(props) {
     window.scrollTo(0, 0);
   }, []);
   const [open, setOpen] = React.useState(false);
+  const [applyBtn, setApplyBtn] = React.useState(true);
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
+  const applyFn = (value) => {
+    setApplyBtn(value)
+  }
   return (
     <div className={classes.container}>
       <br />
@@ -148,7 +152,29 @@ export default function Projects(props) {
               </>
             );
           }
+          let applyBtnDiv = <></>;
+          if (applyBtn === true) {
+            applyBtnDiv = (<Link to={{
+              pathname: applyRoute,
+              state: {
+                projDesc: orgDesc,
+                projName: orgName,
+                tools: tools
+              }
+            }}>
+              {
+                isLogged && (<div style={{ display: "flex", justifyContent: "center" }}><Button
+                  variant="contained"
+                  color="secondary"
+                  className={classes.button}
+                  size="large"
 
+                >
+                  Apply
+             </Button></div>)
+              }
+            </Link>)
+          }
           let addProjectMenu;
           if (role === 'mentor')
             addProjectMenu = (
@@ -167,47 +193,27 @@ export default function Projects(props) {
               </div>
             );
           return (
-            <>
-              <div style={{ paddingLeft: '50px', paddingRight: '50px' }}>
-                <Grid container className={classes.gridContainer} spacing={3}>
-                  {props.projects.map(project => (
-                    <ProjCard
-                      tools={tools}
-                      projName={project.projName}
-                      orgName={orgName}
-                      projDesc={project.projDesc}
-                      projMinDesc={project.projMinDesc}
-                      {...project}
-                      isLogged={isLogged}
-                      key={project.id}
-                      role={role}
-                      userId={userId}
-                    />
-                  ))}
-                </Grid>
-              </div>
-              <ProposalMessage userId={userId} />
-              <Link to={{
-                pathname: applyRoute,
-                state: {
-                  projDesc: orgDesc,
-                  projName: orgName,
-                  tools: tools
-                }
-              }}>
-                {
-                  isLogged && (<div style={{ display: "flex", justifyContent: "center" }}><Button
-                    variant="contained"
-                    color="secondary"
-                    className={classes.button}
-                    size="large"
-
-                  >
-                    Apply
-               </Button></div>)
-                }
-              </Link>
-
+            <><div style={{ paddingLeft: '50px', paddingRight: '50px' }}>
+              <Grid container className={classes.gridContainer} spacing={3}>
+                {props.projects.map(project => (
+                  <ProjCard
+                    tools={tools}
+                    projName={project.projName}
+                    orgName={orgName}
+                    projDesc={project.projDesc}
+                    projMinDesc={project.projMinDesc}
+                    {...project}
+                    isLogged={isLogged}
+                    key={project.id}
+                    role={role}
+                    userId={userId}
+                  />
+                ))}
+              </Grid>
+            </div>
+              <ProposalMessage canApply={applyFn} userId={userId} />
+              <br />
+              {applyBtnDiv}
               <br />
               <br />
               <h2 className={classes.header2}>Mentors</h2>
