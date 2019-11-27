@@ -19,7 +19,7 @@ import './LandingPage.css';
 
 WebFont.load({
 	google: {
-		families: [ paragraph.fontFamily, header2.fontFamily ]
+		families: [paragraph.fontFamily, header2.fontFamily]
 	}
 });
 
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 	section: section,
 	about: about,
 	help: help,
-	onePlusLogo:{
+	onePlusLogo: {
 		marginTop: 33
 	}
 	// help: {
@@ -53,7 +53,7 @@ const minWidth = 550;
 
 function LandingPage(props) {
 	const classes = useStyles();
-	const [ width, setWidth ] = useState(window.innerWidth);
+	const [width, setWidth] = useState(window.innerWidth);
 	const role = props.role;
 
 	let timeline = (
@@ -69,7 +69,7 @@ function LandingPage(props) {
 				<Pulse>
 					<div>
 						<div>
-							<img alt="1+" src={require('../../assets/images/OPN_WoT.png')} width="70" className={classes.onePlusLogo}/>
+							<img alt="1+" src={require('../../assets/images/OPN_WoT.png')} width="70" className={classes.onePlusLogo} />
 						</div>
 						<Tilt className="Tilt" options={{ max: 25 }}>
 							<div className={classes.section} style={{ marginTop: screenHeight / 4 - 100 }}>
@@ -118,11 +118,9 @@ function LandingPage(props) {
 			</Reveal>
 
 			<Reveal>{timeline}</Reveal>
-			<Reveal>
-				<Pulse>
-					<OrgCards role={role} />
-				</Pulse>
-			</Reveal>
+			<Pulse>
+				<OrgCards role={role} />
+			</Pulse>
 			<br />
 			<Reveal>
 				<div id="help" className={classes.help}>
@@ -152,10 +150,10 @@ function LandingPage(props) {
 
 						<center>
 							Be sure to join our{' '}
-							<a href="https://www.t.me/deltawoc" style={{ color: '#5CDB95' }}>
+							<a href="https://www.t.me/dwoc19" style={{ color: '#5CDB95' }}>
 								telegram channel
 							</a>{' '}
-							for any queries
+							for updates and queries
 						</center>
 						<br />
 					</div>

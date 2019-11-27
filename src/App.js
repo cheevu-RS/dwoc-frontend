@@ -56,8 +56,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App() {
-  let [isLogged, toggleIsLogged] = useState(false);
-  let role, id;
+  let [authState, setAuthState] = useState({ isLogged: false, role: null });
+  let id;
   const classes = useStyles();
 
   return (
@@ -87,11 +87,11 @@ function App() {
                 </div>
               );
             }
-            
-            if (props && !isLogged) {
+
+            if (props && !authState.isLogged) {
               id = props.userProfile.id;
-              toggleIsLogged(!isLogged);
-              role = props.userProfile.role;
+              setAuthState({ isLogged: !authState.isLogged, role: props.userProfile.role });
+              authState.role = props.userProfile.role
             }
             return <div></div>;
           }}
@@ -111,8 +111,8 @@ function App() {
             render={props => (
               <div>
                 <Navbar
-                  isLogged={isLogged}
-                  role={role}
+                  isLogged={authState.isLogged}
+                  role={authState.role}
                   showBtns={true}
                   night={true}
                 />
@@ -125,7 +125,7 @@ function App() {
             path="/"
             render={props => (
               <>
-                <LandingPage role={role} userId={id}  {...props} isLogged={isLogged} />
+                <LandingPage role={authState.role} userId={id}  {...props} isLogged={authState.isLogged} />
               </>
             )}
           ></Route>
@@ -134,8 +134,8 @@ function App() {
             path="/org/:id/:orgName"
             render={props => (
               <>
-                <Navbar isLogged={isLogged} role={role} showBtns={false} />
-                <ProjCards {...props} userId={id} role={role} isLogged={isLogged} />
+                <Navbar isLogged={authState.isLogged} role={authState.role} showBtns={false} />
+                <ProjCards {...props} userId={id} role={authState.role} isLogged={authState.isLogged} />
               </>
             )}
           ></Route>
@@ -144,8 +144,8 @@ function App() {
             path="/org/:id/:orgName/apply"
             render={props => (
               <>
-                <Navbar isLogged={isLogged} role={role} showBtns={false} />
-                <ProposalForm {...props} role={role} isLogged={isLogged} />
+                <Navbar isLogged={authState.isLogged} role={authState.role} showBtns={false} />
+                <ProposalForm {...props} role={authState.role} isLogged={authState.isLogged} />
               </>
             )}
           ></Route>
@@ -154,8 +154,8 @@ function App() {
             path="/proposal"
             render={props => (
               <>
-                <Navbar isLogged={isLogged} role={role} showBtns={false} />
-                <ViewProposal {...props} role={role} isLogged={isLogged} />
+                <Navbar isLogged={authState.isLogged} role={authState.role} showBtns={false} />
+                <ViewProposal {...props} role={authState.role} isLogged={authState.isLogged} />
               </>
             )}
           ></Route>

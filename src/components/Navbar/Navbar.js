@@ -1,5 +1,6 @@
 // React with hooks
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom'
 
 // Navbar imports from material UI
 import {
@@ -49,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Navbar(props) {
+const nav = function Navbar(props) {
   const styles = useStyles();
   const [open, setOpen] = useState(false);
   const [drawerWidth, setDrawerWidth] = useState(0);
@@ -63,7 +64,7 @@ export default function Navbar(props) {
 
   let defaultBtns = [];
 
-  if(props.showBtns) defaultBtns = [
+  if (props.showBtns) defaultBtns = [
     { name: "Timeline", to: "timeline" },
     { name: "Organizations", to: "orgs" },
     { name: "Help", to: "help" }
@@ -71,7 +72,7 @@ export default function Navbar(props) {
 
   let [tabs, setTabs] = useState({
     name: 'Login with Github',
-    link: 'https://dwoc.io/dwocb/login'
+    link: 'http://localhost:6969/login'
   });
 
   // console.log(props);
@@ -80,11 +81,11 @@ export default function Navbar(props) {
     // Update the document title using the browser API
 
     if (props.isLogged) {
-      setTabs({ name: 'Logout', link: 'https://dwoc.io/dwocb/logout' });
+      setTabs({ name: 'Logout', link: 'http://localhost:6969/logout' });
     } else {
       setTabs({
         name: 'Login with Github',
-        link: 'https://dwoc.io/dwocb/login'
+        link: 'http://localhost:6969/login'
       });
     }
   }, [props.isLogged]);
@@ -99,7 +100,7 @@ export default function Navbar(props) {
   let dwocLogo = (
     <div>
       <a href='/'>
-        <img src={dwoc} width="50px" alt='dwoc'/>
+        <img src={dwoc} width="50px" alt='dwoc' />
       </a>
     </div>
   )
@@ -123,7 +124,7 @@ export default function Navbar(props) {
                 defaultBtns={defaultBtns}
                 tabs={tabs}
                 handleToggle={handleToggle}
-               />
+              />
               <MenuIcon onClick={handleToggle} />
             </div>
             {dwocLogo}
@@ -134,18 +135,18 @@ export default function Navbar(props) {
       {width > minWidth && (
         <Toolbar>
           {dwocLogo}
-          <div className={styles.nightButton} style={{marginBottom: '6px'}}>
+          <div className={styles.nightButton} style={{ marginBottom: '6px' }}>
             {defaultBtns.map((tab, index) => (
               <Button className={styles.nightButton} key={index}>
-                <Link smooth={true} to={tab.to} style={{color: '#fff'}}>
-                <ListItemText primary={tab.name}/>
+                <Link smooth={true} to={tab.to} style={{ color: '#fff' }}>
+                  <ListItemText primary={tab.name} />
 
                 </Link>
               </Button>
             ))}
             {(
               <Button className={styles.nightButton} href={tabs.link} >
-                <ListItemText primary={tabs.name} style={{color: '#fff'}}/>
+                <ListItemText primary={tabs.name} style={{ color: '#fff' }} />
               </Button>
             )}
           </div>
@@ -156,7 +157,8 @@ export default function Navbar(props) {
 
   return (
     <div>
-        <AppBar position="fixed" className={styles.nightNavbar}><div>{navbar}</div></AppBar>
+      <AppBar position="fixed" className={styles.nightNavbar}><div>{navbar}</div></AppBar>
     </div>
   );
 }
+export default withRouter(nav);

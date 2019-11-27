@@ -65,6 +65,10 @@ const useStyles = makeStyles(theme => ({
       '& .textClass': {
         color: `#5CDB95`,
         zIndex: 100
+      },
+      centr: {
+        display: "flex",
+        justifyContent: "center",
       }
     }
   }
@@ -163,12 +167,11 @@ export default function Projects(props) {
               }
             }}>
               {
-                isLogged && (<div style={{ display: "flex", justifyContent: "center" }}><Button
+                isLogged && (<div className={classes.centr}><Button
                   variant="contained"
                   color="secondary"
                   className={classes.button}
                   size="large"
-
                 >
                   Apply
              </Button></div>)
@@ -176,9 +179,9 @@ export default function Projects(props) {
             </Link>)
           }
           let addProjectMenu;
-          if (role === 'mentor')
+          if (role && role.toLowerCase() === 'mentor')
             addProjectMenu = (
-              <div>
+              <div className={classes.centr}>
                 <Button color="secondary" variant="outlined" onClick={handleClickOpen}>
                   Add Project
                 </Button>
