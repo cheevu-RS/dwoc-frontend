@@ -91,14 +91,14 @@ export default function ViewProposal(props) {
 		return <Redirect to="/" />;
 	}
 	console.log(props.role);
-	if (props.role.toLowerCase !== 'mentor') return <Redirect to="/" />;
+	if (props.role.toLowerCase() !== 'mentor') return <Redirect to="/" />;
 
 	let projSlug;
 	if (data) projSlug = data.projSlug;
 
 	return (
 		<div>
-			<SimpleTable projSlug={projSlug} />
+			<SimpleTable {...props} projSlug={projSlug} orgId={data.orgName}/>
 		</div>
 	);
 }

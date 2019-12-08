@@ -118,21 +118,6 @@ export default function ProjMinCard(props) {
             isLogged={props.isLogged}
             {...props}
           />
-          {props && props.role == "Mentor" &&
-            <Button variant="contained" className={classes.button}>
-              <Link
-                to={{
-                  pathname: '/proposal',
-                  data: {
-                    projSlug: props.projSlug
-                  }
-                }}
-              >
-                View Proposal
-            </Link>
-
-            </Button>
-          }
         </CardActions>
       </Card>
     </Grid>

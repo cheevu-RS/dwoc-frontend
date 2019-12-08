@@ -120,7 +120,22 @@ export default function Projects(props) {
 
 
 
+{//props && props.role == "Mentor" &&
+<Button variant="contained" className={classes.button}>
+<Link
+  to={{
+    pathname: '/proposal',
+    data: {
+      projSlug: props.projSlug,
+      orgName: orgID
+    }
+  }}
+>
+  View Proposal
+</Link>
 
+</Button>
+}
 
       <QueryRenderer
         environment={environment}

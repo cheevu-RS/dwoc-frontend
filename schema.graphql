@@ -192,7 +192,7 @@ input ProjectWhereUniqueInput {
 type Proposal {
   id: ID!
   user: User!
-  project: Project!
+  organization: Organization!
   isAccepted: Boolean!
   propUrl: String!
 }

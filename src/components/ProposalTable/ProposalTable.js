@@ -28,10 +28,12 @@ function createData(name,propsalURL,githubUrl) {
 const rows = [];
 
 export default function SimpleTable(props) {
+  let rows = [];
   const classes = useStyles();
   const projSlug=props.projSlug;
+  const orgId=props.orgId;
   let renderTable=true;
-
+  console.log("orgname="+props.orgId)
   return (
     <div>
     <QueryRenderer
@@ -39,71 +41,74 @@ export default function SimpleTable(props) {
       query={graphql`
             query ProposalTableQuery($cond: ProposalWhereInput) {
               proposals(where: $cond){
+                id
+                user {
                   id
-                  propUrl
-                  user{
-                    id
-                    firstName
-                    lastName
-                    githubHandle
-                  }
+                  firstName
+                  githubHandle
+                }
+                organization {
+                  id
+                }
+                isAccepted
+                propUrl
+                          
               }
             }
           `}
-          variables={{cond: {project: {projSlug: projSlug}}}}
-      render={({ error, prop }) => {
+          variables={{cond: {organization: {id: orgId}}}}
+      render={({ error, props }) => {
         if (error) {
           console.log(`${error} <= error Relay OrgCards`);
           return <div>Error!</div>;
-            renderTable=false;
         }
-        if (!prop) {
-            renderTable=false;
+        /**/console.log("PROP="+JSON.stringify(props))
+        if (!props) {
+            //renderTable=false;
           return (
             <div>
-              <p>Table empty!!!</p>
+             <p>Have not received any proposals!!!</p>
             </div>
           );
         }
-        prop.proposals.forEach(function(e){
-          rows.push(createData(e.user.firstName,e.propUrl,e.githubHandle))
+        props.proposals.forEach(function(e){
+          rows.push(createData(e.user.firstName,e.propUrl,e.user.githubHandle))
         });
 
         return (
-            <div/>
-
+          renderTable&&
+          (<Paper className={classes.root}>
+            <Table className={classes.table} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Name</TableCell>
+                  <TableCell align="center">Proposal URL</TableCell>
+                  <TableCell align="right">Github URL</TableCell>
+      
+      
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                { rows.map((row) => (
+                  <TableRow key={JSON.stringify(row)}>
+                    <TableCell component="th" scope="row">
+                      {row.name}
+                    </TableCell>
+                    <TableCell align="center">{row.propsalURL}</TableCell>
+                    <TableCell align="right"><a href={row.githubUrl}>{row.githubUrl}</a></TableCell>
+      
+                  </TableRow>
+               ))
+              } 
+              </TableBody> 
+            </Table>
+          </Paper>)
+                 
+              );
+            }
+            } 
+          />
+         </div>
         );
-      }}
-    />
-
-
-{renderTable&&
-    (<Paper className={classes.root}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="center">Proposal URL</TableCell>
-            <TableCell align="right">Github URL</TableCell>
-
-
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.propsalURL}</TableCell>
-              <TableCell align="right">{row.githubUrl}</TableCell>
-
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>)
-  }
-    </div>
-  );
-}
+      }
+      
