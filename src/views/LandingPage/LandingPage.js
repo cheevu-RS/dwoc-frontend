@@ -17,6 +17,8 @@ import { header2, paragraph, section, screenHeight, about, help } from '../../Dw
 import { makeStyles } from '@material-ui/core/styles';
 import './LandingPage.css';
 
+
+
 WebFont.load({
 	google: {
 		families: [paragraph.fontFamily, header2.fontFamily]
@@ -55,7 +57,8 @@ function LandingPage(props) {
 	const classes = useStyles();
 	const [width, setWidth] = useState(window.innerWidth);
 	const role = props.role;
-
+  const userId=props.userId;
+	let length=0;
 	let timeline = (
 		<div>
 			{width < minWidth && <Timeline width={'85%'} />}
@@ -65,6 +68,7 @@ function LandingPage(props) {
 
 	return (
 		<div style={{ paddingBottom: '0px', marginBottom: '0px', paddingTop: '10px', paddingLeft: '10px' }}>
+
 			<Reveal>
 				<Pulse>
 					<div>

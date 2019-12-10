@@ -1,8 +1,11 @@
+
 import React, { useState } from 'react';
+
 
 
 import { QueryRenderer } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
+
 
 const environment = require("../../../Environment").environment1;
 
@@ -49,4 +52,5 @@ export default function ProposalMessage(props) {
             />
         </div >
     )
+
 }

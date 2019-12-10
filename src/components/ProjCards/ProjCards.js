@@ -88,7 +88,9 @@ export default function Projects(props) {
   const isLogged = props.isLogged;
   const orgID = props.match.params.id;
   const role = props.role;
+
   const userId = props.userId;
+
   const applyRoute = `/org/${orgID}/${orgName}/apply`;
   //const role= props.match.params.role;
   const mentorsList = props.location.state.mentors;
@@ -120,6 +122,7 @@ export default function Projects(props) {
 
 
 
+
 {//props && props.role == "Mentor" &&
 <Button variant="contained" className={classes.button}>
 <Link
@@ -136,6 +139,7 @@ export default function Projects(props) {
 
 </Button>
 }
+
 
       <QueryRenderer
         environment={environment}
@@ -211,6 +215,7 @@ export default function Projects(props) {
               </div>
             );
           return (
+
             <><div style={{ paddingLeft: '50px', paddingRight: '50px' }}>
               <Grid container className={classes.gridContainer} spacing={3}>
                 {props.projects.map(project => (
@@ -232,6 +237,7 @@ export default function Projects(props) {
               <ProposalMessage canApply={applyFn} userId={userId} />
               <br />
               {applyBtnDiv}
+
               <br />
               <br />
               <h2 className={classes.header2}>Mentors</h2>

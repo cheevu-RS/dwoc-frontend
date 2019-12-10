@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0854f30f3ee7f1e9273e3148ada2b840
+ * @relayHash bf1ce25160d6a0c07f853c613ab63ab4
  */
 
 /* eslint-disable */
@@ -44,23 +44,23 @@ export type OrganizationWhereInput = {|
   orgDesc?: ?string,
   githubUrl?: ?string,
 |};
-export type LandingPageQueryVariables = {|
+export type ProposalMessageQueryVariables = {|
   userId?: ?ProposalWhereInput
 |};
-export type LandingPageQueryResponse = {|
+export type ProposalMessageQueryResponse = {|
   +proposals: $ReadOnlyArray<?{|
     +id: string
   |}>
 |};
-export type LandingPageQuery = {|
-  variables: LandingPageQueryVariables,
-  response: LandingPageQueryResponse,
+export type ProposalMessageQuery = {|
+  variables: ProposalMessageQueryVariables,
+  response: ProposalMessageQueryResponse,
 |};
 */
 
 
 /*
-query LandingPageQuery(
+query ProposalMessageQuery(
   $userId: ProposalWhereInput
 ) {
   proposals(where: $userId) {
@@ -108,7 +108,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "LandingPageQuery",
+    "name": "ProposalMessageQuery",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
@@ -116,19 +116,19 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "LandingPageQuery",
+    "name": "ProposalMessageQuery",
     "argumentDefinitions": (v0/*: any*/),
     "selections": (v1/*: any*/)
   },
   "params": {
     "operationKind": "query",
-    "name": "LandingPageQuery",
+    "name": "ProposalMessageQuery",
     "id": null,
-    "text": "query LandingPageQuery(\n  $userId: ProposalWhereInput\n) {\n  proposals(where: $userId) {\n    id\n  }\n}\n",
+    "text": "query ProposalMessageQuery(\n  $userId: ProposalWhereInput\n) {\n  proposals(where: $userId) {\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '8dd0b118a13a8a3cc55d29ebf659a194';
+(node/*: any*/).hash = '9d25f7d2b42aba59c7863e67f85e637a';
 module.exports = node;

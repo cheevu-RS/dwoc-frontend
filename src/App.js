@@ -56,8 +56,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App() {
+
   let [authState, setAuthState] = useState({ isLogged: false, role: null });
   let id;
+
   const classes = useStyles();
 
   return (
@@ -88,10 +90,12 @@ function App() {
               );
             }
 
+
             if (props && !authState.isLogged) {
               id = props.userProfile.id;
               setAuthState({ isLogged: !authState.isLogged, role: props.userProfile.role });
               authState.role = props.userProfile.role
+
             }
             return <div></div>;
           }}
@@ -125,7 +129,9 @@ function App() {
             path="/"
             render={props => (
               <>
+
                 <LandingPage role={authState.role} userId={id}  {...props} isLogged={authState.isLogged} />
+
               </>
             )}
           ></Route>
@@ -134,8 +140,10 @@ function App() {
             path="/org/:id/:orgName"
             render={props => (
               <>
+
                 <Navbar isLogged={authState.isLogged} role={authState.role} showBtns={false} />
                 <ProjCards {...props} userId={id} role={authState.role} isLogged={authState.isLogged} />
+
               </>
             )}
           ></Route>
