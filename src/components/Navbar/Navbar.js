@@ -72,7 +72,7 @@ const nav = function Navbar(props) {
 
   let [tabs, setTabs] = useState({
     name: 'Login with Github',
-    link: 'http://dwoc.io/dwocb/login'
+    link: 'https://dwoc.io/dwocb/login'
   });
 
   // console.log(props);
@@ -81,11 +81,11 @@ const nav = function Navbar(props) {
     // Update the document title using the browser API
 
     if (props.isLogged) {
-      setTabs({ name: 'Logout', link: 'http://dwoc.io/dwocb/logout' });
+      setTabs({ name: 'Logout', link: 'https://dwoc.io/dwocb/logout' });
     } else {
       setTabs({
         name: 'Login with Github',
-        link: 'http://dwoc.io/dwocb/login'
+        link: 'https://dwoc.io/dwocb/login'
       });
     }
   }, [props.isLogged]);

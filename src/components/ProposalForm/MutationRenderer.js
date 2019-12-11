@@ -26,7 +26,7 @@ const MutationRenderer = props => {
             connect: { id: props.orgID }
         }
     }
-    // console.log(proposal);
+     console.log(proposal);
     commitMutation(environment, {
         mutation,
         variables: { proposal },
@@ -45,7 +45,9 @@ const MutationRenderer = props => {
                     styling: true
                 }
             });
-
+	setTimeout(function(){
+        window.location.replace("https://dwoc.io");
+ 	}, 3000);	
         },
         onError: err => {
             console.error(err)

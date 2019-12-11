@@ -3,7 +3,10 @@ node_modules/
 src/__generated__
 src/components/OrgCards/__generated__
 src/components/ProjCards/__generated__
-src/components/ProposalForm/__generated__
-src/components/ProjCards/ProposalMessage/__generated__
 build
-src/components/ProposalTable/__generated__
+src/components/OrgCards/OrgCard/__generated__/OrgCardQuery.graphql.js
+src/components/ProjCards/ProposalMessage/__generated__/ProposalMessageQuery.graphql.js
+src/components/ProjCards/AddProjectForm/__generated__/FormMutation.graphql.js
+src/components/ProposalForm/__generated__/MutationRendererMutation.graphql.js
+src/components/ProposalForm/__generated__/ProposalFormMutation.graphql.js
+src/components/ProposalTable/__generated__/ProposalTableQuery.graphql.js

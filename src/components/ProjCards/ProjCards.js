@@ -71,6 +71,10 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "center"
       }
     }
+  },
+  centr: {
+    display: "flex",
+    justifyContent: "center"
   }
 }));
 
@@ -200,6 +204,7 @@ export default function Projects(props) {
               </Link>
             );
           }
+
           let addProjectMenu;
           if (role && role.toLowerCase() === "mentor")
             addProjectMenu = (
@@ -247,7 +252,6 @@ export default function Projects(props) {
               <br />
               {applyBtnDiv}
 
-              <br />
               <br />
               <h2 className={classes.header2}>Mentors</h2>
               <MentorTags mentors={mentorsList} />

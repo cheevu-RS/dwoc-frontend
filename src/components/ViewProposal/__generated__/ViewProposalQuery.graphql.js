@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c124695d43cd2d222a4b557598b1b62a
+ * @relayHash e6b66da9091e08e2615b66079eb9f503
  */
 
 /* eslint-disable */
@@ -13,9 +13,10 @@ export type roles = "Admin" | "Dev" | "Mentor" | "%future added value";
 export type ProposalWhereInput = {|
   id?: ?string,
   user?: ?UserWhereInput,
-  project?: ?ProjectWhereInput,
+  organization?: ?OrganizationWhereInput,
   isAccepted?: ?boolean,
   propUrl?: ?string,
+  file?: ?FileWhereInput,
 |};
 export type UserWhereInput = {|
   id?: ?string,
@@ -28,21 +29,20 @@ export type UserWhereInput = {|
   password?: ?string,
   isVerified?: ?boolean,
   session?: ?string,
-|};
-export type ProjectWhereInput = {|
-  id?: ?string,
-  organization?: ?OrganizationWhereInput,
-  projName?: ?string,
-  projSlug?: ?string,
-  projDesc?: ?string,
-  githubUrl?: ?string,
+  profileImage?: ?string,
 |};
 export type OrganizationWhereInput = {|
   id?: ?string,
   orgName?: ?string,
   orgSlug?: ?string,
   orgDesc?: ?string,
+  orgMaxDesc?: ?string,
   githubUrl?: ?string,
+  communicationChannel?: ?string,
+|};
+export type FileWhereInput = {|
+  fileName?: ?string,
+  filePath?: ?string,
 |};
 export type ViewProposalQueryVariables = {|
   cond?: ?ProposalWhereInput

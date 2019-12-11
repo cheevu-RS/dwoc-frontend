@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 50d899e26def090a406684cf07b009d0
+ * @relayHash 8549379c0df91c41fc0d15fe6665d039
  */
 
 /* eslint-disable */
@@ -26,13 +26,16 @@ export type UserWhereInput = {|
   password?: ?string,
   isVerified?: ?boolean,
   session?: ?string,
+  profileImage?: ?string,
 |};
 export type OrganizationWhereInput = {|
   id?: ?string,
   orgName?: ?string,
   orgSlug?: ?string,
   orgDesc?: ?string,
+  orgMaxDesc?: ?string,
   githubUrl?: ?string,
+  communicationChannel?: ?string,
 |};
 export type OrgCardQueryVariables = {|
   orgid?: ?MentorWhereInput

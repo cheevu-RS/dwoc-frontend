@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9b23348c24dde4e511bb53e9fa9d84fe
+ * @relayHash 85f6d8b3c1eedbd67c493680172e9464
  */
 
 /* eslint-disable */
@@ -9,6 +9,7 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+export type difficulties = "Easy" | "Hard" | "Medium" | "%future added value";
 export type ProjectCreateInput = {|
   id?: ?string,
   organization: OrganizationCreateOneInput,
@@ -17,6 +18,7 @@ export type ProjectCreateInput = {|
   projDesc?: ?string,
   githubUrl?: ?string,
   projMinDesc?: ?string,
+  difficulty?: ?difficulties,
 |};
 export type OrganizationCreateOneInput = {|
   create?: ?OrganizationCreateInput,
@@ -27,7 +29,14 @@ export type OrganizationCreateInput = {|
   orgName: string,
   orgSlug: string,
   orgDesc?: ?string,
+  orgMaxDesc?: ?string,
   githubUrl?: ?string,
+  stack?: ?OrganizationCreatestackInput,
+  contactUrl?: ?string,
+  communicationChannel?: ?string,
+|};
+export type OrganizationCreatestackInput = {|
+  set?: ?$ReadOnlyArray<string>
 |};
 export type OrganizationWhereUniqueInput = {|
   id?: ?string,

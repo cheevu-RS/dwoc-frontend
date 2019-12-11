@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 001735ad5a30603cf70848723eb806cd
+ * @relayHash 9afd4ed510bbe177e68616ab84667b7a
  */
 
 /* eslint-disable */
@@ -29,7 +29,7 @@ export type ProposalFormMutation = {|
 mutation ProposalFormMutation(
   $file: Upload!
 ) {
-  uploadFile(file: $file) {
+  uploadFile(data: $file) {
     fileName
     filePath
   }
@@ -54,7 +54,7 @@ v1 = [
     "args": [
       {
         "kind": "Variable",
-        "name": "file",
+        "name": "data",
         "variableName": "file"
       }
     ],
@@ -98,11 +98,11 @@ return {
     "operationKind": "mutation",
     "name": "ProposalFormMutation",
     "id": null,
-    "text": "mutation ProposalFormMutation(\n  $file: Upload!\n) {\n  uploadFile(file: $file) {\n    fileName\n    filePath\n  }\n}\n",
+    "text": "mutation ProposalFormMutation(\n  $file: Upload!\n) {\n  uploadFile(data: $file) {\n    fileName\n    filePath\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'ad6f7f5222e41b13805c2cc5169850ae';
+(node/*: any*/).hash = '67c098a0b60572e20fb6645ad2884af1';
 module.exports = node;
