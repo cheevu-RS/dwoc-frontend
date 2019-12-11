@@ -1,42 +1,42 @@
 /* @flow */
 
-import React from 'react';
-import ReactMarkdown from 'react-markdown/with-html';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import {makeStyles} from '@material-ui/core/'
-import {useHistory} from 'react-router-dom'
+import React from "react";
+import ReactMarkdown from "react-markdown/with-html";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/";
+import { useHistory } from "react-router-dom";
 
 const styles = makeStyles(theme => ({
   readMore: {
     borderRadius: `10px`,
     transition: `0.2s`,
-    '&:before, &:after': {
+    "&:before, &:after": {
       content: "''",
-      position: 'absolute',
+      position: "absolute",
       top: 0,
       left: 0,
       width: 0,
       height: `100%`
     },
-    '&:before': {
+    "&:before": {
       borderRadius: `10px 0 0 10px`
     },
-    '&:after': {
+    "&:after": {
       borderRadius: `0 10px 10px 0`,
-      left: 'auto',
+      left: "auto",
       right: 0
     },
-    '&:hover': {
-      '&:after, &:before': {
+    "&:hover": {
+      "&:after, &:before": {
         width: `50%`
       },
-      '& .textClass': {
+      "& .textClass": {
         //   color: `#5CDB95`,
         zIndex: 100
       }
@@ -56,7 +56,7 @@ export default function DraggableDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  
+
   return (
     <div>
       <Button
@@ -72,19 +72,16 @@ export default function DraggableDialog(props) {
           <DialogContentText>
             <ReactMarkdown source={props.projDesc} escapeHtml={false} />
           </DialogContentText>
-          <a href={ props.githubUrl}>
-            Check it out on GitHub{' '}
-          </a>
+          <a href={props.githubUrl}>Check it out on GitHub </a>
         </DialogContent>
         {props.isLogged && (
           <div>
             <DialogActions>
-              {props.taken === '1' ? (
+              {props.taken === "1" ? (
                 <Button onClick={handleClose}>Cancel</Button>
               ) : (
                 <div>
                   <Button onClick={handleClose}>Cancel</Button>
-
                 </div>
               )}
             </DialogActions>
@@ -93,16 +90,14 @@ export default function DraggableDialog(props) {
         {props.isLogged || (
           <div>
             <DialogActions>
-              {props.taken === '1' ? (
+              {props.taken === "1" ? (
                 <Button onClick={handleClose}>Cancel</Button>
               ) : (
                 <div>
                   <Button onClick={handleClose}>Cancel</Button>
                   <Button>
-                    {' '}
-                    <a href="https://dwoc.io/dwocb/login">
-                      Login to apply
-                    </a>
+                    {" "}
+                    <a href="https://dwoc.io/dwocb/login">Login to apply</a>
                   </Button>
                 </div>
               )}

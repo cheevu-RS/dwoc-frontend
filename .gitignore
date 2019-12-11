@@ -3,4 +3,7 @@ node_modules/
 src/__generated__
 src/components/OrgCards/__generated__
 src/components/ProjCards/__generated__
+src/components/ProposalForm/__generated__
+src/components/ProjCards/ProposalMessage/__generated__
 build
+src/components/ProposalTable/__generated__
