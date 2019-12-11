@@ -124,23 +124,22 @@ export default function Projects(props) {
       <br />
       <h2 className={classes.header2}>Projects</h2>
 
-      {
-        //props && props.role == "Mentor" &&
-        <Button variant="contained" className={classes.button}>
-          <Link
-            to={{
-              pathname: "/proposal",
-              data: {
-                projSlug: props.projSlug,
-                orgName: orgID
-              }
-            }}
-          >
-            View Proposal
-          </Link>
-        </Button>
-      }
-
+      {props && props.role == "Mentor" && (
+        <div className={classes.centr}>
+          <Button variant="contained" className={classes.button}>
+            <Link
+              to={{
+                pathname: "/proposal",
+                data: {
+                  orgName: orgID
+                }
+              }}
+            >
+              View Proposal
+            </Link>
+          </Button>
+        </div>
+      )}
 
       <QueryRenderer
         environment={environment}

@@ -6,9 +6,7 @@ import SimpleTable from '../ProposalTable/ProposalTable';
 
 export default function ViewProposal(props) {
 	let data = props.location.data;
-	if (!data) {
-		return <Redirect to="/" />;
-	}
+	
 	console.log(props.role);
 	if (props.role.toLowerCase() !== 'mentor') return <Redirect to="/" />;
 

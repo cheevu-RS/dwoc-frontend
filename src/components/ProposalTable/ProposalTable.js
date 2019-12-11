@@ -71,8 +71,11 @@ export default function SimpleTable(props) {
             );
           }
           props.proposals.forEach(function(e) {
+            let loc = e.propUrl;
+            loc = loc.split("/");
+            let propUrl = loc.pop();
             rows.push(
-              createData(e.user.firstName, e.propUrl, e.user.githubHandle)
+              createData(e.user.firstName, propUrl, e.user.githubHandle)
             );
           });
 
@@ -93,9 +96,9 @@ export default function SimpleTable(props) {
                         <TableCell component="th" scope="row">
                           {row.name}
                         </TableCell>
-                        <TableCell align="center">{row.propsalURL}</TableCell>
+                        <TableCell align="center"><a href={`https://dwoc.io/proposals/${row.propsalURL}`}>{row.propsalURL}</a></TableCell>
                         <TableCell align="right">
-                          <a href={row.githubUrl}>{row.githubUrl}</a>
+                          <a href={`https://github.com/${row.githubUrl}`}>{row.githubUrl}</a>
                         </TableCell>
                       </TableRow>
                     ))}
