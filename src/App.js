@@ -24,6 +24,7 @@ import Navbar from "./components/Navbar/Navbar";
 import ProposalForm from "./components/ProposalForm/ProposalForm";
 import ProjCards from "./components/ProjCards/ProjCards";
 import ViewProposal from "./components/ViewProposal/ViewProposal"
+import OrgProposalCount from "./components/ViewProposalCount/OrgProposalCount"
 import SnowStorm from "react-snowstorm";
 
 //Spinner
@@ -164,6 +165,16 @@ function App() {
               <>
                 <Navbar isLogged={authState.isLogged} role={authState.role} showBtns={false} />
                 <ViewProposal {...props} role={authState.role} isLogged={authState.isLogged} />
+              </>
+            )}
+          ></Route>
+          <Route
+            exact
+            path="/propsCount"
+            render={props => (
+              <>
+                <Navbar isLogged={isLogged} role={role} showBtns={false} />
+                <OrgProposalCount {...props} role={role} isLogged={isLogged} />
               </>
             )}
           ></Route>
